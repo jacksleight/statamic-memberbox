@@ -1,0 +1,37 @@
+<div class="max-w-6xl mx-auto">
+
+    <div class="text-center content">
+        <h1 class="mb-4">Forgot Password?</h1>
+        <p>Enter your email address and we'll send you a reset link.</p>
+    </div>
+
+    <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
+        
+        {{ user:forgot_password_form reset_url="{ route:statamic.members.reset }" }}
+            
+            {{ if errors }}
+                <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
+                    {{ errors }}
+                        {{ value }}<br>
+                    {{ /errors }}
+                </div>
+            {{ /if }}
+
+            {{ if success }}
+                <div class="bg-green-600 text-white p-2 rounded-md mb-5 text-center">
+                    {{ success }}<br>
+                </div>
+            {{ /if }}
+
+            <div class="mb-5">
+                <label for="email" class="block mb-1">Email</label>
+                <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email }}" />
+            </div>
+        
+            <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Submit</button>
+
+        {{ /user:forgot_password_form }}
+
+    </div>
+
+</div>
