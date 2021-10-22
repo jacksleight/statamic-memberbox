@@ -1,14 +1,16 @@
+<!-- {{ members }} -->
+
 <div class="max-w-6xl mx-auto">
 
     <div class="text-center content">
-        <h1 class="mb-4">Activate Account</h1>
-        <p>Enter your email address and a password to activate your account.</p>
+        <h1 class="mb-4">Update Account</h1>
+        <p>Update your account details below.</p>
     </div>
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ members_user:activate_form }}
-            
+        {{ members_user:edit_form }} {{ user }}
+
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
                     {{ errors }}
@@ -24,12 +26,17 @@
             {{ /if }}
 
             <div class="mb-5">
+                <label for="name" class="block mb-1">Name</label>
+                <input class="bg-white p-2 w-full rounded-md" type="name" name="name" id="name" value="{{ old:name ?? name }}" />
+            </div>
+
+            <div class="mb-5">
                 <label for="email" class="block mb-1">Email</label>
-                <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email }}" />
+                <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email ?? email }}" />
             </div>
     
             <div class="mb-5">
-                <label for="password" class="block mb-1">Password</label>
+                <label for="password" class="block mb-1">New Password</label>
                 <input class="bg-white p-2 w-full rounded-md" type="password" name="password" id="password" value="{{ old:password }}" />
             </div>
     
@@ -38,9 +45,14 @@
                 <input class="bg-white p-2 w-full rounded-md" type="password" name="password_confirmation" id="password_confirmation" value="{{ old:password_confirmation }}" />
             </div>
     
-            <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Activate</button>
+            <div class="mb-5">
+                <label for="current_password" class="block mb-1">Current Password</label>
+                <input class="bg-white p-2 w-full rounded-md" type="current_password" name="current_password" id="current_password" value="{{ old:password }}" />
+            </div>
+    
+            <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Update</button>
 
-        {{ /members_user:activate_form }}
+        {{ /user }} {{ /members_user:edit_form }}
 
     </div>
 

@@ -82,6 +82,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_vendor_statamic_cms_resources_js_components_Listing_vue__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -1889,6 +1893,38 @@ var render = function() {
                           "div",
                           { staticClass: "card p-0 relative" },
                           [
+                            _c(
+                              "div",
+                              { staticClass: "data-list-header" },
+                              [
+                                _c("data-list-search", {
+                                  model: {
+                                    value: _vm.searchQuery,
+                                    callback: function($$v) {
+                                      _vm.searchQuery = $$v
+                                    },
+                                    expression: "searchQuery"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("div", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.items.length === 0,
+                                  expression: "items.length === 0"
+                                }
+                              ],
+                              staticClass: "p-3 text-center text-grey-50",
+                              domProps: {
+                                textContent: _vm._s(_vm.__("No results"))
+                              }
+                            }),
+                            _vm._v(" "),
                             _c("data-list-bulk-actions", {
                               staticClass: "rounded",
                               attrs: { url: _vm.actionUrl },
@@ -1899,7 +1935,15 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("data-list-table", {
-                              attrs: { "allow-bulk-actions": true },
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.items.length,
+                                  expression: "items.length"
+                                }
+                              ],
+                              attrs: { "allow-bulk-actions": false },
                               on: { sorted: _vm.sorted },
                               scopedSlots: _vm._u(
                                 [
@@ -1997,7 +2041,7 @@ var render = function() {
               ],
               null,
               false,
-              2613398217
+              2888915826
             )
           })
         : _vm._e()

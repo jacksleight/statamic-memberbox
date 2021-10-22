@@ -1,9 +1,12 @@
 {
-    "name": "jacksleight/members",
+    "name": "jacksleight/statamic-members",
     "autoload": {
         "psr-4": {
-            "JackSleight\\Members\\": "src"
-        }
+            "JackSleight\\StatamicMembers\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "statamic": {
@@ -12,7 +15,7 @@
         },
         "laravel": {
             "providers": [
-                "JackSleight\\Members\\ServiceProvider"
+                "JackSleight\\StatamicMembers\\ServiceProvider"
             ]
         }
     },

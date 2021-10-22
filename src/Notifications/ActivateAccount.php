@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\Members\Notifications;
+namespace JackSleight\StatamicMembers\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Statamic\Notifications\ActivateAccount as StatamicActivateAccount;

@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\Members\Tags;
+namespace JackSleight\StatamicMembers\Tags;
 
 use Statamic\Facades\URL;
 use Statamic\Facades\User;
@@ -15,7 +15,7 @@ class UserTags extends Tags
         Concerns\GetsRedirects,
         Concerns\RendersForms;
 
-    protected static $handle = 'site_user';
+    protected static $handle = 'members_user';
 
     public function __call($method, $args)
     {
@@ -42,7 +42,7 @@ class UserTags extends Tags
             $data['errors'] = session('errors')->all();
         }
 
-        $knownParams = ['redirect'];
+        $knownParams = ['redirect', 'error_redirect', 'allow_request_redirect'];
 
         $html = $this->formOpen(route('statamic.account.activate.action'), 'POST', $knownParams);
 
@@ -50,6 +50,43 @@ class UserTags extends Tags
 
         if ($redirect = $this->params->get('redirect')) {
             $html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';
+        }
+
+        if ($error_redirect = $this->params->get('error_redirect')) {
+            $html .= '<input type="hidden" name="error_redirect" value="'.$error_redirect.'" />';
+        }
+
+        $html .= $this->parse($data);
+
+        $html .= $this->formClose();
+
+        return $html;
+    }
+
+    public function editForm()
+    {
+        $data = [
+            'errors' => [],
+        ];
+
+        if (session('success')) {
+            return $this->parse(['success' => true]);
+        }
+
+        if (session('errors')) {
+            $data['errors'] = session('errors')->all();
+        }
+
+        $knownParams = ['redirect', 'error_redirect', 'allow_request_redirect'];
+
+        $html = $this->formOpen(route('statamic.members.update'), 'POST', $knownParams);
+
+        if ($redirect = $this->params->get('redirect')) {
+            $html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';
+        }
+
+        if ($error_redirect = $this->params->get('error_redirect')) {
+            $html .= '<input type="hidden" name="error_redirect" value="'.$error_redirect.'" />';
         }
 
         $html .= $this->parse($data);

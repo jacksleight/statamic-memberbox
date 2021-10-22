@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\Members\Http\Controllers\CP;
+namespace JackSleight\StatamicMembers\Http\Controllers\CP;
 
 use Illuminate\Http\Request;
 use Statamic\Facades\Scope;
@@ -11,7 +11,7 @@ use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\CP\Column;
 use Statamic\Exceptions\NotFoundHttpException;
 use Statamic\Auth\Passwords\PasswordReset;
-use JackSleight\Members\Notifications\ActivateAccount;
+use JackSleight\StatamicMembers\Notifications\ActivateAccount;
 use Statamic\Http\Controllers\CP\Users\UsersController as StatamicUsersController;
 
 class UsersController extends StatamicUsersController
@@ -39,6 +39,10 @@ class UsersController extends StatamicUsersController
         $query = User::query();
 
         $activeFilterBadges = $this->queryFilters($query, $request->filters);
+
+        if ($search = request('search')) {
+            $query->where('email', 'like', '%'.$search.'%');
+        }
 
         if ($roles = config('statamic.users.new_user_roles')) {
             foreach ($roles as $role) {
@@ -150,6 +154,7 @@ class UsersController extends StatamicUsersController
     public function edit(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
+        throw_unless(member($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 
@@ -187,6 +192,7 @@ class UsersController extends StatamicUsersController
     public function update(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
+        throw_unless(member($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 

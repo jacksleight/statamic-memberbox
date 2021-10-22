@@ -1,8 +1,8 @@
 <!-- statamic:hide -->
 
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
-![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/members)
-![License](https://flat.badgen.net/github/license/jacksleight/members)
+![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-members)
+![License](https://flat.badgen.net/github/license/jacksleight/statamic-members)
 
 # Members 
 
@@ -37,7 +37,7 @@ This addon defines a member as any user who has the roles and groups listed in t
 You can search for this addon in the `Tools > Addons` section of the Statamic control panel and click **install**, or run the following command from your project root:
 
 ```bash
-composer require jacksleight/members
+composer require jacksleight/statamic-members
 ```
 
 ## Configuration

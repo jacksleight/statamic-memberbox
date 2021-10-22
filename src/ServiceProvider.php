@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\Members;
+namespace JackSleight\StatamicMembers;
 
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Facades\CP\Nav;
@@ -18,7 +18,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $tags = [
-        \JackSleight\Members\Tags\UserTags::class,
+        \JackSleight\StatamicMembers\Tags\UserTags::class,
     ];
 
     public function register()
@@ -26,7 +26,7 @@ class ServiceProvider extends AddonServiceProvider
         parent::register();
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/members.php', 'members',
+            __DIR__ . '/../config/statamic/members.php', 'statamic.members',
         );
     }
 
@@ -39,16 +39,16 @@ class ServiceProvider extends AddonServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'members');
 
         $this->publishes([
-            __DIR__ . '/../config/members.php' => config_path('members.php'),
-        ], 'members-config');
+            __DIR__ . '/../config/statamic/members.php' => config_path('statamic/members.php'),
+        ], 'statamic-members-config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/web' => resource_path('views/vendor/members/web'),
-        ], 'members-views');
+            __DIR__.'/../resources/views/web' => resource_path('views/vendor/statamic-members/web'),
+        ], 'statamic-members-views');
 
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/members'),
-        ], 'members-translations');
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/statamic-members'),
+        ], 'statamic-members-translations');
 
         Nav::extend(function ($nav) {
             $nav->create('Members')

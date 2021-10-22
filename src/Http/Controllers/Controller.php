@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\Members\Http\Controllers;
+namespace JackSleight\StatamicMembers\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
