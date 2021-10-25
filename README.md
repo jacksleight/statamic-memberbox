@@ -12,13 +12,14 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 
 > **Important:** This addon uses Statamic’s multi-user features, which are Pro only. Therefore this addon will only work with the Pro edition.
 
-## Main Features
+## Features
 
 * A dedicated members section in the control panel that:
-	* Only lists member users, and allows you to search them
-	* Allows you to add member users through a simplified user wizard
-	* Allows you to send member specific activation emails that link to a frontend form
-* Fully functional implementations of all built-in user forms:
+	* Only lists member users and allows you to search them
+	* Uses seperate view, create and edit member permissions
+	* Allows you to create members through a simplified user wizard
+	* Allows you to send member specific welcome emails that link to a frontend activation form
+* Implementations of all built-in user forms:
 	* Register
 	* Login
 	* Forgot password
@@ -26,7 +27,9 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 * Plus these additional user forms:
 	* Activate account
 	* Edit account
-* A `{{ members }}` tag that allows you to control what content is restricted to members, and direct users to login when necessary
+	* Update password
+* A `{{ members }}` tag that makes it super simple to control what content is restricted to which members and how
+* A handful of utility helpers and tags
 
 ### Who’s a Member?
 
@@ -42,4 +45,66 @@ composer require jacksleight/statamic-members
 
 ## Configuration
 
+The first thing you need to do is set Statamic's new user settings to the roles/groups you want member users to have. To do this, create the appropriate roles/groups, and then open `config/statamic/users.php` and update the relevant settings:
 
+```php
+// These are just examples!
+// You can call your roles/groups whatever you want, and you dont have to use both roles *and* groups. For most setups I would recommend just a single group called "members".
+
+'new_user_roles' => [
+	'member',
+],
+
+'new_user_groups' => [
+	'members',
+],
+```
+
+You can also modify the route prefix used for the form pages, as well as toggle the registration and edit forms on and off, by publishing the Members config.
+
+```bash
+php please vendor:publish --tag=statamic-members-config
+```
+
+And then opening `config/statamic/members.php` to make any changes.
+
+### Customising the View Templates
+
+The default view templates have been built to match the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll probably want to customise these to match your site's design. To do that publish the view templates:
+
+```bash
+php please vendor:publish --tag=statamic-members-views
+```
+
+And then open `resources/views/vendor/statamic-members/web/*.antlers.html` to customise the templates.
+
+### Customising the Welcome Email
+
+You can customise the welcome email text by publishing the translation files:
+
+```bash
+php please vendor:publish --tag=statamic-members-translations
+```
+
+And then opening `lang/vendor/statamic-members/*/messages.php` to customise the text.
+
+### Permissions
+
+To give control panel users access to the members section you will need to grant them the appropriate permissions (super admins always have access to everything). You can either do this through the control panel's permissions editor, or in the `resources/users/roles.yaml` file directly:
+
+```yaml
+role:
+  title: Role
+  permissions:
+    - 'view members'
+    - 'edit members'
+    - 'create members'
+```
+
+<!-- statamic:hide -->
+
+## Licencing
+
+Members is a paid Statamic addon. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
+
+<!-- /statamic:hide -->
