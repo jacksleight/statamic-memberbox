@@ -12,6 +12,22 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 
 > **Important:** This addon uses Statamic’s multi-user features, which are Pro only. Therefore this addon will only work with the Pro edition.
 
+- [Features](#features)
+  * [Who’s a Member?](#who-s-a-member-)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  * [Customising the view templates](#customising-the-view-templates)
+  * [Customising the welcome email](#customising-the-welcome-email)
+  * [Permissions](#permissions)
+- [Restricting Content](#restricting-content)
+  * [Restrict a section of a page to members only](#restrict-a-section-of-a-page-to-members-only)
+  * [Restrict a section of a page to non-members only](#restrict-a-section-of-a-page-to-non-members-only)
+  * [Restrict an entire page to members only and redirect non-members to the login page](#restrict-an-entire-page-to-members-only-and-redirect-non-members-to-the-login-page)
+  * [Only restrict certain pages based on an entry field](#only-restrict-certain-pages-based-on-an-entry-field)
+  * [Specifying additional restrictions](#specifying-additional-restrictions)
+- [Form Page URLs](#form-page-urls)
+- [Licencing](#licencing)
+
 ## Features
 
 * A dedicated members section in the control panel that:
@@ -70,7 +86,7 @@ php please vendor:publish --tag=statamic-members-config
 
 And then opening `config/statamic/members.php` to make any changes.
 
-### Customising the View Templates
+### Customising the view templates
 
 The default view templates have been built to match the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll probably want to customise these to match your site's design. To do that publish the view templates:
 
@@ -80,7 +96,7 @@ php please vendor:publish --tag=statamic-members-views
 
 And then open `resources/views/vendor/statamic-members/web/*.antlers.html` to customise the templates.
 
-### Customising the Welcome Email
+### Customising the welcome email
 
 You can customise the welcome email text by publishing the translation files:
 
@@ -131,7 +147,7 @@ To control which content is restricted to members you can use the `{{ members }}
 <p>This is only visible to members, non-members will be redirected</p>
 ```
 
-### Only restrict pages that have a toggle field called `protected` set to `true`
+### Only restrict certain pages based on an entry field
 
 The `if` parameter accepts the result of an expression. If it is present and the result is `false` restrictions will not be enforced. 
 
@@ -139,7 +155,7 @@ The `if` parameter accepts the result of an expression. If it is present and the
 {{ members:page if="{ protected }" }}
 ```
 
-### Adding additional restrictions
+### Specifying additional restrictions
 
 The members tags also support a number of additional parameters that give you granualr control over exactly what is restricted to who. These are:
 
@@ -155,7 +171,7 @@ You can also check for the presence of specific values within the user record us
 {{ /members }}
 ```
 
-## Links to Form Pages
+## Form Page URLs
 
 Members provides a set of utility tags for linking to the form pages, these are:
 
