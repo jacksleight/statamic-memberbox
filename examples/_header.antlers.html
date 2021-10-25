@@ -1,0 +1,14 @@
+<header>
+    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center h-16">
+        <a href="/" class="font-bold text-xl hover:text-hot-pink mr-auto">{{ settings:site_name }}</a>
+        {{ members }}
+            <a href="{{ members_user:edit_url }}" class="ml-5 text-l hover:text-hot-pink">{{ user }}{{ name }}{{ /user }}</a>
+            <a href="{{ user:logout_url }}" class="ml-5 text-l hover:text-hot-pink">Log out</a>
+        {{ /members }}
+        {{ members:not }}
+            <a href="{{ members_user:register_url }}" class="ml-5 text-l hover:text-hot-pink">Register</a>
+            <a href="{{ members_user:login_url }}" class="ml-5 text-l hover:text-hot-pink">Log in</a>
+        {{ /members:not }}
+    </div>
+    <div class="w-full border-b-2 border-black squiggle"></div>
+</header>

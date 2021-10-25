@@ -18,6 +18,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $tags = [
+        \JackSleight\StatamicMembers\Tags\MembersTags::class,
         \JackSleight\StatamicMembers\Tags\UserTags::class,
     ];
 

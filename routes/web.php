@@ -13,7 +13,12 @@ Route::group(['prefix' => config('statamic.members.route')], function () {
 
     if (config('statamic.members.enable_edit')) {
         Route::statamic('edit', 'members::web.edit')->name('statamic.members.edit');
-        Route::post('update', 'UsersController@update')->name('statamic.members.update');
+        Route::post('edit/action', 'UsersController@edit')->name('statamic.members.edit.action');
+    }
+
+    if (config('statamic.members.enable_password')) {
+        Route::statamic('password', 'members::web.password')->name('statamic.members.password');
+        Route::post('password/action', 'UsersController@password')->name('statamic.members.password.action');
     }
     
 });
