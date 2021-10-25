@@ -23,7 +23,7 @@ This Statamic addon builds upon Statamic’s existing user management and user f
   * [Restrict a section of a page to members only](#restrict-a-section-of-a-page-to-members-only)
   * [Restrict a section of a page to non-members only](#restrict-a-section-of-a-page-to-non-members-only)
   * [Restrict an entire page to members only and redirect non-members to the login page](#restrict-an-entire-page-to-members-only-and-redirect-non-members-to-the-login-page)
-  * [Only restrict certain pages based on an entry field](#only-restrict-certain-pages-based-on-an-entry-field)
+  * [Only restrict certain pages based on a condition](#only-restrict-certain-pages-based-on-a-condition)
   * [Specifying additional restrictions](#specifying-additional-restrictions)
 - [Form Page URLs](#form-page-urls)
 - [Licencing](#licencing)
