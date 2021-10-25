@@ -44,7 +44,7 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 	* Activate account
 	* Edit account
 	* Update password
-* A `{{ members }}` tag that makes it super simple to control what content is restricted to which members and how
+* A Members tag that makes it super simple to control what content is restricted to which members and how
 * A handful of utility tags
 
 ### Who’s a Member?
@@ -64,9 +64,9 @@ composer require jacksleight/statamic-members
 The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. To do this create the appropriate roles/groups and then open `config/statamic/users.php` and update the relevant settings:
 
 ```php
-// THESE ARE JUST EXAMPLES!
+// These are just examples!
 // You can call your roles/groups whatever you want, and you dont
-// have to use both roles *and* groups. For most setups I would
+// have to use both roles *and* groups. For simple setups I would
 // recommend just a single group called "members".
 
 'new_user_roles' => [
@@ -78,7 +78,7 @@ The first thing you'll need to do is set Statamic's new user settings to the rol
 ],
 ```
 
-You can also modify the route prefix used for the form pages, as well as toggle the registration and edit forms on and off, by publishing the members config.
+You can also modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields can be edited through the edit form, by publishing the members config:
 
 ```bash
 php please vendor:publish --tag=statamic-members-config
@@ -88,7 +88,7 @@ And then opening `config/statamic/members.php` to make any changes.
 
 ### Customising the view templates
 
-The default view templates have been built to match the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll probably want to customise these to match your site's design. To do that publish the view templates:
+The default view templates have been built to match the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll almost definitely want to customise these to match your site's design. To do that publish the view templates:
 
 ```bash
 php please vendor:publish --tag=statamic-members-views
@@ -119,6 +119,8 @@ role:
     - 'create members'
 ```
 
+Changing member passwords and deleting members is currently restricted to users with the `change passwords` and `delete users` permissions.
+
 ## Restricting Content
 
 To control which content is restricted to members you can use the `{{ members }}` tags. Here are some examples:
@@ -127,7 +129,7 @@ To control which content is restricted to members you can use the `{{ members }}
 
 ```antlers
 {{ members }}
-	<p>This is only visible to members</p>
+    <p>This is only visible to members</p>
 {{ /members }}
 ```
 
@@ -135,7 +137,7 @@ To control which content is restricted to members you can use the `{{ members }}
 
 ```antlers
 {{ members:not }}
-	<p>This is only visible to non-members</p>
+    <p>This is only visible to non-members</p>
 {{ /members:not }}
 ```
 
@@ -147,13 +149,15 @@ To control which content is restricted to members you can use the `{{ members }}
 <p>This is only visible to members, non-members will be redirected</p>
 ```
 
-### Only restrict certain pages based on an entry field
+### Only restrict certain pages based on a condition
 
-The `if` parameter accepts the result of an expression. If it is present and the result is `false` restrictions will not be enforced. 
+The `if` parameter accepts any value. If it is present and the value is falsy restrictions will not be enforced. 
 
 ```antlers
 {{ members:page if="{ protected }" }}
 ```
+
+In this example we would have added a `protected` toggle field to the page blueprint, allowing certain pages to be protected but not all.
 
 ### Specifying additional restrictions
 
@@ -167,7 +171,7 @@ You can also check for the presence of specific values within the user record us
 
 ```antlers
 {{ members has:plan="gold" }}
-	<p>This is only visible to gold members</p>
+    <p>This is only visible to gold members</p>
 {{ /members }}
 ```
 
