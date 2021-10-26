@@ -23,7 +23,7 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Login
 	* Forgot password
 	* Reset password
-* And these new member forms:
+* And these additional member forms:
 	* Activate account
 	* Edit account
 	* Update password
