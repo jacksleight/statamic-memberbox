@@ -136,6 +136,8 @@ You can specify a different abort response code with the `response` parameter.
 
 ### Restrict a section of a page to members or non-members
 
+You can wrap blocks of content in member tags to restrict just those sections:
+
 ```antlers
 {{ member }}
     <p>This is only visible to members</p>
