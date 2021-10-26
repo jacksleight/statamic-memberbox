@@ -156,13 +156,13 @@ You can specify a different response code with the `response` parameter.
 
 If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
 
-In this example the content is restricted to members if the  `protected` variable is true, if not the content will be displayed to everyone:
+In this example the content is restricted to members if the entries `protected` toggle field is true (for example), if not the content will be displayed to everyone:
 
 ```antlers
 {{ not_member:redirect :when="protected" }}
 ```
 
-In this example the content is restricted to members if the `secret` variable is true, if not the content will be displayed to everyone:
+In this example the content is restricted to members if the set's `secret` toggle field is true (for example), if not the content will be displayed to everyone:
 
 ```antlers
 {{ member :when="secret" }}
