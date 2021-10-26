@@ -159,19 +159,19 @@ You can specify a different response code with the `response` parameter.
 
 When the `if` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
 
+In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members:
+
 ```antlers
 {{ not_member:redirect :if="protected" }}
 ```
 
-In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members.
+In this example the content is restricted to members if the value of `secret` is true, if not the content will be displayed to everyone:
 
 ```antlers
 {{ member :if="secret" }}
   <p>This might be a secret!</p>
 {{ /member }}
 ```
-
-In this example the content is restricted to members if the value of `secret` is true, if not the content will be displayed to everyone.
 
 ### Specify additional restrictions
 
