@@ -110,6 +110,11 @@ class MemberTags extends Tags
         return route('statamic.members.forgot');
     }
 
+    public function resetUrl()
+    {
+        return route('statamic.members.reset');
+    }
+
     public function editUrl()
     {
         return route('statamic.members.edit');
