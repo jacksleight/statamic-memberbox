@@ -187,7 +187,7 @@ You can check for the presence of specific values within the user record using t
 If you need to combine the member authorization with other checks you can use the member tags within an `{{ if }}` statement:
 
 ```antlers
-{{ if {member has:plan="plus"} && (now|format:m-d) == "01-01" }}
+{{ if { member has:plan="plus" } && (now|format:m-d) == "01-01" }}
     <p>Happy New Year to Plus members!</p>
 {{ /if }}
 ```
