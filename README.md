@@ -174,10 +174,10 @@ In this example the content is restricted to members if the set's `secret` toggl
 
 The member tags also support these parameters that allow you to specify additional restrictions for your content:
 
+* **has:\[field\] (string):** Content is only visible to members that have the specified field value (see below)
 * **in (string):** Content is only visible to members that are in the specified group 
 * **is (string):** Content is only visible to members that have the specified role 
 * **can (string):** Content is only visible to members that have the specified permission 
-* **has:\[field\] (string):** Content is only visible to members that have the specified field value (see below)
 
 You can check for the presence of specific values within the user record using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the **Plus** plan you could do this:
 
