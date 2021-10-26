@@ -165,6 +165,14 @@ When the `if` parameter is present the tag will only operate if the value is tru
 
 In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members.
 
+```antlers
+{{ member :if="secret" }}
+  <p>This might be a secret!</p>
+{{ /member }}
+```
+
+In this example the content is restricted to members if the value of `secret` is true, if not the content will be displayed to everyone.
+
 ### Specify additional restrictions
 
 The member tags also support these parameters that allow you to specify additional restrictions for your content:
