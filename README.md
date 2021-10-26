@@ -152,7 +152,7 @@ You can specify a different location and response code with the `to` and `respon
 
 You can specify a different response code with the `response` parameter.
 
-### Only restrict certain content based on a condition
+### Restrict content based on a condition
 
 If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
 
