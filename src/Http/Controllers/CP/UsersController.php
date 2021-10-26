@@ -29,7 +29,7 @@ class UsersController extends StatamicUsersController
             return $this->json($request);
         }
 
-        return view('members::cp.users.index', [
+        return view('statamic-members::cp.users.index', [
             'filters' => Scope::filters('users'),
         ]);
     }
@@ -102,7 +102,7 @@ class UsersController extends StatamicUsersController
             return $viewData;
         }
 
-        return view('members::cp.users.create', $viewData);
+        return view('statamic-members::cp.users.create', $viewData);
     }
 
     public function store(Request $request)
@@ -186,7 +186,7 @@ class UsersController extends StatamicUsersController
             return $viewData;
         }
 
-        return view('members::cp.users.edit', $viewData);
+        return view('statamic-members::cp.users.edit', $viewData);
     }
 
     public function update(Request $request, $user)

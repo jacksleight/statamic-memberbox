@@ -435,10 +435,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       invitation: {
         send: true,
-        subject: __('members::messages.invitation_subject', {
+        subject: __('statamic-members::messages.invitation_subject', {
           site: window.location.hostname
         }),
-        message: __('members::messages.invitation_body', {
+        message: __('statamic-members::messages.invitation_body', {
           site: window.location.hostname,
           expiry: this.activationExpiry
         })
@@ -2244,7 +2244,7 @@ var render = function() {
                   staticClass: "text-grey",
                   domProps: {
                     textContent: _vm._s(
-                      _vm.__("members::messages.user_wizard_intro")
+                      _vm.__("statamic-members::messages.user_wizard_intro")
                     )
                   }
                 })
@@ -2513,7 +2513,9 @@ var render = function() {
                   staticClass: "text-grey",
                   domProps: {
                     textContent: _vm._s(
-                      _vm.__("members::messages.user_wizard_invitation_intro")
+                      _vm.__(
+                        "statamic-members::messages.user_wizard_invitation_intro"
+                      )
                     )
                   }
                 })
@@ -2630,7 +2632,7 @@ var render = function() {
                     domProps: {
                       innerHTML: _vm._s(
                         _vm.__(
-                          "members::messages.user_wizard_invitation_share_before",
+                          "statamic-members::messages.user_wizard_invitation_share_before",
                           { email: _vm.user.email }
                         )
                       )

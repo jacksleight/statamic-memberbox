@@ -13,7 +13,7 @@
         <div v-if="!completed && currentStep === 0">
             <div class="max-w-md mx-auto px-2 py-6 text-center">
                 <h1 class="mb-3">{{ __('Create Member') }}</h1>
-                <p class="text-grey" v-text="__('members::messages.user_wizard_intro')" />
+                <p class="text-grey" v-text="__('statamic-members::messages.user_wizard_intro')" />
             </div>
 
             <!-- Email Address -->
@@ -62,7 +62,7 @@
         <div v-if="!completed && currentStep === 1">
             <div class="max-w-md mx-auto px-2 py-6 text-center">
                 <h1 class="mb-3">{{ __('Invitation') }}</h1>
-                <p class="text-grey" v-text="__('members::messages.user_wizard_invitation_intro')" />
+                <p class="text-grey" v-text="__('statamic-members::messages.user_wizard_invitation_intro')" />
             </div>
 
             <!-- Send Email? -->
@@ -91,7 +91,7 @@
 
             <!-- Copy Pasta -->
             <div class="max-w-md mx-auto px-2 pb-7" v-else>
-                <p class="mb-1" v-html="__('members::messages.user_wizard_invitation_share_before', { email: user.email })" />
+                <p class="mb-1" v-html="__('statamic-members::messages.user_wizard_invitation_share_before', { email: user.email })" />
             </div>
         </div>
 
@@ -161,8 +161,8 @@ export default {
             },
             invitation: {
                 send: true,
-                subject: __('members::messages.invitation_subject', { site: window.location.hostname }),
-                message: __('members::messages.invitation_body', { site: window.location.hostname, expiry: this.activationExpiry }),
+                subject: __('statamic-members::messages.invitation_subject', { site: window.location.hostname }),
+                message: __('statamic-members::messages.invitation_body', { site: window.location.hostname, expiry: this.activationExpiry }),
             },
             userExists: false,
             completed: false,

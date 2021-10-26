@@ -35,9 +35,9 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'members');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-members');
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'members');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'statamic-members');
 
         $this->publishes([
             __DIR__ . '/../config/statamic/members.php' => config_path('statamic/members.php'),
@@ -46,10 +46,6 @@ class ServiceProvider extends AddonServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views/web' => resource_path('views/vendor/statamic-members/web'),
         ], 'statamic-members-views');
-
-        $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/statamic-members'),
-        ], 'statamic-members-translations');
 
         Nav::extend(function ($nav) {
             $nav->create('Members')
@@ -62,9 +58,9 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             Permission::group('members', 'Members', function () {
-                Permission::register('view members')->label(__('members::messages.view_members'))->children([
-                    Permission::make('edit members')->label(__('members::messages.edit_members'))->children([
-                        Permission::make('create members')->label(__('members::messages.create_members')),
+                Permission::register('view members')->label(__('statamic-members::messages.view_members'))->children([
+                    Permission::make('edit members')->label(__('statamic-members::messages.edit_members'))->children([
+                        Permission::make('create members')->label(__('statamic-members::messages.create_members')),
                     ]),
                 ]);
             });
