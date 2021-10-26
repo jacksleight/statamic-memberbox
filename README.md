@@ -20,13 +20,6 @@ This Statamic addon builds upon Statamic’s existing user management and user f
   * [Customising the welcome email](#customising-the-welcome-email)
   * [Permissions](#permissions)
 - [Restricting Content](#restricting-content)
-  * [Restrict a section of a page to members](#restrict-a-section-of-a-page-to-members)
-  * [Restrict a section of a page to non-members](#restrict-a-section-of-a-page-to-non-members)
-  * [Restrict an entire page to members and redirect non-members](#restrict-an-entire-page-to-members-and-redirect-non-members)
-  * [Restrict an entire page to members and abort the request](#restrict-an-entire-page-to-members-and-abort-the-request)
-  * [Only restrict certain content based on a condition](#only-restrict-certain-content-based-on-a-condition)
-  * [Specify additional restrictions](#specify-additional-restrictions)
-  * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
 - [Member Navigation Links](#member-navigation-links)
 
 ## Features
