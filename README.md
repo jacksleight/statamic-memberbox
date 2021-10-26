@@ -8,19 +8,9 @@
 
 <!-- /statamic:hide -->
 
-This Statamic addon builds upon Statamic’s existing user management and user form tags to provide an out of the box solution for adding a members area or member restricted content to your site.
+This Statamic addon provides an out of the box solution for adding a members area or member restricted content to your site, building on Statamic’s existing user management and user form tags.
 
 > **Important:** This addon uses Statamic’s multi-user features, which are Pro only. Therefore this addon will only work with the Pro edition.
-
-- [Features](#features)
-  * [Who’s a Member?](#who-s-a-member-)
-- [Installation](#installation)
-- [Configuration](#configuration)
-  * [Customising the view templates](#customising-the-view-templates)
-  * [Customising the welcome email](#customising-the-welcome-email)
-  * [Permissions](#permissions)
-- [Restricting Content](#restricting-content)
-- [Member Navigation Links](#member-navigation-links)
 
 ## Features
 
@@ -34,16 +24,31 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 	* Login
 	* Forgot password
 	* Reset password
-* Plus these additional user forms:
+* And these new member forms:
 	* Activate account
 	* Edit account
 	* Update password
 * Member tags that make it super simple to control what content is restricted to which members and how
-* A handful of utility tags
+* A handful of form URL tags
 
 ### Who’s a Member?
 
 This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves.
+
+## Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+  * [Customising the view templates](#customising-the-view-templates)
+  * [Customising the welcome email](#customising-the-welcome-email)
+  * [Permissions](#permissions)
+- [Implementation](#implementation)
+  * [Restrict an entire area of the site based on a URL prefix](#restrict-an-entire-area-of-the-site-based-on-a-url-prefix)
+  * [Restrict individual pages based on an entry field](#restrict-individual-pages-based-on-an-entry-field)
+  * [Restrict a section of a page to members or non-members](#restrict-a-section-of-a-page-to-members-or-non-members)
+  * [Specify additional restrictions](#specify-additional-restrictions)
+  * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
+- [Member Navigation Links](#member-navigation-links)
 
 ## Installation
 
@@ -55,27 +60,21 @@ composer require jacksleight/statamic-members
 
 ## Configuration
 
-The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. To do this create the appropriate roles/groups and then open `config/statamic/users.php` and update the relevant settings.
+The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. You can specify any roles/groups you like, but for a simple setup I would recommend a single group called `members`. To do this create a members group and then open `config/statamic/users.php` and update the `new_user_groups` setting:
 
 ```php
-'new_user_roles' => [
-    'member',
-],
-//...
 'new_user_groups' => [
     'members',
 ],
 ```
 
-**These are just examples!** You can call your roles/groups whatever you want, and you dont have to use both roles *and* groups. For simple setups I would recommend just a single group called "members".
-
-You can also modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields can be edited through the edit form, by publishing the members config:
+Next you should publish the members config:
 
 ```bash
 php please vendor:publish --tag=statamic-members-config
 ```
 
-And then opening `config/statamic/members.php` to make any changes.
+And then opening `config/statamic/members.php` to make any changes. Here you can modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields can be edited through the edit form:
 
 ### Customising the view templates
 
@@ -112,74 +111,54 @@ role:
 
 Changing member passwords and deleting members is currently restricted to users with the `change passwords` and `delete users` permissions.
 
-## Restricting Content
+## Implementation
 
-To control which content is restricted to members you can use the `{{ member }}` and `{{ not_member }}` tags. Here are some examples:
+Members allows you to restrict access to your content in any way you like and does not impose any particular rules or content structure, You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches:
 
-### Restrict a section of a page to members
+### Restrict an entire area of the site based on a URL prefix
+
+Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages under `/members-area` and redirect non-members to the login page:
+
+```antlers
+{{ not_member:redirect when="{ url | starts_with:/members-area }" }}
+```
+
+If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access.
+
+You can specify a different redirect location and response code with the `to` and `response` parameters.
+
+### Restrict individual pages based on an entry field
+
+Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages that have a `protected` toggle field set to `true` abort the request for non-members:
+
+```antlers
+{{ not_member:abort :when="protected" }}
+```
+
+You can specify a different abort response code with the `response` parameter.
+
+### Restrict a section of a page to members or non-members
 
 ```antlers
 {{ member }}
     <p>This is only visible to members</p>
 {{ /member }}
-```
 
-### Restrict a section of a page to non-members
-
-```antlers
 {{ not_member }}
     <p>This is only visible to non-members</p>
 {{ /not_member }}
-```
-
-### Restrict an entire page to members and redirect non-members 
-
-```antlers
-{{ not_member:redirect }}
-
-<p>This is only visible to members, non-members will be redirected to the login page</p>
-```
-
-You can specify a different location and response code with the `to` and `response` parameters.
-
-### Restrict an entire page to members and abort the request for non-members
-
-```antlers
-{{ not_member:abort }}
-
-<p>This is only visible to members, non-members will be shown a 403 Unauthorized error</p>
-```
-
-You can specify a different response code with the `response` parameter.
-
-### Restrict content based on a condition
-
-If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
-
-In this example the content is restricted to members if the entry's `protected` toggle field is true (for example), if not the content will be displayed to everyone:
-
-```antlers
-{{ not_member:redirect :when="protected" }}
-```
-
-In this example the content is restricted to members if the set's `secret` toggle field is true (for example), if not the content will be displayed to everyone:
-
-```antlers
-{{ member :when="secret" }}
-  <p>This might be a secret!</p>
-{{ /member }}
 ```
 
 ### Specify additional restrictions
 
 The member tags also support these parameters that allow you to specify additional restrictions for your content:
 
-* **has:\[field\] (string):** Content is only visible to members that have the specified field value (see below)
+* **has:field (string):** Content is only visible to members that have the specified field value (see below)
 * **in (string):** Content is only visible to members that are in the specified group 
 * **is (string):** Content is only visible to members that have the specified role 
 * **can (string):** Content is only visible to members that have the specified permission 
 
-You can check for the presence of specific values within the user record using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the **Plus** plan you could do this:
+You can check for the presence of specific values within the user record using the `has:field` parameter. For example if you had a `plan` field and wanted to limit content to users on the **Plus** plan you could do this:
 
 ```antlers
 {{ member has:plan="plus" }}
@@ -199,7 +178,7 @@ If you need to combine the member authorization with other checks you can use th
 
 ## Member Navigation Links
 
-These utility tags are avaliable for linking to the form pages:
+These tags are avaliable for linking to the form pages:
 
 * `{{ member:register_url }}`
 * `{{ member:login_url }}`
