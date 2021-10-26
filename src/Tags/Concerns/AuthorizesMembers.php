@@ -12,7 +12,7 @@ trait AuthorizesMembers
     {
         $user = User::current();
 
-        if ($this->params->has('if') && !$this->params->get('if')) {
+        if ($this->params->has('when') && !$this->params->get('when')) {
             return $this->isPair ? $this->parse() : true;
         }
         
@@ -27,7 +27,7 @@ trait AuthorizesMembers
     {
         $user = User::current();
 
-        if ($this->params->has('if') && !$this->params->get('if')) {
+        if ($this->params->has('when') && !$this->params->get('when')) {
             return;
         }
 
@@ -42,7 +42,7 @@ trait AuthorizesMembers
     {
         $user = User::current();
 
-        if ($this->params->has('if') && !$this->params->get('if')) {
+        if ($this->params->has('when') && !$this->params->get('when')) {
             return;
         }
 

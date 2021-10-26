@@ -55,22 +55,21 @@ composer require jacksleight/statamic-members
 
 ## Configuration
 
-The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. To do this create the appropriate roles/groups and then open `config/statamic/users.php` and update the relevant settings:
+The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. To do this create the appropriate roles/groups and then open `config/statamic/users.php` and update the relevant settings.
 
 ```php
-// These are just examples!
-// You can call your roles/groups whatever you want, and you dont
-// have to use both roles *and* groups. For simple setups I would
-// recommend just a single group called "members".
-
 'new_user_roles' => [
     'member',
 ],
+
+//...
 
 'new_user_groups' => [
     'members',
 ],
 ```
+
+**These are just examples!** You can call your roles/groups whatever you want, and you dont have to use both roles *and* groups. For simple setups I would recommend just a single group called "members".
 
 You can also modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields can be edited through the edit form, by publishing the members config:
 
@@ -157,18 +156,18 @@ You can specify a different response code with the `response` parameter.
 
 ### Only restrict certain content based on a condition
 
-When the `if` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
+If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
 
-In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members:
+In this example the content is restricted to members if the  `protected` variable is true, if not the content will be displayed to everyone:
 
 ```antlers
-{{ not_member:redirect :if="protected" }}
+{{ not_member:redirect :when="protected" }}
 ```
 
-In this example the content is restricted to members if the value of `secret` is true, if not the content will be displayed to everyone:
+In this example the content is restricted to members if the `secret` variable is true, if not the content will be displayed to everyone:
 
 ```antlers
-{{ member :if="secret" }}
+{{ member :when="secret" }}
   <p>This might be a secret!</p>
 {{ /member }}
 ```
@@ -182,7 +181,7 @@ The member tags also support these parameters that allow you to specify addition
 * **can (string):** Content is only visible to members that have the specified permission 
 * **has:\[field\] (string):** Content is only visible to members that have the specified field value (see below)
 
-You can check for the presence of specific values within the user record using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the `plus` plan you could do this:
+You can check for the presence of specific values within the user record using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the **Plus** plan you could do this:
 
 ```antlers
 {{ member has:plan="plus" }}
