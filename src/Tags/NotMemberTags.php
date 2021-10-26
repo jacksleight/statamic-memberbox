@@ -12,8 +12,8 @@ class NotMemberTags extends Tags
 
     protected static $handle = 'not_member';
 
-    protected function checkMember(UserContract $user)
+    protected function authorizeMember(UserContract $user = null)
     {
-        return !$user || !$this->authorizeMember($user);
+        return !member($user, $this->params);
     }
 }

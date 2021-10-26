@@ -8,19 +8,19 @@ use Str;
 
 trait AuthorizesMembers
 {
-    public function __call($method, $args)
+    public function index()
     {
         $user = User::current();
 
         if ($this->params->has('if') && !$this->params->get('if')) {
-            return $this->parse($user);
+            return $this->isPair ? $this->parse() : true;
+        }
+        
+        if (!$this->authorizeMember($user)) {
+            return $this->isPair ? null : false;
         }
 
-        if (!$this->checkMember($user)) {
-            return;
-        }
-
-        return $this->parse($user);
+        return $this->isPair ? $this->parse() : true;
     }
 
     public function redirect()
@@ -31,7 +31,7 @@ trait AuthorizesMembers
             return;
         }
 
-        if (!$this->checkMember($user)) {
+        if (!$this->authorizeMember($user)) {
             return;
         }
 
@@ -46,47 +46,12 @@ trait AuthorizesMembers
             return;
         }
 
-        if (!$this->checkMember($user)) {
+        if (!$this->authorizeMember($user)) {
             return;
         }
 
         return abort($this->params->get('response', 403));
     }
 
-    abstract protected function checkMember(UserContract $user);
-
-    protected function authorizeMember(UserContract $user)
-    {
-        if (!member($user)) {
-            return false;
-        }
-
-        if ($this->params->has('in') && !$user->isInGroup($this->params->get('in'))) {
-            return false;
-        }
-
-        if ($this->params->has('is') && !$user->hasRole($this->params->get('is'))) {
-            return false;
-        }
-
-        if ($this->params->has('can') && !$user->can($this->params->get('can'))) {
-            return false;
-        }
-
-        $ok = true;
-        collect($this->params)->filter(function ($value, $key) {
-            return Str::startsWith($key, 'has:');
-        })->each(function ($value, $param) use ($user, &$ok) {
-            $field = substr($param, 4);
-            if ($user->get($field) !== $value) {
-                $ok = false;
-                return false;
-            }
-        });
-        if (!$ok) {
-            return false;
-        }
-
-        return $ok;
-    }
+    abstract protected function authorizeMember(UserContract $user = null);
 }

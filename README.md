@@ -22,9 +22,11 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 - [Restricting Content](#restricting-content)
   * [Restrict a section of a page to members](#restrict-a-section-of-a-page-to-members)
   * [Restrict a section of a page to non-members](#restrict-a-section-of-a-page-to-non-members)
-  * [Restrict an entire page to members and redirect non-members to the login page](#restrict-an-entire-page-to-members-and-redirect-non-members-to-the-login-page)
-  * [Only restrict certain entry pages based on a condition](#only-restrict-certain-entry-pages-based-on-a-condition)
-  * [Specifying additional restrictions](#specifying-additional-restrictions)
+  * [Restrict an entire page to members and redirect non-members](#restrict-an-entire-page-to-members-and-redirect-non-members)
+  * [Restrict an entire page to members and abort the request](#restrict-an-entire-page-to-members-and-abort-the-request)
+  * [Only restrict certain content based on a condition](#only-restrict-certain-content-based-on-a-condition)
+  * [Specify additional restrictions](#specify-additional-restrictions)
+  * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
 - [Member Navigation Links](#member-navigation-links)
 - [Licencing](#licencing)
 
@@ -44,7 +46,7 @@ This Statamic addon builds upon Statamic’s existing user management and user f
 	* Activate account
 	* Edit account
 	* Update password
-* A Members tag that makes it super simple to control what content is restricted to which members and how
+* Member tags that make it super simple to control what content is restricted to which members and how
 * A handful of utility tags
 
 ### Who’s a Member?
@@ -145,7 +147,7 @@ To control which content is restricted to members you can use the `{{ member }}`
 
 ```antlers
 {{ not_member:redirect }}
-<p>This is only visible to members, non-members will be temporarily redirected to the login page</p>
+<p>This is only visible to members, non-members will be redirected to the login page</p>
 ```
 
 You can specify a different location and response code with the `to` and `response` parameters.
@@ -159,7 +161,7 @@ You can specify a different location and response code with the `to` and `respon
 
 You can specify a different response code with the `response` parameter.
 
-### Only restrict certain entry pages based on a condition
+### Only restrict certain content based on a condition
 
 When the `if` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
 
@@ -169,7 +171,7 @@ When the `if` parameter is present the tag will only operate if the value is tru
 
 In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members.
 
-### Specifying additional restrictions
+### Specify additional restrictions
 
 The member tags also support these parameters that allow you to add additional restrictions to your content:
 
@@ -184,8 +186,16 @@ You can check for the presence of specific values within the user record using t
 {{ member has:plan="plus" }}
     <p>This is only visible to plus members</p>
 {{ /member }}
-// or
-{{ not_member:redirect has:plan="plus" }}
+```
+
+### Use member tags in `{{ if }}` statements
+
+If you need to combine the member authorization with other checks you can use the member tags within an `{{ if }}` statement:
+
+```antlers
+{{ if {member has:plan="plus"} && (now|format:m-d) == "01-01" }}
+    <p>Happy New Year to Plus members!</p>
+{{ /if }}
 ```
 
 ## Member Navigation Links

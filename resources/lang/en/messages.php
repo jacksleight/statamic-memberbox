@@ -2,6 +2,14 @@
 
 return [
 
+    'login_title'    => 'Log In',
+    'forgot_title'   => 'Forgot Password?',
+    'reset_title'    => 'Reset Password',
+    'activate_title' => 'Activate Account',
+    'register_title' => 'Register',
+    'edit_title'     => 'Update Account',
+    'password_title' => 'Update Password',
+
     'view_members'   => 'View members',
     'edit_members'   => 'Edit members',
     'create_members' => 'Create members',

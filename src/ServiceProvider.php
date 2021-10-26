@@ -18,8 +18,8 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $tags = [
-        \JackSleight\StatamicMembers\Tags\MembersTags::class,
-        \JackSleight\StatamicMembers\Tags\UserTags::class,
+        \JackSleight\StatamicMembers\Tags\MemberTags::class,
+        \JackSleight\StatamicMembers\Tags\NotMemberTags::class,
     ];
 
     public function register()

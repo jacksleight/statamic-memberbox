@@ -17,9 +17,9 @@ class MemberTags extends Tags
 
     protected static $handle = 'member';
 
-    protected function checkMember(UserContract $user)
+    protected function authorizeMember(UserContract $user = null)
     {
-        return $user && $this->authorizeMember($user);
+        return member($user, $this->params);
     }
 
     public function activateForm()
@@ -66,7 +66,7 @@ class MemberTags extends Tags
         $html = $this->formOpen(route('statamic.members.edit.action'), 'POST', $knownParams);
 
         if ($redirect = $this->params->get('redirect')) {
-            $html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';
+            $html .= '<input type="hidden" name="_redirect" value="'.$redirect.'" />';
         }
 
         $html .= $this->parse($data);
@@ -85,7 +85,7 @@ class MemberTags extends Tags
         $html = $this->formOpen(route('statamic.members.password.action'), 'POST', $knownParams);
 
         if ($redirect = $this->params->get('redirect')) {
-            $html .= '<input type="hidden" name="redirect" value="'.$redirect.'" />';
+            $html .= '<input type="hidden" name="_redirect" value="'.$redirect.'" />';
         }
 
         $html .= $this->parse($data);
