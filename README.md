@@ -167,7 +167,7 @@ In this example the entry blueprint contains a toggle field called `protected`, 
 
 ### Specify additional restrictions
 
-The member tags also support these parameters that allow you to add additional restrictions to your content:
+The member tags also support these parameters that allow you to specify additional restrictions for your content:
 
 * **in (string):** Content is only visible to members that are in the specified group 
 * **is (string):** Content is only visible to members that have the specified role 
