@@ -59,7 +59,7 @@ composer require jacksleight/statamic-members
 
 ## Configuration
 
-The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. You can specify any roles/groups you like, but for a simple setup I would recommend a single group called `members`. To do this create a members group and then open `config/statamic/users.php` and update the `new_user_groups` setting:
+The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. You can specify any roles/groups you like, but for a simple setup I would recommend a single group called `members`. To do this you'll need to create a `members` group and then open `config/statamic/users.php` and update the `new_user_groups` setting:
 
 ```php
 'new_user_groups' => [
@@ -73,11 +73,11 @@ Next you should publish the members config:
 php please vendor:publish --tag=statamic-members-config
 ```
 
-And then opening `config/statamic/members.php` to make any changes. Here you can modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields can be edited through the edit form:
+Then open `config/statamic/members.php` to make any changes. Here you can modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields are allowed to be submitted through the edit form.
 
 ### Customising the view templates
 
-The default view templates have been built to match the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll almost definitely want to customise these to match your site's design. To do that publish the view templates:
+The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll almost definitely want to customise these to match your site's design. To do that publish the view templates:
 
 ```bash
 php please vendor:publish --tag=statamic-members-views
@@ -112,7 +112,7 @@ Changing member passwords and deleting members is currently restricted to users 
 
 ## Implementation
 
-Members allows you to restrict access to your content in any way you like and does not impose any particular rules or content structure, You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches:
+Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches:
 
 ### Restrict an entire area of the site based on a URL prefix
 
@@ -122,13 +122,11 @@ Adding the following line to the top of your `resources/views/pages/show.antlers
 {{ not_member:redirect when="{ url | starts_with:/members-area }" }}
 ```
 
-If the `when` parameter is present the tag will only operate when the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access.
-
-You can specify a different redirect location and response code with the `to` and `response` parameters.
+When the `when` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access. You can specify a different redirect location and response code with the `to` and `response` parameters.
 
 ### Restrict individual pages based on an entry field
 
-Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages that have a `protected` toggle field set to `true` abort the request for non-members:
+Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages that have a `protected` toggle field set to `true` and abort the request for non-members:
 
 ```antlers
 {{ not_member:abort :when="protected" }}
