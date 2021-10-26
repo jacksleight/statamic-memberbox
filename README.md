@@ -28,7 +28,6 @@ This Statamic addon builds upon Statamic’s existing user management and user f
   * [Specify additional restrictions](#specify-additional-restrictions)
   * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
 - [Member Navigation Links](#member-navigation-links)
-- [Licencing](#licencing)
 
 ## Features
 
