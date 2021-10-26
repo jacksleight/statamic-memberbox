@@ -20,15 +20,7 @@ This Statamic addon builds upon Statamic’s existing user management and user f
   * [Customising the welcome email](#customising-the-welcome-email)
   * [Permissions](#permissions)
 - [Restricting Content](#restricting-content)
-  * [Restrict a section of a page to members](#restrict-a-section-of-a-page-to-members)
-  * [Restrict a section of a page to non-members](#restrict-a-section-of-a-page-to-non-members)
-  * [Restrict an entire page to members and redirect non-members](#restrict-an-entire-page-to-members-and-redirect-non-members)
-  * [Restrict an entire page to members and abort the request](#restrict-an-entire-page-to-members-and-abort-the-request)
-  * [Only restrict certain content based on a condition](#only-restrict-certain-content-based-on-a-condition)
-  * [Specify additional restrictions](#specify-additional-restrictions)
-  * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
 - [Member Navigation Links](#member-navigation-links)
-- [Licencing](#licencing)
 
 ## Features
 
@@ -147,15 +139,17 @@ To control which content is restricted to members you can use the `{{ member }}`
 
 ```antlers
 {{ not_member:redirect }}
+
 <p>This is only visible to members, non-members will be redirected to the login page</p>
 ```
 
 You can specify a different location and response code with the `to` and `response` parameters.
 
-### Restrict an entire page to members and abort the request
+### Restrict an entire page to members and abort the request for non-members
 
 ```antlers
 {{ not_member:abort }}
+
 <p>This is only visible to members, non-members will be shown a 403 Unauthorized error</p>
 ```
 
@@ -173,7 +167,7 @@ In this example the entry blueprint contains a toggle field called `protected`, 
 
 ### Specify additional restrictions
 
-The member tags also support these parameters that allow you to add additional restrictions to your content:
+The member tags also support these parameters that allow you to specify additional restrictions for your content:
 
 * **in (string):** Content is only visible to members that are in the specified group 
 * **is (string):** Content is only visible to members that have the specified role 
