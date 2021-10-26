@@ -145,7 +145,7 @@ To control which content is restricted to members you can use the `{{ member }}`
 
 You can specify a different location and response code with the `to` and `response` parameters.
 
-### Restrict an entire page to members and abort the request
+### Restrict an entire page to members and abort the request for non-members
 
 ```antlers
 {{ not_member:abort }}
