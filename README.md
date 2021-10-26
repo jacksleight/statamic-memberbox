@@ -139,6 +139,7 @@ To control which content is restricted to members you can use the `{{ member }}`
 
 ```antlers
 {{ not_member:redirect }}
+
 <p>This is only visible to members, non-members will be redirected to the login page</p>
 ```
 
@@ -148,6 +149,7 @@ You can specify a different location and response code with the `to` and `respon
 
 ```antlers
 {{ not_member:abort }}
+
 <p>This is only visible to members, non-members will be shown a 403 Unauthorized error</p>
 ```
 
