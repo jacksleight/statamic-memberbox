@@ -2,7 +2,6 @@
 
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
 ![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-members)
-![License](https://flat.badgen.net/github/license/jacksleight/statamic-members)
 
 # Members 
 
