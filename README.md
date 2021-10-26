@@ -11,6 +11,10 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 > **Important:** This addon uses Statamic’s multi-user features, which are Pro only. Therefore this addon will only work with the Pro edition.
 
+## Who’s a Member?
+
+This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves through the user register form.
+
 ## Features
 
 * A dedicated members section in the control panel that:
@@ -29,10 +33,6 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Update password
 * Member tags that make it super simple to control what content is restricted to which members and how
 * A handful of form URL tags
-
-### Who’s a Member?
-
-This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves.
 
 ## Contents
 
