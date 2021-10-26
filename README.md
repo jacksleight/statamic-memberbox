@@ -61,9 +61,7 @@ The first thing you'll need to do is set Statamic's new user settings to the rol
 'new_user_roles' => [
     'member',
 ],
-
 //...
-
 'new_user_groups' => [
     'members',
 ],
