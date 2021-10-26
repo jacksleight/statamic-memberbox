@@ -20,12 +20,12 @@ This Statamic addon builds upon Statamic’s existing user management and user f
   * [Customising the welcome email](#customising-the-welcome-email)
   * [Permissions](#permissions)
 - [Restricting Content](#restricting-content)
-  * [Restrict a section of a page to members only](#restrict-a-section-of-a-page-to-members-only)
-  * [Restrict a section of a page to non-members only](#restrict-a-section-of-a-page-to-non-members-only)
-  * [Restrict an entire page to members only and redirect non-members to the login page](#restrict-an-entire-page-to-members-only-and-redirect-non-members-to-the-login-page)
-  * [Only restrict certain pages based on a condition](#only-restrict-certain-pages-based-on-a-condition)
+  * [Restrict a section of a page to members](#restrict-a-section-of-a-page-to-members)
+  * [Restrict a section of a page to non-members](#restrict-a-section-of-a-page-to-non-members)
+  * [Restrict an entire page to members and redirect non-members to the login page](#restrict-an-entire-page-to-members-and-redirect-non-members-to-the-login-page)
+  * [Only restrict certain entry pages based on a condition](#only-restrict-certain-entry-pages-based-on-a-condition)
   * [Specifying additional restrictions](#specifying-additional-restrictions)
-- [Form Page URLs](#form-page-urls)
+- [Member Navigation Links](#member-navigation-links)
 - [Licencing](#licencing)
 
 ## Features
@@ -123,67 +123,80 @@ Changing member passwords and deleting members is currently restricted to users 
 
 ## Restricting Content
 
-To control which content is restricted to members you can use the `{{ members }}` tags. Here are some examples:
+To control which content is restricted to members you can use the `{{ member }}` and `{{ not_member }}` tags. Here are some examples:
 
-### Restrict a section of a page to members only
+### Restrict a section of a page to members
 
 ```antlers
-{{ members }}
+{{ member }}
     <p>This is only visible to members</p>
-{{ /members }}
+{{ /member }}
 ```
 
-### Restrict a section of a page to non-members only
+### Restrict a section of a page to non-members
 
 ```antlers
-{{ members:not }}
+{{ not_member }}
     <p>This is only visible to non-members</p>
-{{ /members:not }}
+{{ /not_member }}
 ```
 
-### Restrict an entire page to members only and redirect non-members to the login page
+### Restrict an entire page to members and redirect non-members 
 
 ```antlers
-{{ members:page }}
-
-<p>This is only visible to members, non-members will be redirected</p>
+{{ not_member:redirect }}
+<p>This is only visible to members, non-members will be temporarily redirected to the login page</p>
 ```
 
-### Only restrict certain pages based on a condition
+You can specify a different location and response code with the `to` and `response` parameters.
 
-The `if` parameter accepts any value. If it is present and the value is falsy restrictions will not be enforced. 
+### Restrict an entire page to members and abort the request
 
 ```antlers
-{{ members:page if="{ protected }" }}
+{{ not_member:abort }}
+<p>This is only visible to members, non-members will be shown a 403 Unauthorized error</p>
 ```
 
-In this example we would have added a `protected` toggle field to the page blueprint, allowing certain pages to be protected but not all.
+You can specify a different response code with the `response` parameter.
+
+### Only restrict certain entry pages based on a condition
+
+When the `if` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all.
+
+```antlers
+{{ not_member:redirect :if="protected" }}
+```
+
+In this example the entry blueprint contains a toggle field called `protected`, if enabled those entires will be restricted to members.
 
 ### Specifying additional restrictions
 
-The members tags also support a number of additional parameters that give you granualr control over exactly what is restricted to who. These are:
+The member tags also support these parameters that allow you to add additional restrictions to your content:
 
 * **in (string):** Content is only visible to members that are in the specified group 
 * **is (string):** Content is only visible to members that have the specified role 
 * **can (string):** Content is only visible to members that have the specified permission 
+* **has:\[field\] (string):** Content is only visible to members that have the specified field value (see below)
 
-You can also check for the presence of specific values within the user record using the `has:*` parameter. For example if you had a `plan` field and wanted to limit content to users on the `gold` plan you could do this:
+You can check for the presence of specific values within the user record using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the `plus` plan you could do this:
 
 ```antlers
-{{ members has:plan="gold" }}
-    <p>This is only visible to gold members</p>
-{{ /members }}
+{{ member has:plan="plus" }}
+    <p>This is only visible to plus members</p>
+{{ /member }}
+// or
+{{ not_member:redirect has:plan="plus" }}
 ```
 
-## Form Page URLs
+## Member Navigation Links
 
-Members provides a set of utility tags for linking to the form pages, these are:
+These utility tags are avaliable for linking to the form pages:
 
-* `{{ members_user:register_url }}`
-* `{{ members_user:login_url }}`
-* `{{ members_user:forgot_url }}`
-* `{{ members_user:edit_url }}`
-* `{{ members_user:password_url }}`
+* `{{ member:register_url }}`
+* `{{ member:login_url }}`
+* `{{ member:forgot_url }}`
+* `{{ member:edit_url }}`
+* `{{ member:password_url }}`
 
 There's an [example header template](examples/_header.antlers.html) that shows how you might implement these in your site.
 

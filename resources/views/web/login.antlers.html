@@ -7,7 +7,7 @@
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ user:login_form redirect="{ members_user:referrer_url }" }}
+        {{ user:login_form redirect="{ member:referrer_url }" }}
             
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
@@ -35,7 +35,7 @@
     
             <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Log in</button>
 
-            <a href="{{ members_user:forgot_url }}" class="mt-5 text-center block text-black">Forgot password?</a>
+            <a href="{{ member:forgot_url }}" class="mt-5 text-center block text-black">Forgot password?</a>
 
         {{ /user:login_form }}
 

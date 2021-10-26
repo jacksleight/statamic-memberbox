@@ -1,56 +1,62 @@
 <?php
 
-namespace JackSleight\StatamicMembers\Tags;
+namespace JackSleight\StatamicMembers\Tags\Concerns;
 
-use Statamic\Facades\URL;
 use Statamic\Facades\User;
-use Statamic\Fields\Field;
-use Statamic\Support\Arr;
-use Statamic\Tags\Concerns;
-use Statamic\Tags\Tags;
+use Statamic\Contracts\Auth\User as UserContract;
 use Str;
 
-class MembersTags extends Tags
+trait AuthorizesMembers
 {
-    protected static $handle = 'members';
-
     public function __call($method, $args)
     {
-        if (!$this->authoriseMember()) {
-            return;
-        }
+        $user = User::current();
 
-        return $this->parse();
-    }
-
-    public function not()
-    {
-        if ($this->authoriseMember()) {
-            return;
-        }
-
-        return $this->parse();
-    }
-
-    public function page()
-    {
-        if (!$this->authoriseMember()) {
-            abort(redirect(route('statamic.members.login')));
-        }
-
-        return;
-    }
-
-    protected function authoriseMember()
-    {
         if ($this->params->has('if') && !$this->params->get('if')) {
-            return true;
+            return $this->parse($user);
         }
 
-        if (!$user = User::current()) {
-            return false;
+        if (!$this->checkMember($user)) {
+            return;
         }
 
+        return $this->parse($user);
+    }
+
+    public function redirect()
+    {
+        $user = User::current();
+
+        if ($this->params->has('if') && !$this->params->get('if')) {
+            return;
+        }
+
+        if (!$this->checkMember($user)) {
+            return;
+        }
+
+        return abort(redirect($this->params->get('to', route('statamic.members.login')), $this->params->get('response', 302)));
+    }
+
+    public function abort()
+    {
+        $user = User::current();
+
+        if ($this->params->has('if') && !$this->params->get('if')) {
+            return;
+        }
+
+        if (!$this->checkMember($user)) {
+            return;
+        }
+
+        return abort($this->params->get('response', 403));
+    }
+
+    abstract protected function checkMember(UserContract $user);
+
+    protected function authorizeMember(UserContract $user)
+    {
         if (!member($user)) {
             return false;
         }

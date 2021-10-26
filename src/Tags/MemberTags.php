@@ -2,30 +2,24 @@
 
 namespace JackSleight\StatamicMembers\Tags;
 
-use Statamic\Facades\URL;
 use Statamic\Facades\User;
-use Statamic\Fields\Field;
-use Statamic\Support\Arr;
 use Statamic\Tags\Concerns;
+use Statamic\Contracts\Auth\User as UserContract;
+use JackSleight\StatamicMembers\Tags\Concerns\AuthorizesMembers;
 use Statamic\Tags\Tags;
 
-class UserTags extends Tags
+class MemberTags extends Tags
 {
     use Concerns\GetsFormSession,
         Concerns\GetsRedirects,
-        Concerns\RendersForms;
+        Concerns\RendersForms,
+        AuthorizesMembers;
 
-    protected static $handle = 'members_user';
+    protected static $handle = 'member';
 
-    public function __call($method, $args)
+    protected function checkMember(UserContract $user)
     {
-        $id = Arr::get($this->context, $method);
-
-        if (! $user = User::find($id)) {
-            return;
-        }
-
-        return $user;
+        return $user && $this->authorizeMember($user);
     }
 
     public function activateForm()
@@ -65,7 +59,7 @@ class UserTags extends Tags
 
     public function editForm()
     {
-        $data = $this->getFormSession('members_user.edit');
+        $data = $this->getFormSession('member.edit');
 
         $knownParams = ['redirect'];
 
@@ -84,7 +78,7 @@ class UserTags extends Tags
 
     public function passwordForm()
     {
-        $data = $this->getFormSession('members_user.password');
+        $data = $this->getFormSession('member.password');
 
         $knownParams = ['redirect'];
 

@@ -28,7 +28,7 @@ class UsersController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            return back()->withInput()->withErrors($errors, 'members_user.edit');
+            return back()->withInput()->withErrors($errors, 'member.edit');
         }
                 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
@@ -41,7 +41,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        session()->flash('members_user.edit.success', __('Account updated successfully.'));
+        session()->flash('member.edit.success', __('Account updated successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }
@@ -57,14 +57,14 @@ class UsersController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            return back()->withInput()->withErrors($errors, 'members_user.password');
+            return back()->withInput()->withErrors($errors, 'member.password');
         }
                         
         $user->password($request->password);
 
         $user->save();
 
-        session()->flash('members_user.password.success', __('Password changed successfully.'));
+        session()->flash('member.password.success', __('Password changed successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }
