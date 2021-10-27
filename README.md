@@ -47,7 +47,7 @@ This addon defines a member as any user who has the roles and groups listed in t
   * [Restrict individual pages based on an entry field](#restrict-individual-pages-based-on-an-entry-field)
   * [Restrict a sections of a page](#restrict-a-sections-of-a-page)
   * [Specify additional conditions](#specify-additional-conditions)
-  * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
+  * [Use member tags in `if` statements](#use-member-tags-in-if-statements)
 - [Navigation Links](#navigation-links)
 
 ## Installation
@@ -142,7 +142,7 @@ You can specify a different redirect location and response code with the `to` an
 
 ### Restrict individual pages based on an entry field
 
-Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages that have a `protected` toggle field set to `true` and abort the request for non-members:
+Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `protected` toggle field set to `true` and abort the request for non-members:
 
 ```antlers
 {{ not_member:abort :when="protected" }}
