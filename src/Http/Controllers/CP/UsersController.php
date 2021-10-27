@@ -154,7 +154,7 @@ class UsersController extends StatamicUsersController
     public function edit(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
-        throw_unless(member($user), new NotFoundHttpException);
+        throw_unless(authorize_member($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 
@@ -192,7 +192,7 @@ class UsersController extends StatamicUsersController
     public function update(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
-        throw_unless(member($user), new NotFoundHttpException);
+        throw_unless(authorize_member($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 

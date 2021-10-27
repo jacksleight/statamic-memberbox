@@ -19,7 +19,7 @@ class MemberTags extends Tags
 
     protected function authorizeMember(UserContract $user = null)
     {
-        return member($user, $this->params);
+        return authorize_member($user, $this->params);
     }
 
     public function activateForm()

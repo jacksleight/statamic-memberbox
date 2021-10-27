@@ -1,9 +1,9 @@
 <?php
 use Statamic\Contracts\Auth\User as UserContract;
 
-if (!function_exists('member')) {
+if (!function_exists('authorize_member')) {
 
-    function member(UserContract $user = null, $params = []) {
+    function authorize_member(UserContract $user = null, $params = []) {
 
         $params = collect($params);
 
