@@ -34,7 +34,7 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves through the user register form.
 
-## Contents
+## Documentation
 
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -73,7 +73,7 @@ Next you should publish the members config:
 php please vendor:publish --tag=statamic-members-config
 ```
 
-Then open `config/statamic/members.php` to make any changes. Here you can modify the route prefix used for the form pages, enable/disable the registration, edit and password forms, and control which fields are allowed to be submitted through the edit form.
+Then open `config/statamic/members.php` to make any changes. Here you can modify the route URLs used for the form pages, enable/disable any form pages, and control which fields are allowed to be submitted through the edit form.
 
 ### Customising the view templates
 
