@@ -40,7 +40,8 @@ This addon defines a member as any user who has the roles and groups listed in t
 - [Configuration](#configuration)
   * [Customising the view templates](#customising-the-view-templates)
   * [Customising the welcome email](#customising-the-welcome-email)
-  * [Permissions](#permissions)
+  * [Customising the control panel labels](#customising-the-control-panel-text)
+  * [Control Panel Permissions](#control-panel-permissions)
 - [Implementation](#implementation)
   * [Restrict an entire area of the site based on a URL prefix](#restrict-an-entire-area-of-the-site-based-on-a-url-prefix)
   * [Restrict individual pages based on an entry field](#restrict-individual-pages-based-on-an-entry-field)
@@ -95,7 +96,20 @@ php please vendor:publish --tag=statamic-members-translations
 
 And then opening `lang/vendor/statamic-members/*/messages.php` to customise the text.
 
-### Permissions
+### Customising the control panel labels
+
+If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/en.json` and add the strings you'd like to change:
+
+```json
+{
+    "Member": "Client",
+    "Members": "Clients",
+    "Create Member": "Create Client",
+    "Member Information": "Client Information"
+}
+```
+
+### Control Panel Permissions
 
 To give control panel users access to the members section you will need to grant them the appropriate permissions (super admins always have access to everything). You can either do this through the control panel's permissions editor, or in the `resources/users/roles.yaml` file directly:
 
