@@ -58,9 +58,9 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             Permission::group('members', 'Members', function () {
-                Permission::register('view members')->label(__('statamic-members::messages.view_members'))->children([
-                    Permission::make('edit members')->label(__('statamic-members::messages.edit_members'))->children([
-                        Permission::make('create members')->label(__('statamic-members::messages.create_members')),
+                Permission::register('view members')->label(__('statamic-members::permissions.view_members'))->children([
+                    Permission::make('edit members')->label(__('statamic-members::permissions.edit_members'))->children([
+                        Permission::make('create members')->label(__('statamic-members::permissions.create_members')),
                     ]),
                 ]);
             });

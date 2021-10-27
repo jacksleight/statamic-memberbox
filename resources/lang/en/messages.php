@@ -10,10 +10,6 @@ return [
     'edit_title'     => 'Update Account',
     'password_title' => 'Update Password',
 
-    'view_members'   => 'View members',
-    'edit_members'   => 'Edit members',
-    'create_members' => 'Create members',
-
     'user_wizard_intro'                   => 'Members can access the members area of the site and member only content.',
     'user_wizard_invitation_intro'        => 'Send a welcome email with account activation details to the new member.',
     'user_wizard_invitation_share_before' => 'After creating a member, details will be provided to share with <code>:email</code> via your preferred method.',
