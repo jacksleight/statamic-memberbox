@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.1 (NEXT)
+## 0.2.1 (2021-10-27)
 
-- [fix] Parse all "member" strings through translator
+- [fix] Parse all member strings through translator
 - Removed success parameter from default login form 
 - Removed success parameter from default reset form 
 
