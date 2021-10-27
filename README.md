@@ -44,8 +44,8 @@ This addon defines a member as any user who has the roles and groups listed in t
 - [Implementation](#implementation)
   * [Restrict an entire area of the site based on a URL prefix](#restrict-an-entire-area-of-the-site-based-on-a-url-prefix)
   * [Restrict individual pages based on an entry field](#restrict-individual-pages-based-on-an-entry-field)
-  * [Restrict a section of a page to members or non-members](#restrict-a-section-of-a-page-to-members-or-non-members)
-  * [Specify additional restrictions](#specify-additional-restrictions)
+  * [Restrict a sections of a page](#restrict-a-sections-of-a-page)
+  * [Specify additional conditions](#specify-additional-conditions)
   * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
 - [Member Navigation Links](#member-navigation-links)
 
@@ -122,7 +122,9 @@ Adding the following line to the top of your `resources/views/pages/show.antlers
 {{ not_member:redirect when="{ url | starts_with:/members-area }" }}
 ```
 
-When the `when` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access. You can specify a different redirect location and response code with the `to` and `response` parameters.
+When the `when` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access.
+
+You can specify a different redirect location and response code with the `to` and `response` parameters.
 
 ### Restrict individual pages based on an entry field
 
@@ -134,9 +136,9 @@ Adding the following line to the top of your `resources/views/pages/show.antlers
 
 You can specify a different abort response code with the `response` parameter.
 
-### Restrict a section of a page to members or non-members
+### Restrict sections of a page
 
-You can wrap blocks of content in member tags to restrict just those sections:
+You can wrap blocks of content in member tags to restrict just those sections to members or non-members:
 
 ```antlers
 {{ member }}
@@ -148,9 +150,9 @@ You can wrap blocks of content in member tags to restrict just those sections:
 {{ /not_member }}
 ```
 
-### Specify additional restrictions
+### Specify additional conditions
 
-The member tags also support these parameters that allow you to specify additional restrictions for your content:
+The member tags also support these parameters that allow you to specify additional conditions for your content:
 
 * **has:field (string):** Content is only visible to members that have the specified field value (see below)
 * **in (string):** Content is only visible to members that are in the specified group 
