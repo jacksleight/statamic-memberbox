@@ -47,7 +47,7 @@ This addon defines a member as any user who has the roles and groups listed in t
   * [Restrict a sections of a page](#restrict-a-sections-of-a-page)
   * [Specify additional conditions](#specify-additional-conditions)
   * [Use member tags in `{{ if }}` statements](#use-member-tags-in-----if-----statements)
-- [Member Navigation Links](#member-navigation-links)
+- [Navigation Links](#navigation-links)
 
 ## Installation
 
@@ -177,7 +177,7 @@ If you need to combine the member authorization with other checks you can use th
 {{ /if }}
 ```
 
-## Member Navigation Links
+## Navigation Links
 
 These tags are avaliable for linking to the form pages:
 
