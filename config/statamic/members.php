@@ -4,47 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Route
+    | Routes
     |--------------------------------------------------------------------------
     |
-    | The route prefix used for all form pages.
+    | The route paths used for all form pages. To disable a route/form set the
+    | path to false.
     |
     */
 
-    'route' => 'account',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Register
-    |--------------------------------------------------------------------------
-    |
-    | Whether the register page should be enabled.
-    |
-    */
-
-    'enable_register' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Password
-    |--------------------------------------------------------------------------
-    |
-    | Whether the account password page should be enabled.
-    |
-    */
-
-    'enable_password' => true,
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Enable Edit
-    |--------------------------------------------------------------------------
-    |
-    | Whether the account edit page should be enabled.
-    |
-    */
-
-    'enable_edit' => true,
+    'routes' => [
+        'login'    => 'account/login',
+        'forgot'   => 'account/forgot',
+        'reset'    => 'account/reset',
+        'activate' => 'account/activate',
+        'register' => 'account/register',
+        'edit'     => 'account/edit',
+        'password' => 'account/password',
+    ],
 
     /*
     |--------------------------------------------------------------------------
