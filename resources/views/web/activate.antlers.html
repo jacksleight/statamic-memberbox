@@ -17,12 +17,6 @@
                 </div>
             {{ /if }}
 
-            {{ if success }}
-                <div class="bg-green-600 text-white p-2 rounded-md mb-5 text-center">
-                    {{ success }}<br>
-                </div>
-            {{ /if }}
-
             <div class="mb-5">
                 <label for="email" class="block mb-1">Email</label>
                 <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email }}" />

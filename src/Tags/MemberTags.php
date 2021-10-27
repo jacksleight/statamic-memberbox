@@ -28,10 +28,6 @@ class MemberTags extends Tags
             'errors' => [],
         ];
 
-        if (session('success')) {
-            return $this->parse(['success' => true]);
-        }
-
         if (session('errors')) {
             $data['errors'] = session('errors')->all();
         }
@@ -93,6 +89,11 @@ class MemberTags extends Tags
         $html .= $this->formClose();
 
         return $html;
+    }
+
+    public function activateUrl()
+    {
+        return route('statamic.members.activate');
     }
 
     public function registerUrl()
