@@ -18,15 +18,15 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Allows you to create members through a simplified user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Uses seperate view, create and edit member permissions
-* Implementations of all built-in user forms:
+* These new member forms:
+	* Activate account
+	* Edit account
+	* Update password
+* Plus implementations of all the built-in user forms:
 	* Register
 	* Login
 	* Forgot password
 	* Reset password
-* And these additional member forms:
-	* Activate account
-	* Edit account
-	* Update password
 * Member tags that make it super simple to control what content is restricted to which members and how
 * A handful of form URL tags
 
