@@ -15,13 +15,13 @@ return [
     */
 
     'routes' => [
-        'login'    => 'account/login',
-        'forgot'   => 'account/forgot',
-        'reset'    => 'account/reset',
-        'activate' => 'account/activate',
-        'register' => 'account/register',
-        'edit'     => 'account/edit',
-        'password' => 'account/password',
+        'login'    => '/account/login',
+        'forgot'   => '/account/forgot',
+        'reset'    => '/account/reset',
+        'activate' => '/account/activate',
+        'register' => '/account/register',
+        'edit'     => '/account/edit',
+        'password' => '/account/password',
     ],
 
     /*

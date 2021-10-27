@@ -34,12 +34,12 @@ if ($route = config('statamic.members.routes.edit')) {
     Route::statamic($route, 'statamic-members::web.edit', [
         'title' => __('statamic-members::messages.edit_title'),
     ])->name('statamic.members.edit');
-    Route::post('!/statamic-members/edit', 'UsersController@edit')->name('statamic.members.edit.action');
+    Route::post('/!/statamic-members/edit', 'UsersController@edit')->name('statamic.members.edit.action');
 }
 
 if ($route = config('statamic.members.routes.password')) {
     Route::statamic($route, 'statamic-members::web.password', [
         'title' => __('statamic-members::messages.password_title'),
     ])->name('statamic.members.password');
-    Route::post('!/statamic-members/password', 'UsersController@password')->name('statamic.members.password.action');
+    Route::post('/!/statamic-members/password', 'UsersController@password')->name('statamic.members.password.action');
 }
