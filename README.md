@@ -116,7 +116,7 @@ Members allows you to restrict access to your content in any way you like and do
 
 ### Restrict an entire area of the site based on a URL prefix
 
-Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all pages under `/members-area` and redirect non-members to the login page:
+Adding the following line to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect non-members to the login page:
 
 ```antlers
 {{ not_member:redirect when="{ url | starts_with:/members-area }" }}
