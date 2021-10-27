@@ -167,15 +167,17 @@ You can check for the presence of specific values within the user record using t
 {{ /member }}
 ```
 
-### Use member tags in `{{ if }}` statements
+### Use member tags in `if` statements
 
-If you need to combine the member authorization with other checks you can use the member tags within an `{{ if }}` statement:
+If you need to combine the member authorization with other checks you can use the member tags within an `if` statement:
 
 ```antlers
 {{ if { member has:plan="plus" } && (now|format:m-d) == "01-01" }}
     <p>Happy New Year to Plus members!</p>
 {{ /if }}
 ```
+
+**Warning:** Don't use the `when` parameter inside an `if` statement, unexpected things will happen! Seperate that condition out into the `if` itself.
 
 ## Navigation Links
 
