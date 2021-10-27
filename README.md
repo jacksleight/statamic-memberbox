@@ -94,11 +94,11 @@ You can customise the welcome email text by publishing the translation files:
 php please vendor:publish --tag=statamic-members-translations
 ```
 
-And then opening `lang/vendor/statamic-members/*/messages.php` to customise the text.
+And then opening `lang/vendor/statamic-members/en/messages.php` to customise the text.
 
 ### Customising the control panel labels
 
-If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/en.json` and add the strings you'd like to change:
+If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/en.json` and add the strings you'd like to change. For example:
 
 ```json
 {
