@@ -91,11 +91,6 @@ class MemberTags extends Tags
         return $html;
     }
 
-    public function activateUrl()
-    {
-        return route('statamic.members.activate');
-    }
-
     public function registerUrl()
     {
         return route('statamic.members.register');
