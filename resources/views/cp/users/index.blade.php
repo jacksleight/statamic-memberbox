@@ -7,7 +7,7 @@
     <header class="flex items-center mb-3">
         
         <h1 class="flex-1">
-            Members
+            {{ __('Members') }}
         </h1>
         
         @if (Statamic::pro() && auth()->user()->can('create members'))
