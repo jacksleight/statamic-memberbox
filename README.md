@@ -124,7 +124,7 @@ Changing member passwords and deleting members is currently restricted to users 
 
 Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches.
 
-> **FYI:** The member tags are just syntactic sugar, to make it super simple to control your content. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
+> **FYI:** The member tags are just syntactic sugar, to make it super simple to restrict your content to members. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
 
 ### Restrict an entire area of the site based on a URL prefix
 
