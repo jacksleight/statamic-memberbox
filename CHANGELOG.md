@@ -1,6 +1,6 @@
 # Changelog
 
-## NEXT
+## 0.2.2 (2021-10-28)
 
 - [break] The `fillable` config option has been renamed to `edit_fillable` 
 
