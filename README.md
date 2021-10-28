@@ -3,7 +3,7 @@
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
 ![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-members)
 
-# Members 
+# Statamic Members 
 
 <!-- /statamic:hide -->
 
@@ -207,6 +207,6 @@ There's an [example header template](examples/_header.antlers.html) that shows h
 
 ## Licencing
 
-*Statamic Members is not free software.* You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
+Statamic Members is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
 
 <!-- /statamic:hide -->
