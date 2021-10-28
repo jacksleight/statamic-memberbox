@@ -18,21 +18,17 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Allows you to create members through a simplified user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Uses seperate view, create and edit member permissions
-* These new member forms:
+* These new member form tags:
 	* Activate account
 	* Edit account
 	* Update password
-* Plus implementations of all the built-in user forms:
-	* Register
-	* Login
-	* Forgot password
-	* Reset password
+* Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot and reset password)
 * Member tags that make it super simple to control what content is restricted to which members and how
-* A handful of form URL tags
+* A set of form page URL tags
 
 ## Who’s a Member?
 
-This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves through the user register form.
+This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves through the user registration form.
 
 ## Documentation
 
@@ -126,7 +122,9 @@ Changing member passwords and deleting members is currently restricted to users 
 
 ## Implementation
 
-Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches:
+Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{{ member }}` and `{{ not_member }}` tags to control what content is restricted to members and how. Below are some common approaches.
+
+> **FYI:** The member tags are just syntactic sugar, to make it super simple to control your content. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
 
 ### Restrict an entire area of the site based on a URL prefix
 
@@ -191,7 +189,7 @@ If you need to combine the member authorization with other checks you can use th
 {{ /if }}
 ```
 
-**Warning:** Don't use the `when` parameter inside an `if` statement, unexpected things will happen! Seperate that condition out into the `if` itself.
+> **Warning:** Don't use the `when` parameter inside an `if` statement, unexpected things will happen! Seperate that condition out into the `if` itself.
 
 ## Navigation Links
 
@@ -209,6 +207,6 @@ There's an [example header template](examples/_header.antlers.html) that shows h
 
 ## Licencing
 
-Members is a paid Statamic addon. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
+*Statamic Members is not free software.* You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
 
 <!-- /statamic:hide -->
