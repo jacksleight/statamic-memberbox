@@ -14,7 +14,7 @@ class UsersController extends Controller
     {
         throw_unless($user = User::current(), new UnauthorizedHttpException(403));
 
-        $fillable = collect(config('statamic.members.fillable'));
+        $fillable = collect(config('statamic.members.edit_fillable'));
 
         $blueprint = User::blueprint();
 

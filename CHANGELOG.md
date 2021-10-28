@@ -1,5 +1,9 @@
 # Changelog
 
+## NEXT
+
+- [break] The `fillable` config option has been renamed to `edit_fillable` 
+
 ## 0.2.1 (2021-10-27)
 
 - [fix] Parse all member strings through translator

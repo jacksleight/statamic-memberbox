@@ -26,14 +26,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fillable
+    | Edit Fillable
     |--------------------------------------------------------------------------
     |
     | Which user fields are fillable through the edit form
     |
     */
 
-    'fillable' => [
+    'edit_fillable' => [
         'name',
         'email',
     ],
