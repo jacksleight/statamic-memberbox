@@ -2,7 +2,7 @@
 
 ## 0.2.3 (2021-10-29)
 
-- [fix] Support for the Eloquent user driver
+- [fix] Add support for the Eloquent user driver
 
 ## 0.2.2 (2021-10-28)
 
