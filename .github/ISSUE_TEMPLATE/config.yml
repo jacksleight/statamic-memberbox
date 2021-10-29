@@ -1,4 +1,4 @@
 contact_links:
-  - name: Need help?
-    url: https://github.com/jacksleight/statamic-members/discussions
-    about: Open a new discussion
+  - name: Have a question?
+    url: https://github.com/jacksleight/statamic-members/discussions/new?category=q-a
+    about: Start a new discussion
