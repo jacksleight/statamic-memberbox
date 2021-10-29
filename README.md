@@ -37,7 +37,8 @@ This addon defines a member as any user who has the roles and groups listed in t
   * [Customising the view templates](#customising-the-view-templates)
   * [Customising the welcome email](#customising-the-welcome-email)
   * [Customising the control panel labels](#customising-the-control-panel-text)
-  * [Control Panel Permissions](#control-panel-permissions)
+  * [Adding control panel permissions](#adding_control_panel_permissions)
+  * [Using with the Eloquent user driver](#using_with_the_eloquent_user_driver)
 - [Implementation](#implementation)
   * [Restrict an entire area of the site based on a URL prefix](#restrict-an-entire-area-of-the-site-based-on-a-url-prefix)
   * [Restrict individual pages based on an entry field](#restrict-individual-pages-based-on-an-entry-field)
@@ -105,7 +106,7 @@ If you'd like to rename the control panel section and other references to "membe
 }
 ```
 
-### Control Panel Permissions
+### Adding control panel permissions
 
 To give control panel users access to the members section you will need to grant them the appropriate permissions (super admins always have access to everything). You can either do this through the control panel's permissions editor, or in the `resources/users/roles.yaml` file directly:
 
@@ -119,6 +120,40 @@ role:
 ```
 
 Changing member passwords and deleting members is currently restricted to users with the `change passwords` and `delete users` permissions.
+
+### Using with the Eloquent user driver
+
+If you're using the Eloquent user driver you need to ensure the **roles** and **groups** relationships are defined on your user model. For example:
+
+```php
+// /app/Models/User.php
+class User extends Authenticatable
+{
+    // ...
+    
+    public function roles()
+    {
+        return $this->hasMany(RoleUser::class);
+    }
+
+    public function groups()
+    {
+        return $this->hasMany(GroupUser::class);
+    }
+}
+
+// /app/Models/GroupUser.php
+class GroupUser extends Model
+{
+    protected $table = 'group_user';
+}
+
+// /app/Models/RoleUser.php
+class RoleUser extends Model
+{
+    protected $table = 'role_user';
+}
+```
 
 ## Implementation
 
