@@ -9,6 +9,7 @@ use Statamic\Http\Resources\CP\Users\Users;
 use Statamic\Facades\User;
 use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\CP\Column;
+use Statamic\Stache\Query\UserQueryBuilder as StacheUserQueryBuilder;
 use Statamic\Exceptions\NotFoundHttpException;
 use Statamic\Auth\Passwords\PasswordReset;
 use JackSleight\StatamicMembers\Notifications\ActivateAccount;
@@ -44,16 +45,34 @@ class UsersController extends StatamicUsersController
             $query->where('email', 'like', '%'.$search.'%');
         }
 
-        if ($roles = config('statamic.users.new_user_roles')) {
-            foreach ($roles as $role) {
-                $query->where('roles/'.$role, true);
-            }
-        }
+        if ($query instanceof StacheUserQueryBuilder) {
 
-        if ($groups = config('statamic.users.new_user_groups')) {
-            foreach ($groups as $group) {
-                $query->where('groups/'.$group, true);
+            if ($roles = config('statamic.users.new_user_roles')) {
+                foreach ($roles as $role) {
+                    $query->where('roles/'.$role, true);
+                }
             }
+    
+            if ($groups = config('statamic.users.new_user_groups')) {
+                foreach ($groups as $group) {
+                    $query->where('groups/'.$group, true);
+                }
+            }
+
+        } else {
+
+            if ($roles = config('statamic.users.new_user_roles')) {
+                $query->whereHas('roles', function ($q) use ($roles) {
+                    $q->whereIn('role_id', $roles);
+                });
+            }
+    
+            if ($groups = config('statamic.users.new_user_groups')) {
+                $query->whereHas('groups', function ($q) use ($groups) {
+                    $q->whereIn('group_id', $groups);
+                });
+            }
+
         }
 
         $users = $query

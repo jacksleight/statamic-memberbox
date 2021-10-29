@@ -30,15 +30,16 @@ class UsersController extends Controller
             $errors = $validator->errors();
             return back()->withInput()->withErrors($errors, 'member.edit');
         }
-                
+
         $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
-        
+
+        foreach ($values as $key => $value) {
+            $user->set($key, $value);
+        }
         if ($fillable->contains('email')) {
             $user->email($request->email);
         }
         
-        $user->merge($values);
-
         $user->save();
 
         session()->flash('member.edit.success', __('Account updated successfully.'));
@@ -59,7 +60,7 @@ class UsersController extends Controller
             $errors = $validator->errors();
             return back()->withInput()->withErrors($errors, 'member.password');
         }
-                        
+
         $user->password($request->password);
 
         $user->save();
