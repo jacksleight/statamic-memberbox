@@ -98,8 +98,8 @@
         <!-- Post creation -->
         <div v-if="completed">
             <div class="max-w-md mx-auto px-2 py-6 text-center">
-                <h1 class="mb-3">{{ __('Member created') }}</h1>
-                <p class="text-grey" v-html="__('messages.user_wizard_account_created')" />
+                <h1 class="mb-3">{{ __('Member Created') }}</h1>
+                <p class="text-grey" v-html="__('statamic-members::messages.user_wizard_account_created')" />
             </div>
 
             <!-- Copy Pasta -->

@@ -2649,14 +2649,16 @@ var render = function() {
               { staticClass: "max-w-md mx-auto px-2 py-6 text-center" },
               [
                 _c("h1", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.__("Member created")))
+                  _vm._v(_vm._s(_vm.__("Member Created")))
                 ]),
                 _vm._v(" "),
                 _c("p", {
                   staticClass: "text-grey",
                   domProps: {
                     innerHTML: _vm._s(
-                      _vm.__("messages.user_wizard_account_created")
+                      _vm.__(
+                        "statamic-members::messages.user_wizard_account_created"
+                      )
                     )
                   }
                 })

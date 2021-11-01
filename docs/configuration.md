@@ -67,10 +67,12 @@ If you'd like to rename the control panel section and other references to "membe
 
 ```json
 {
-    "Member": "Client",
-    "Members": "Clients",
+    "Back to Members": "Back to Clients",
     "Create Member": "Create Client",
-    "Member Information": "Client Information"
+    "Member Created": "Client Created",
+    "Member Information": "Client Information",
+    "Member": "Client",
+    "Members": "Clients"
 }
 ```
 
