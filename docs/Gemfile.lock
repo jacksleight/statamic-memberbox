@@ -274,6 +274,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  nokogiri (>= 1.12.5)
 
 BUNDLED WITH
    2.2.30
