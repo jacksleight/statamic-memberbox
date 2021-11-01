@@ -28,7 +28,7 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 ## Documentation
 
-
+Full documentation is avaliable at [https://jacksleight.github.io/statamic-members/](https://jacksleight.github.io/statamic-members/).
 
 <!-- statamic:hide -->
 
