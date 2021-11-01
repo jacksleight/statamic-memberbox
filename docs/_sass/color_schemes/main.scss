@@ -1,0 +1,10 @@
+$link-color: #ff269e;
+
+blockquote {
+    border: $border $border-color;
+    border-radius: $border-radius;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: $sp-5;
+    padding-left: $sp-5;
+}
