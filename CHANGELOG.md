@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2021-10-29)
+
+- [fix] Match all roles/groups when using Eloquent user driver
+- New documentation site
+
 ## 0.2.3 (2021-10-29)
 
 - [fix] Add support for the Eloquent user driver
