@@ -115,7 +115,7 @@ class UsersController extends StatamicUsersController
             'meta' => $fields->meta(),
             'blueprint' => $blueprint->toPublishArray(),
             'actions' => [
-                'save' => cp_route('members.store'),
+                'save' => cp_route('statamic-members.store'),
             ],
             'expiry' => $expiry,
             'separateNameFields' => $blueprint->hasField('first_name'),
@@ -169,7 +169,7 @@ class UsersController extends StatamicUsersController
         }
 
         return [
-            'redirect' => cp_route('members.edit', $user->id()),
+            'redirect' => cp_route('statamic-members.edit', $user->id()),
             'activationUrl' => $url,
         ];
     }
@@ -199,7 +199,7 @@ class UsersController extends StatamicUsersController
             'blueprint' => $user->blueprint()->toPublishArray(),
             'reference' => $user->reference(),
             'actions' => [
-                'save' => cp_route('members.update', $user->id()),
+                'save' => cp_route('statamic-members.update', $user->id()),
                 'password' => cp_route('users.password.update', $user->id()),
             ],
             'canEditPassword' => User::fromUser($request->user())->can('editPassword', $user),

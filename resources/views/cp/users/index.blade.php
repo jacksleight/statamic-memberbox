@@ -11,7 +11,7 @@
         </h1>
         
         @if (Statamic::pro() && auth()->user()->can('create members'))
-            <a href="{{ cp_route('members.create') }}" class="btn-primary ml-2">{{ __('Create Member') }}</a>
+            <a href="{{ cp_route('statamic-members.create') }}" class="btn-primary ml-2">{{ __('Create Member') }}</a>
         @endif
 
     </header>

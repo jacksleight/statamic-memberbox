@@ -50,7 +50,7 @@ class ServiceProvider extends AddonServiceProvider
         Nav::extend(function ($nav) {
             $nav->create('Members')
                 ->section('Members')
-                ->route('members.index')
+                ->route('statamic-members.index')
                 ->active('members')
                 ->can('view members')
                 ->icon('users');

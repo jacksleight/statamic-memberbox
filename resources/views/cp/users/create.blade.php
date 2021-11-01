@@ -5,9 +5,9 @@
 @section('content')
 
     <members-user-wizard
-        route="{{ cp_route('members.store') }}"
-        users-index-url="{{ cp_route('members.index') }}"
-        users-create-url="{{ cp_route('members.create') }}"
+        route="{{ cp_route('statamic-members.store') }}"
+        users-index-url="{{ cp_route('statamic-members.index') }}"
+        users-create-url="{{ cp_route('statamic-members.create') }}"
         :activation-expiry="{{ $expiry }}"
         :separate-name-fields="{{ $str::bool($separateNameFields) }}"
     >
