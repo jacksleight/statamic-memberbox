@@ -62,15 +62,19 @@ class UsersController extends StatamicUsersController
         } else {
 
             if ($roles = config('statamic.users.new_user_roles')) {
-                $query->whereHas('roles', function ($q) use ($roles) {
-                    $q->whereIn('role_id', $roles);
-                });
+                foreach ($roles as $role) {
+                    $query->whereHas('roles', function ($q) use ($role) {
+                        $q->where('role_id', $role);
+                    });
+                }
             }
     
             if ($groups = config('statamic.users.new_user_groups')) {
-                $query->whereHas('groups', function ($q) use ($groups) {
-                    $q->whereIn('group_id', $groups);
-                });
+                foreach ($groups as $group) {
+                    $query->whereHas('groups', function ($q) use ($group) {
+                        $q->where('group_id', $group);
+                    });
+                }
             }
 
         }
