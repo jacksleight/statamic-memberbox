@@ -15,9 +15,11 @@ nav_order: 4
 {:toc}
 </details>
 
+It's up to you exactly how you want to implement the Members features on your site, below is an overview of what's avaliable and examples of how they can be implemented.
+
 ---
 
-## Linking to form pages from your templates
+## Linking to the form pages from your templates
 
 These tags are avaliable for linking to the form pages:
 
@@ -52,7 +54,7 @@ Here's an example header template that shows how you might implement these in yo
 
 ## Customising the form page templates
 
-The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll almost definitely want to customise these to match your site's design. To do that publish the view templates:
+The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll want to customise these to match your site's design. To do that publish the view templates:
 
 ```bash
 php please vendor:publish --tag=statamic-members-views

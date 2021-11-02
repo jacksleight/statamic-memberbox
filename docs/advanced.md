@@ -1,9 +1,9 @@
 ---
-title: Advanced
+title: Text & Translations
 nav_order: 5
 ---
 
-# Advanced
+# Text & Translations
 {:.no_toc}
 
 <details open markdown="block">
@@ -17,7 +17,7 @@ nav_order: 5
 
 ---
 
-## Customising the welcome email
+## Customising the welcome email text
 
 You can customise the welcome email text by publishing the translation files:
 
