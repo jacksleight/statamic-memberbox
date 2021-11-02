@@ -10,3 +10,7 @@ You can search for this addon in the `Tools > Addons` section of the Statamic co
 ```bash
 composer require jacksleight/statamic-members
 ```
+
+## Licencing
+
+Statamic Members is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
