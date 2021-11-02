@@ -4,6 +4,7 @@ namespace JackSleight\StatamicMembers\Tags;
 
 use Statamic\Contracts\Auth\User as UserContract;
 use JackSleight\StatamicMembers\Tags\Concerns\AuthorizesMembers;
+use JackSleight\StatamicMembers\Facades\Member;
 use Statamic\Tags\Tags;
 
 class NotMemberTags extends Tags
@@ -14,6 +15,6 @@ class NotMemberTags extends Tags
 
     protected function authorizeMember(UserContract $user = null)
     {
-        return !authorize_member($user, $this->params);
+        return !Member::authorize($user, $this->params);
     }
 }

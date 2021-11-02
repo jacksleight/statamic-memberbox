@@ -5,6 +5,7 @@ namespace JackSleight\StatamicMembers;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Facades\CP\Nav;
 use Statamic\Facades\Permission;
+use JackSleight\StatamicMembers\Member;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -29,6 +30,10 @@ class ServiceProvider extends AddonServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../config/statamic/members.php', 'statamic.members',
         );
+
+        $this->app->singleton(Member::class, function () {
+            return new Member();
+        });
     }
 
     public function boot()

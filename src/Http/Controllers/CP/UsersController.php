@@ -3,17 +3,17 @@
 namespace JackSleight\StatamicMembers\Http\Controllers\CP;
 
 use Illuminate\Http\Request;
-use Statamic\Facades\Scope;
-use Statamic\Http\Requests\FilteredRequest;
-use Statamic\Http\Resources\CP\Users\Users;
-use Statamic\Facades\User;
+use JackSleight\StatamicMembers\Facades\Member;
+use JackSleight\StatamicMembers\Notifications\ActivateAccount;
+use Statamic\Auth\Passwords\PasswordReset;
 use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\CP\Column;
-use Statamic\Stache\Query\UserQueryBuilder as StacheUserQueryBuilder;
 use Statamic\Exceptions\NotFoundHttpException;
-use Statamic\Auth\Passwords\PasswordReset;
-use JackSleight\StatamicMembers\Notifications\ActivateAccount;
+use Statamic\Facades\Scope;
+use Statamic\Facades\User;
 use Statamic\Http\Controllers\CP\Users\UsersController as StatamicUsersController;
+use Statamic\Http\Requests\FilteredRequest;
+use Statamic\Http\Resources\CP\Users\Users;
 
 class UsersController extends StatamicUsersController
 {
@@ -37,47 +37,13 @@ class UsersController extends StatamicUsersController
     
     protected function json($request)
     {
-        $query = User::query();
-
-        $activeFilterBadges = $this->queryFilters($query, $request->filters);
+        $query = Member::query();
 
         if ($search = request('search')) {
             $query->where('email', 'like', '%'.$search.'%');
         }
 
-        if ($query instanceof StacheUserQueryBuilder) {
-
-            if ($roles = config('statamic.users.new_user_roles')) {
-                foreach ($roles as $role) {
-                    $query->where('roles/'.$role, true);
-                }
-            }
-    
-            if ($groups = config('statamic.users.new_user_groups')) {
-                foreach ($groups as $group) {
-                    $query->where('groups/'.$group, true);
-                }
-            }
-
-        } else {
-
-            if ($roles = config('statamic.users.new_user_roles')) {
-                foreach ($roles as $role) {
-                    $query->whereHas('roles', function ($q) use ($role) {
-                        $q->where('role_id', $role);
-                    });
-                }
-            }
-    
-            if ($groups = config('statamic.users.new_user_groups')) {
-                foreach ($groups as $group) {
-                    $query->whereHas('groups', function ($q) use ($group) {
-                        $q->where('group_id', $group);
-                    });
-                }
-            }
-
-        }
+        $activeFilterBadges = $this->queryFilters($query, $request->filters);
 
         $users = $query
             ->orderBy($sort = request('sort', 'email'), request('order', 'asc'))
@@ -177,7 +143,7 @@ class UsersController extends StatamicUsersController
     public function edit(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
-        throw_unless(authorize_member($user), new NotFoundHttpException);
+        throw_unless(Member::verify($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 
@@ -215,7 +181,7 @@ class UsersController extends StatamicUsersController
     public function update(Request $request, $user)
     {
         throw_unless($user = User::find($user), new NotFoundHttpException);
-        throw_unless(authorize_member($user), new NotFoundHttpException);
+        throw_unless(Member::verify($user), new NotFoundHttpException);
 
         $this->authorize('edit members', $user);
 

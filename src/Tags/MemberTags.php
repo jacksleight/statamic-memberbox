@@ -2,10 +2,10 @@
 
 namespace JackSleight\StatamicMembers\Tags;
 
-use Statamic\Facades\User;
-use Statamic\Tags\Concerns;
-use Statamic\Contracts\Auth\User as UserContract;
+use JackSleight\StatamicMembers\Facades\Member;
 use JackSleight\StatamicMembers\Tags\Concerns\AuthorizesMembers;
+use Statamic\Contracts\Auth\User as UserContract;
+use Statamic\Tags\Concerns;
 use Statamic\Tags\Tags;
 
 class MemberTags extends Tags
@@ -19,7 +19,7 @@ class MemberTags extends Tags
 
     protected function authorizeMember(UserContract $user = null)
     {
-        return authorize_member($user, $this->params);
+        return Member::authorize($user, $this->params);
     }
 
     public function activateForm()
