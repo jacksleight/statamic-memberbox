@@ -23,6 +23,10 @@ class ServiceProvider extends AddonServiceProvider
         \JackSleight\StatamicMembers\Tags\NotMemberTags::class,
     ];
 
+    protected $widgets = [
+        \JackSleight\StatamicMembers\Widgets\Members::class,
+    ];        
+
     public function register()
     {
         parent::register();

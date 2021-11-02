@@ -27,7 +27,7 @@
                     />
                     <data-list-table :allow-bulk-actions="false" v-show="items.length" @sorted="sorted">
                         <template slot="cell-email" slot-scope="{ row: user, value }">
-                            <a :href="cp_url(`members/${user.id}`)" class="flex items-center">
+                            <a :href="cp_url(`members/${user.id}`)">
                                 {{ value }}
                             </a>
                         </template>
@@ -68,7 +68,6 @@ export default {
 
     props: {
         listingKey: String,
-        group: String,
     },
 
     data() {
