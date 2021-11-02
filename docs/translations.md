@@ -1,9 +1,9 @@
 ---
-title: Text & Translations
+title: Translations
 nav_order: 5
 ---
 
-# Text & Translations
+# Translations
 {:.no_toc}
 
 <details open markdown="block">
