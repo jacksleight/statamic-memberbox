@@ -54,7 +54,7 @@ Here's an example header template that shows how you might implement these in yo
 
 ## Customising the form page templates
 
-The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. You'll want to customise these to match your site's design. To do that publish the view templates:
+The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
 
 ```bash
 php please vendor:publish --tag=statamic-members-views
@@ -68,7 +68,7 @@ And then open `resources/views/vendor/statamic-members/web/*.antlers.html` to cu
 
 Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{% raw %}{{ member }}{% endraw %}` and `{% raw %}{{ not_member }}{% endraw %}` tags to control what content is restricted to members and how. Below are some common approaches.
 
-> **FYI:** The member tags are just syntactic sugar, to make it super simple to restrict your content to members. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
+> **Note:** The member tags are just syntactic sugar, to make it super simple to restrict your content to members. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
 
 ### Restrict an entire area of the site based on a URL prefix
 
