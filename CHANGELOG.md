@@ -2,8 +2,8 @@
 
 ## 0.3.0 (2021-10-29)
 
+- [new] A members widget for the dashboard
 - [fix] Match all roles/groups when using Eloquent user driver
-- New documentation site
 
 ## 0.2.3 (2021-10-29)
 
