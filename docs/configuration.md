@@ -46,9 +46,9 @@ Next you should publish the members config:
 php please vendor:publish --tag=statamic-members-config
 ```
 
-Then open `config/statamic/members.php` to make any changes. Here you can modify the route URLs used for the form pages, enable/disable any form pages, and control which fields are allowed to be submitted through the edit form.
+Then open `config/statamic/members.php` to make any changes. Check the [customisation](customisation.html) page for further details.
 
-### 3. Add control panel permissions
+### 3. Grant control panel permissions
 
 To give control panel users access to the members section you will need to grant them the appropriate permissions (super admins always have access to everything). You can either do this through the control panel's permissions editor, or in the `resources/users/roles.yaml` file directly:
 

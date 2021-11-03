@@ -1,6 +1,6 @@
 ---
 title: Widget
-nav_order: 6
+nav_order: 7
 ---
 
 # Widget
@@ -14,7 +14,7 @@ Members provides a widget that you can add to the control panel dashboard. By de
 ],
 ```
 
-The widget has a few options that can be used to customse it, for example you could create a list of the ten newest members like this:
+The widget has a number of options that can be used to customise it, for example you could create a list of the ten newest members like this:
 
 ```php
 [
@@ -28,4 +28,4 @@ The widget has a few options that can be used to customse it, for example you co
 ],
 ```
 
-> **Note:** The `created_at` date is only stored by the Eloquent user driver, that data is not avaliable with the file user driver.
+> **Note:** The `created_at` and `updated_at` dates are only stored by the Eloquent user driver, that data is not avaliable with the file user driver.

@@ -21,15 +21,7 @@ It's up to you exactly how you want to implement the Members features on your si
 
 ## Linking to the form pages from your templates
 
-These tags are avaliable for linking to the form pages:
-
-* `{% raw %}{{ member:register_url }}{% endraw %}`
-* `{% raw %}{{ member:login_url }}{% endraw %}`
-* `{% raw %}{{ member:forgot_url }}{% endraw %}`
-* `{% raw %}{{ member:edit_url }}{% endraw %}`
-* `{% raw %}{{ member:password_url }}{% endraw %}`
-
-Here's an example header template that shows how you might implement these in your site:
+A number of tags are avaliable for linking to the form pages, check the [tags reference](tags.html#form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
 {% raw %}<header>
@@ -52,21 +44,11 @@ Here's an example header template that shows how you might implement these in yo
 
 ---
 
-## Customising the form page templates
-
-The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
-
-```bash
-php please vendor:publish --tag=statamic-members-views
-```
-
-And then open `resources/views/vendor/statamic-members/web/*.antlers.html` to customise the templates.
-
----
-
 ## Restricting access to content
 
-Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{% raw %}{{ member }}{% endraw %}` and `{% raw %}{{ not_member }}{% endraw %}` tags to control what content is restricted to members and how. Below are some common approaches.
+Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{% raw %}{{ member }}{% endraw %}` and `{% raw %}{{ not_member }}{% endraw %}` tags to control what content is restricted to members and how.
+
+Below are some common approaches, check the [tags reference](tags.html#content-restriction-tags) for full details.
 
 > **Note:** The member tags are just syntactic sugar, to make it super simple to restrict your content to members. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
 
@@ -80,8 +62,6 @@ Adding the following line to the top of your `resources/views/layout.antlers.htm
 
 When the `when` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access.
 
-You can specify a different redirect location and response code with the `to` and `response` parameters.
-
 ### Restrict individual pages based on an entry field
 
 Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `protected` toggle field set to `true` and abort the request for non-members:
@@ -89,8 +69,6 @@ Adding the following line to the top of your `resources/views/pages/show.antlers
 ```html
 {% raw %}{{ not_member:abort :when="protected" }}{% endraw %}
 ```
-
-You can specify a different abort response code with the `response` parameter.
 
 ### Restrict sections of a page
 
@@ -106,16 +84,9 @@ You can wrap blocks of content in member tags to restrict just those sections to
 {{ /not_member }}{% endraw %}
 ```
 
-### Specify additional conditions
+### Restrict based on a user field value
 
-The member tags also support these parameters that allow you to specify additional conditions for your content:
-
-* **has:field (string):** Content is only visible to members that have the specified field value (see below)
-* **in (string):** Content is only visible to members that are in the specified group 
-* **is (string):** Content is only visible to members that have the specified role 
-* **can (string):** Content is only visible to members that have the specified permission 
-
-You can check for the presence of specific values within the user record using the `has:field` parameter. For example if you had a `plan` field and wanted to limit content to users on the **Plus** plan you could do this:
+You can check for the presence of specific values within the user data using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
 {% raw %}{{ member has:plan="plus" }}
@@ -123,7 +94,9 @@ You can check for the presence of specific values within the user record using t
 {{ /member }}{% endraw %}
 ```
 
-### Use member tags in `if` statements
+Other parameters are avaliable for checking roles, groups and permissions, check the [tags reference](tags.html#shared-parameters) for full details.
+
+### Using member tags in `if` statements
 
 If you need to combine the member authorization with other checks you can use the member tags within an `if` statement:
 
