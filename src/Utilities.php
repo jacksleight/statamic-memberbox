@@ -6,7 +6,7 @@ use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\Stache\Query\UserQueryBuilder as StacheUserQueryBuilder;
 use Statamic\Stache\Repositories\UserRepository as StacheUserRepository;
 
-class Member
+class Utilities
 {
     public function isStache()
     {
