@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 ()
+
+- [break] The member tags have been stripped of all features that duplicate functionality already avaliable through Statamic's built-in tags, please check [the documentation](https://jacksleight.github.io/statamic-members/implementation.html) for revised implementation examples
+- The default login template now uses the `allow_request_redirect` parameter
+
 ## 0.3.0 (2021-10-29)
 
 - [new] A members widget for the dashboard
