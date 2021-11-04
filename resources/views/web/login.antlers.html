@@ -7,7 +7,7 @@
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ user:login_form redirect="{ member:referrer_url }" }}
+        {{ user:login_form allow_request_redirect="true" }}
             
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">

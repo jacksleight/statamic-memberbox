@@ -17,6 +17,10 @@ nav_order: 3
 
 ---
 
+## Who’s a Member?
+
+This addon defines a member as any user who has the roles and groups listed in the `statamic.users.new_user_roles` and `statamic.users.new_user_groups` config variables, as these are the roles and groups Statamic assigns to users who register themselves through the user registration form.
+
 ## Getting started
 
 ### 1. Configure Statamic's new user settings

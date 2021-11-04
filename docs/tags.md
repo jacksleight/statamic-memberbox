@@ -17,34 +17,36 @@ nav_order: 6
 
 ---
 
-## Content restriction tags
+## Member tag
 
-### `{% raw %}{{ member }} ... {{ /member }}{% endraw %}` <br /> `{% raw %}{{ not_member }} ... {{ /not_member }}{% endraw %}`
+### `{% raw %}{{ member }}{% endraw %}`
 
-Display the content if the curent user is or is not a member.
+Check if the current user is a member.
 
-### `{% raw %}{{ member:redirect }}{% endraw %}` <br /> `{% raw %}{{ not_member:redirect }}{% endraw %}`
+* **has:[field] (string):** Only matches members with the specified field value
 
-Redirect if the curent user is or is not a member.
+---
 
-* **to: (string):** The URL to redriect to (default is the login page URL)
-* **response: (string):** The response code (default is 302)
+## Form tags
 
-### `{% raw %}{{ member:abort }}{% endraw %}` <br /> `{% raw %}{{ not_member:abort }}{% endraw %}`
+### `{% raw %}{{ member:activate_form }} ... {{ /member:activate_form }}{% endraw %}`
 
-Abort if the curent user is or is not a member.
+Render the activate form tag.
 
-* **response: (string):** The response code (default is 403)
+* **redirect (string):** URL to redirect on success
+* **error_redirect (string):** URL to redirect on error
 
-### Shared parameters
+### `{% raw %}{{ member:edit_form }} ... {{ /member:edit_form }}{% endraw %}`
 
-All content restriction tags support these shared parameters:
+Render the edit form tag.
 
-* **has:[field] (string):** Only applies to members with/without the specified field value
-* **in (string):** Only applies to members with/without the specified group
-* **is (string):** Only applies to members with/without the specified role
-* **can (string):** Only applies to members with/without the specified permission
-* **when (any):** Only operates if the value is truthy, if falsy your template will behave as if the tag wasn’t there at all
+* **redirect (string):** URL to redirect on success
+
+### `{% raw %}{{ member:password_form }} ... {{ /member:password_form }}{% endraw %}`
+
+Render the password form tag.
+
+* **redirect (string):** URL to redirect on success
 
 ---
 

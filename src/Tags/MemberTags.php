@@ -3,22 +3,22 @@
 namespace JackSleight\StatamicMembers\Tags;
 
 use JackSleight\StatamicMembers\Facades\Member;
-use JackSleight\StatamicMembers\Tags\Concerns\AuthorizesMembers;
-use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\Tags\Concerns;
 use Statamic\Tags\Tags;
+use Statamic\Facades\User;
 
 class MemberTags extends Tags
 {
     use Concerns\GetsFormSession,
         Concerns\GetsRedirects,
-        Concerns\RendersForms,
-        AuthorizesMembers;
+        Concerns\RendersForms;
 
     protected static $handle = 'member';
 
-    protected function authorizeMember(UserContract $user = null)
+    public function index()
     {
+        $user = User::current();
+        
         return Member::authorize($user, $this->params);
     }
 
@@ -119,10 +119,5 @@ class MemberTags extends Tags
     public function passwordUrl()
     {
         return route('statamic.members.password');
-    }
-
-    public function referrerUrl()
-    {
-        return old('_redirect', url()->previous());
     }
 }

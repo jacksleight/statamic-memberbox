@@ -86,19 +86,7 @@ class Utilities
         if (!$this->verify($user)) {
             return false;
         }
-    
-        if ($params->has('in') && !$user->isInGroup($params->get('in'))) {
-            return false;
-        }
-    
-        if ($params->has('is') && !$user->hasRole($params->get('is'))) {
-            return false;
-        }
-    
-        if ($params->has('can') && !$user->can($params->get('can'))) {
-            return false;
-        }
-    
+        
         $ok = true;
         collect($params)->filter(function ($value, $key) {
             return Str::startsWith($key, 'has:');
@@ -114,6 +102,5 @@ class Utilities
         }
     
         return true;
-    
     }
 }

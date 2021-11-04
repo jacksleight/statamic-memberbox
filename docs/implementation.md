@@ -28,9 +28,7 @@ A number of tags are avaliable for linking to the form pages, check the [tags re
     <div class="max-w-5xl mx-auto px-3 py-3 flex items-center h-16">
         <a href="/" class="font-bold text-xl hover:text-hot-pink mr-auto">{{ settings:site_name }}</a>
         {{ if logged_in }}
-            {{ member }}
-                <a href="{{ member:edit_url }}" class="ml-5 text-l hover:text-hot-pink">{{ user }}{{ name }}{{ /user }}</a>
-            {{ /member }}
+            <a href="{{ member:edit_url }}" class="ml-5 text-l hover:text-hot-pink">{{ user }}{{ name }}{{ /user }}</a>
             <a href="{{ user:logout_url }}" class="ml-5 text-l hover:text-hot-pink">Log out</a>
         {{ /if }}
         {{ if ! logged_in }}
@@ -46,28 +44,28 @@ A number of tags are avaliable for linking to the form pages, check the [tags re
 
 ## Restricting access to content
 
-Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. You can use the `{% raw %}{{ member }}{% endraw %}` and `{% raw %}{{ not_member }}{% endraw %}` tags to control what content is restricted to members and how.
+Members allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. 
 
-Below are some common approaches, check the [tags reference](tags.html#content-restriction-tags) for full details.
-
-> **Note:** The member tags are just syntactic sugar, to make it super simple to restrict your content to members. You can acheive the same results with the [built-in user tags](https://statamic.dev/reference/tags) if you prefer.
+Below are some common approaches, check the [tags reference](tags.html#content-restriction-tags) for further details.
 
 ### Restrict an entire area of the site based on a URL prefix
 
-Adding the following line to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect non-members to the login page:
+Adding the following to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect non-members to the login page:
 
 ```html
-{% raw %}{{ not_member:redirect when="{ url | starts_with:/members-area }" }}{% endraw %}
+{% raw %}{{ if { url | starts_with:/members-area } && ! { member } }}
+    {{ redirect to="{ member:login_url }?redirect={ url }" }}
+{{ /if }}{% endraw %}
 ```
-
-When the `when` parameter is present the tag will only operate if the value is truthy. If it’s falsy your template will behave as if the tag wasn’t there at all, permitting all access.
 
 ### Restrict individual pages based on an entry field
 
-Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `protected` toggle field set to `true` and abort the request for non-members:
+Adding the following line to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `protected` toggle field set to `true` and redirect non-members to the login page:
 
 ```html
-{% raw %}{{ not_member:abort :when="protected" }}{% endraw %}
+{% raw %}{{ if secret && ! { member } }}
+    {{ redirect to="{ member:login_url }?redirect={ url }" }}
+{{ /if }}{% endraw %}
 ```
 
 ### Restrict sections of a page
@@ -75,13 +73,13 @@ Adding the following line to the top of your `resources/views/pages/show.antlers
 You can wrap blocks of content in member tags to restrict just those sections to members or non-members:
 
 ```html
-{% raw %}{{ member }}
+{% raw %}{{ if { member } }}
     <p>This is only visible to members</p>
-{{ /member }}
+{{ /if }}
 
-{{ not_member }}
+{{ if ! { member } }}
     <p>This is only visible to non-members</p>
-{{ /not_member }}{% endraw %}
+{{ /if }}{% endraw %}
 ```
 
 ### Restrict based on a user field value
@@ -89,21 +87,7 @@ You can wrap blocks of content in member tags to restrict just those sections to
 You can check for the presence of specific values within the user data using the `has:[field]` parameter. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{% raw %}{{ member has:plan="plus" }}
+{% raw %}{{ if { member has:plan="plus" } }}
     <p>This is only visible to plus members</p>
-{{ /member }}{% endraw %}
-```
-
-Other parameters are avaliable for checking roles, groups and permissions, check the [tags reference](tags.html#shared-parameters) for full details.
-
-### Using member tags in `if` statements
-
-If you need to combine the member authorization with other checks you can use the member tags within an `if` statement:
-
-```html
-{% raw %}{{ if { member has:plan="plus" } && (now|format:m-d) == "01-01" }}
-    <p>Happy New Year to Plus members!</p>
 {{ /if }}{% endraw %}
 ```
-
-> **Warning:** Don't use the `when` parameter inside an `if` statement, unexpected things will happen! Seperate that condition out into the `if` itself.
