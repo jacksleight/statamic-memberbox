@@ -1,5 +1,5 @@
 # 🚨  Changes Warning (8th November) 🚨
-**After a bit of a rethink I am making some fairly significant changes to this addon. I have tempoarily removed it from the Statamic Marketplace as I don't want anyone to have to deal with a bunch of BC breaks if they install it before new version is ready. The new version should be out this week.**
+**After a bit of a rethink I am making some fairly significant changes to this addon. I have tempoarily removed it from the Statamic Marketplace as I don't want anyone to have to deal with a bunch of BC breaks if they install it before the new version is ready. That should be out this week.**
 
 ---
 
