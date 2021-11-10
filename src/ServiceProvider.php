@@ -58,8 +58,7 @@ class ServiceProvider extends AddonServiceProvider
         ], 'statamic-memberbox-views');
 
         Nav::extend(function ($nav) {
-            $nav->create('Members')
-                ->section('MemberBox')
+            $nav->users('Members')
                 ->route('memberbox.index')
                 ->active('members')
                 ->can('mb view members')
