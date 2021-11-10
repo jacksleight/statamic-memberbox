@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 (2021-11-10)
+
+- Move members nav item into users section
+
 ## 0.4.0 (2021-11-10)
 
 - [break] 💥 **Everything:** This addon has been significantly reworked and also renamed. I don't *think* this will affect anyone, but if it does I'm sorry for any inconvienence it causes, it wont happen again. Update instructions:
