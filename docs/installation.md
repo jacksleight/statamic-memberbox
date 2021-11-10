@@ -13,4 +13,4 @@ composer require jacksleight/statamic-memberbox
 
 ## Licencing
 
-Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
+Statamic MemberBox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.

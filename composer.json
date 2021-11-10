@@ -7,7 +7,7 @@
     },
     "extra": {
         "statamic": {
-            "name": "Memberbox",
+            "name": "MemberBox",
             "description": "This Statamic addon provides an out of the box solution for adding a members area or member restricted content to your site, building on Statamic’s existing user management and user form tags."
         },
         "laravel": {

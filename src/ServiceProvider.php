@@ -59,7 +59,7 @@ class ServiceProvider extends AddonServiceProvider
 
         Nav::extend(function ($nav) {
             $nav->create('Members')
-                ->section('Memberbox')
+                ->section('MemberBox')
                 ->route('memberbox.index')
                 ->active('members')
                 ->can('mb view members')

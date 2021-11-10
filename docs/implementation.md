@@ -15,7 +15,7 @@ nav_order: 4
 {:toc}
 </details>
 
-It's up to you exactly how you want to implement the Memberbox features on your site. Memberbox allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. 
+It's up to you exactly how you want to implement the MemberBox features on your site. MemberBox allows you to restrict access to your content in any way you like and does not impose any particular rules or structure. 
 
 ---
 
@@ -44,7 +44,7 @@ A number of tags are avaliable for linking to the form pages, check the [tags re
 
 ## Restricting access to content using a protection scheme
 
-The simplest way to protect individual entries or entire collections is to use a protection scheme. Memberbox comes with a protection driver called `mb_member` which will restrict content to members. To implement this open up `config/statamic/protect.php` and create a new scheme:
+The simplest way to protect individual entries or entire collections is to use a protection scheme. MemberBox comes with a protection driver called `mb_member` which will restrict content to members. To implement this open up `config/statamic/protect.php` and create a new scheme:
 
 ```php
 'member' => [
