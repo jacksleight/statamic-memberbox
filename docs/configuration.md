@@ -42,9 +42,9 @@ Then open `config/statamic/users.php` and update the `new_user_groups` setting:
 ],
 ```
 
-### 2. Publish the MemberBox config
+### 2. Publish the Memberbox config
 
-Next you should publish the MemberBox config:
+Next you should publish the Memberbox config:
 
 ```bash
 php please vendor:publish --tag=statamic-memberbox-config

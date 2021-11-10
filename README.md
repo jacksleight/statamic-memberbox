@@ -3,7 +3,7 @@
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
 ![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-memberbox)
 
-# Statamic MemberBox 
+# Statamic Memberbox 
 
 <!-- /statamic:hide -->
 
@@ -35,6 +35,6 @@ Full documentation is avaliable at [https://jacksleight.github.io/statamic-membe
 
 ## Licencing
 
-Statamic MemberBox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
+Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
 
 <!-- /statamic:hide -->
