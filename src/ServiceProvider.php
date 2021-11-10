@@ -5,7 +5,9 @@ namespace JackSleight\StatamicMembers;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Facades\CP\Nav;
 use Statamic\Facades\Permission;
-use JackSleight\StatamicMembers\Member;
+use JackSleight\StatamicMembers\Utilities;
+use JackSleight\StatamicMembers\Protectors\Member;
+use Statamic\Auth\Protect\ProtectorManager;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -34,8 +36,8 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__ . '/../config/statamic/members.php', 'statamic.members',
         );
 
-        $this->app->singleton(Member::class, function () {
-            return new Member();
+        $this->app->singleton(Utilities::class, function () {
+            return new Utilities();
         });
     }
 
@@ -72,6 +74,10 @@ class ServiceProvider extends AddonServiceProvider
                     ]),
                 ]);
             });
+        });
+
+        app(ProtectorManager::class)->extend('mb_member', function ($app) {
+            return new Member();
         });
     }
 }
