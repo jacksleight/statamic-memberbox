@@ -27,13 +27,13 @@
                     />
                     <data-list-table :allow-bulk-actions="false" v-show="items.length" @sorted="sorted">
                         <template slot="cell-email" slot-scope="{ row: user, value }">
-                            <a :href="cp_url(`members/${user.id}`)">
+                            <a :href="cp_url(`memberbox/${user.id}`)">
                                 {{ value }}
                             </a>
                         </template>
                         <template slot="actions" slot-scope="{ row: user, index }">
                             <dropdown-list>
-                                <dropdown-item :text="__('Edit')" :redirect="cp_url(`members/${user.id}`)" v-if="user.editable" />
+                                <dropdown-item :text="__('Edit')" :redirect="cp_url(`memberbox/${user.id}`)" v-if="user.editable" />
                                 <data-list-inline-actions
                                     :item="user.id"
                                     :url="actionUrl"
@@ -72,7 +72,7 @@ export default {
 
     data() {
         return {
-            requestUrl: cp_url('members'),
+            requestUrl: cp_url('memberbox'),
         }
     },
 

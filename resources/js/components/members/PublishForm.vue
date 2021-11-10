@@ -3,7 +3,7 @@
     <div>
 
         <header class="mb-3">
-            <breadcrumb :url="cp_url('members')" :title="__('Members')" />
+            <breadcrumb :url="cp_url('memberbox')" :title="__('Members')" />
             <div class="flex items-center">
                 <h1 class="flex-1" v-text="title" />
 

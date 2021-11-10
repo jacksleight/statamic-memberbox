@@ -2,9 +2,12 @@
 
 ## 0.4.0 ()
 
-- [break] The `{{ member }}` tags have been stripped of all features that duplicate functionality already avaliable through Statamic's built-in tags. Please check [the documentation](https://jacksleight.github.io/statamic-members/implementation.html) for revised implementation examples
-- The default login template now uses the `allow_request_redirect` parameter
-- [new] Added an `mb_member` protection scheme
+- [break] 💥 **Everything:** This addon has been significantly reworked and also renamed. I don't *think* this will affect anyone, but if it does sorry for any inconvienence it causes. Update instructions:
+    1. Update `composer.json` to `"jacksleight/statamic-memberbox": "0.4.0",`
+    2. Run `composer update`
+    3. Check the new documentation for updated configuration and implemetation guides
+
+- [new] Added a `mb_member` protection scheme
 
 ## 0.3.0 (2021-10-29)
 

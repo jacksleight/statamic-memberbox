@@ -9,31 +9,31 @@ return [
     |
     | The route paths used for all form pages. To disable a route/form set the
     | value to false. If you disable the activate route the welcome emails will
-    | not work unless you manaully define your own `statamic.members.activate`
+    | not work unless you manaully define your own `statamic.memberbox.activate`
     | route. Same applies to the login route and the redirect tag.
     |
     */
 
     'routes' => [
-        'login'    => '/account/login',
-        'forgot'   => '/account/forgot',
-        'reset'    => '/account/reset',
-        'activate' => '/account/activate',
-        'register' => '/account/register',
-        'edit'     => '/account/edit',
-        'password' => '/account/password',
+        'activate'        => '/account/activate',
+        'register'        => '/account/register',
+        'login'           => '/account/login',
+        'profile'         => '/account/profile',
+        'forgot_password' => '/account/forgot-password',
+        'reset_password'  => '/account/reset-password',
+        'change_password' => '/account/change-password',
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Edit Fillable
+    | Profile Fillable
     |--------------------------------------------------------------------------
     |
-    | Which user fields are fillable through the edit form
+    | Which user fields are fillable through the profile form
     |
     */
 
-    'edit_fillable' => [
+    'profile_fillable' => [
         'name',
         'email',
     ],

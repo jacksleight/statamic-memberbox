@@ -10,18 +10,18 @@
             {{ __('Members') }}
         </h1>
         
-        @if (Statamic::pro() && auth()->user()->can('create members'))
-            <a href="{{ cp_route('statamic-members.create') }}" class="btn-primary ml-2">{{ __('Create Member') }}</a>
+        @if (Statamic::pro() && auth()->user()->can('mb create members'))
+            <a href="{{ cp_route('memberbox.create') }}" class="btn-primary ml-2">{{ __('Create Member') }}</a>
         @endif
 
     </header>
 
-    <members-user-listing
-        listing-key="members"
+    <memberbox-members-listing
+        listing-key="memberbox-members"
         initial-sort-column="email"
         initial-sort-direction="asc"
         :filters="{{ $filters->toJson() }}"
         action-url="{{ cp_route('users.actions.run') }}"
-    ></members-user-listing>
+    ></memberbox-members-listing>
 
 @endsection

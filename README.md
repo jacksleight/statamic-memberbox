@@ -6,9 +6,9 @@
 <!-- statamic:hide -->
 
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
-![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-members)
+![Packagist version](https://flat.badgen.net/packagist/v/jacksleight/statamic-memberbox)
 
-# Statamic Members 
+# Statamic Memberbox 
 
 <!-- /statamic:hide -->
 
@@ -18,28 +18,28 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 ## Features
 
-* A dedicated members section in the control panel that:
-	* Only lists member users and allows you to search them
+* A self-contained members section in the control panel that:
+	* Only lists members and allows you to search them
 	* Allows you to create members through a simplified user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Uses seperate view, create and edit member permissions
 * A members widget for the dashboard
-* These new member form tags:
+* These additional user form tags:
 	* Activate account
-	* Edit account
-	* Update password
-* Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot and reset password)
+	* Update profile
+	* Change password
+* Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
 * A member tag for checking if the current user is a member
 * A set of form page URL tags
 
 ## Documentation
 
-Full documentation is avaliable at [https://jacksleight.github.io/statamic-members/](https://jacksleight.github.io/statamic-members/).
+Full documentation is avaliable at [https://jacksleight.github.io/statamic-memberbox/](https://jacksleight.github.io/statamic-memberbox/).
 
 <!-- statamic:hide -->
 
 ## Licencing
 
-Statamic Members is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/members) to use it in production.
+Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
 
 <!-- /statamic:hide -->

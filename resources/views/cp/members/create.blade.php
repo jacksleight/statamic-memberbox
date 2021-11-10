@@ -4,13 +4,13 @@
 
 @section('content')
 
-    <members-user-wizard
-        route="{{ cp_route('statamic-members.store') }}"
-        users-index-url="{{ cp_route('statamic-members.index') }}"
-        users-create-url="{{ cp_route('statamic-members.create') }}"
+    <memberbox-members-wizard
+        route="{{ cp_route('memberbox.store') }}"
+        users-index-url="{{ cp_route('memberbox.index') }}"
+        users-create-url="{{ cp_route('memberbox.create') }}"
         :activation-expiry="{{ $expiry }}"
         :separate-name-fields="{{ $str::bool($separateNameFields) }}"
     >
-    </members-user-wizard>
+    </memberbox-member-wizard>
 
 @stop

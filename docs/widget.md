@@ -5,11 +5,11 @@ nav_order: 7
 
 # Widget
 
-Members provides a widget that you can add to the control panel dashboard. By default this behaves a lot like the collection widget, displaying a paginated members list with a create member button:
+Memberbox provides a widget that you can add to the control panel dashboard. By default this behaves a lot like the collection widget, displaying a paginated members list with a create member button:
 
 ```php
 [
-    'type'     => 'members',
+    'type'     => 'mb_members',
     'width'    => 50,
 ],
 ```
@@ -18,7 +18,7 @@ The widget has a number of options that can be used to customise it, for example
 
 ```php
 [
-    'type'     => 'members',
+    'type'     => 'mb_members',
     'title'    => 'New Members',
     'sort'     => 'created_at:desc', // see note below!
     'paginate' => false,

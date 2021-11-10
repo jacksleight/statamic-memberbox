@@ -11,16 +11,16 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 ## Features
 
-* A dedicated members section in the control panel that:
-	* Only lists member users and allows you to search them
+* A self-contained members section in the control panel that:
+	* Only lists members and allows you to search them
 	* Allows you to create members through a simplified user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Uses seperate view, create and edit member permissions
 * A members widget for the dashboard
-* These new member form tags:
+* These additional user form tags:
 	* Activate account
-	* Edit account
-	* Update password
-* Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot and reset password)
-* A member tag for checking if the current user is a member
+	* Update profile
+	* Change password
+* Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
+* A tag for checking if the current user is a member
 * A set of form page URL tags

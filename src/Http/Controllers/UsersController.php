@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\StatamicMembers\Http\Controllers;
+namespace JackSleight\StatamicMemberbox\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Statamic\Auth\Passwords\PasswordDefaults;
@@ -10,11 +10,11 @@ use Statamic\Exceptions\UnauthorizedHttpException;
 
 class UsersController extends Controller
 {
-    public function edit(Request $request)
+    public function profile(Request $request)
     {
         throw_unless($user = User::current(), new UnauthorizedHttpException(403));
 
-        $fillable = collect(config('statamic.members.edit_fillable'));
+        $fillable = collect(config('statamic.memberbox.profile_fillable'));
 
         $blueprint = User::blueprint();
 
@@ -28,7 +28,7 @@ class UsersController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            return back()->withInput()->withErrors($errors, 'member.edit');
+            return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.profile');
         }
 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
@@ -42,12 +42,12 @@ class UsersController extends Controller
         
         $user->save();
 
-        session()->flash('member.edit.success', __('Account updated successfully.'));
+        session()->flash('statamic-memberbox.user.profile.success', __('Account updated successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }
 
-    public function password(Request $request)
+    public function changePassword(Request $request)
     {
         throw_unless($user = User::current(), new UnauthorizedHttpException(403));
 
@@ -58,14 +58,14 @@ class UsersController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            return back()->withInput()->withErrors($errors, 'member.password');
+            return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.change_password');
         }
 
         $user->password($request->password);
 
         $user->save();
 
-        session()->flash('member.password.success', __('Password changed successfully.'));
+        session()->flash('statamic-memberbox.user.change_password.success', __('Password changed successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }

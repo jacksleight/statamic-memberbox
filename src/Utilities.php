@@ -1,5 +1,5 @@
 <?php
-namespace JackSleight\StatamicMembers;
+namespace JackSleight\StatamicMemberbox;
 
 use Statamic\Facades\User;
 use Statamic\Contracts\Auth\User as UserContract;

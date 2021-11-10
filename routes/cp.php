@@ -1,10 +1,10 @@
 <?php
 
-Route::group(['prefix' => 'members'], function () {
-    Route::get('', 'CP\UsersController@index')->name('statamic-members.index');
-    Route::get('create', 'CP\UsersController@create')->name('statamic-members.create');
-    Route::post('store', 'CP\UsersController@store')->name('statamic-members.store');
-    Route::get('{user}', 'CP\UsersController@edit')->name('statamic-members.edit');
-    Route::patch('{user}', 'CP\UsersController@update')->name('statamic-members.update');
-    Route::delete('destroy', 'CP\UsersController@destroy')->name('statamic-members.destroy');
+Route::group(['prefix' => 'memberbox'], function () {
+    Route::get('', 'CP\MembersController@index')->name('memberbox.index');
+    Route::get('create', 'CP\MembersController@create')->name('memberbox.create');
+    Route::post('store', 'CP\MembersController@store')->name('memberbox.store');
+    Route::get('{user}', 'CP\MembersController@edit')->name('memberbox.edit');
+    Route::patch('{user}', 'CP\MembersController@update')->name('memberbox.update');
+    Route::delete('destroy', 'CP\MembersController@destroy')->name('memberbox.destroy');
 });

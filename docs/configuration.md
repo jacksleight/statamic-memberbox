@@ -25,7 +25,7 @@ This addon defines a member as any user who has the roles and groups listed in t
 
 ### 1. Configure Statamic's new user settings
 
-The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want member users to have. You can specify any roles/groups you like, but for a simple setup I would recommend a single group called `members`.
+The first thing you'll need to do is set Statamic's new user settings to the roles/groups you want members to have. You can specify any roles/groups you like, but for a simple setup I would recommend a single group called `members`.
 
 To do this you'll need to create a `members` group. You can either do this through the control panel's groups editor, or in the `resources/users/groups.yaml` file directly:
 
@@ -42,15 +42,15 @@ Then open `config/statamic/users.php` and update the `new_user_groups` setting:
 ],
 ```
 
-### 2. Publish the members config
+### 2. Publish the Memberbox config
 
-Next you should publish the members config:
+Next you should publish the Memberbox config:
 
 ```bash
-php please vendor:publish --tag=statamic-members-config
+php please vendor:publish --tag=statamic-memberbox-config
 ```
 
-Then open `config/statamic/members.php` to make any changes. Check the [customisation](customisation.html) page for further details.
+Then open `config/statamic/memberbox.php` to make any changes. Check the [customisation](customisation.html) page for further details.
 
 ### 3. Grant control panel permissions
 
@@ -60,9 +60,9 @@ To give control panel users access to the members section you will need to grant
 admin:
   title: Admin
   permissions:
-    - 'view members'
-    - 'edit members'
-    - 'create members'
+    - 'mb view members'
+    - 'mb edit members'
+    - 'mb create members'
 ```
 
 Changing member passwords and deleting members is currently restricted to users with the `change passwords` and `delete users` permissions.

@@ -1,18 +1,18 @@
 {
-    "name": "jacksleight/statamic-members",
+    "name": "jacksleight/statamic-memberbox",
     "autoload": {
         "psr-4": {
-            "JackSleight\\StatamicMembers\\": "src"
+            "JackSleight\\StatamicMemberbox\\": "src"
         }
     },
     "extra": {
         "statamic": {
-            "name": "Members",
+            "name": "Memberbox",
             "description": "This Statamic addon provides an out of the box solution for adding a members area or member restricted content to your site, building on Statamic’s existing user management and user form tags."
         },
         "laravel": {
             "providers": [
-                "JackSleight\\StatamicMembers\\ServiceProvider"
+                "JackSleight\\StatamicMemberbox\\ServiceProvider"
             ]
         }
     },

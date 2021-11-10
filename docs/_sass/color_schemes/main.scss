@@ -9,3 +9,9 @@ blockquote {
     padding-right: $sp-5;
     padding-left: $sp-5;
 }
+
+@media (min-width: 31.25rem) {
+    .site-title.site-title {
+        font-size: 20px !important;
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace JackSleight\StatamicMembers\Widgets;
+namespace JackSleight\StatamicMemberbox\Widgets;
 
 use Statamic\Widgets\Widget;
 use Statamic\Facades\User;
@@ -8,9 +8,11 @@ use Statamic\Facades\Scope;
 
 class Members extends Widget
 {
+    protected static $handle = 'mb_members';
+
     public function html()
     {
-        if (!User::current()->can('view members')) {
+        if (!User::current()->can('mb view members')) {
             return;
         }
 
@@ -19,7 +21,7 @@ class Members extends Widget
         $sortColumn = $exploded[0];
         $sortDirection = $exploded[1] ?? 'asc';
 
-        return view('statamic-members::cp.widgets.members', [
+        return view('statamic-memberbox::cp.widgets.members', [
             'filters'       => Scope::filters('users'),
             'title'         => $this->config('title', __('Members')),
             'limit'         => $this->config('limit', 5),

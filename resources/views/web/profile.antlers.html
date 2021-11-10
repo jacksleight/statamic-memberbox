@@ -1,15 +1,13 @@
-{{ not_member:abort }}
-
 <div class="max-w-6xl mx-auto">
 
     <div class="text-center content">
-        <h1 class="mb-4">Update Account</h1>
+        <h1 class="mb-4">Update Profile</h1>
         <p>Update your account details below.</p>
     </div>
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ member:edit_form }}
+        {{ mb:user:profile_form }}
 
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
@@ -39,11 +37,11 @@
 
             {{ /user }}
             
-            <a href="{{ member:password_url }}" class="my-5 text-center block text-black">Want to change your password?</a>
+            <a href="{{ mb:user:change_password_url }}" class="my-5 text-center block text-black">Want to change your password?</a>
 
             <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Update</button>
 
-        {{ /member:edit_form }}
+        {{ /mb:user:profile_form }}
 
     </div>
 

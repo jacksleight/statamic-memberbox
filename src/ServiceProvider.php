@@ -1,12 +1,12 @@
 <?php
 
-namespace JackSleight\StatamicMembers;
+namespace JackSleight\StatamicMemberbox;
 
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Facades\CP\Nav;
 use Statamic\Facades\Permission;
-use JackSleight\StatamicMembers\Utilities;
-use JackSleight\StatamicMembers\Protectors\Member;
+use JackSleight\StatamicMemberbox\Utilities;
+use JackSleight\StatamicMemberbox\Protectors\Member;
 use Statamic\Auth\Protect\ProtectorManager;
 
 class ServiceProvider extends AddonServiceProvider
@@ -21,11 +21,11 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $tags = [
-        \JackSleight\StatamicMembers\Tags\MemberTags::class,
+        \JackSleight\StatamicMemberbox\Tags\BaseTag::class,
     ];
 
     protected $widgets = [
-        \JackSleight\StatamicMembers\Widgets\Members::class,
+        \JackSleight\StatamicMemberbox\Widgets\Members::class,
     ];        
 
     public function register()
@@ -33,7 +33,7 @@ class ServiceProvider extends AddonServiceProvider
         parent::register();
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/statamic/members.php', 'statamic.members',
+            __DIR__ . '/../config/statamic/memberbox.php', 'statamic.memberbox',
         );
 
         $this->app->singleton(Utilities::class, function () {
@@ -45,32 +45,32 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-members');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-memberbox');
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'statamic-members');
-
-        $this->publishes([
-            __DIR__ . '/../config/statamic/members.php' => config_path('statamic/members.php'),
-        ], 'statamic-members-config');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'statamic-memberbox');
 
         $this->publishes([
-            __DIR__.'/../resources/views/web' => resource_path('views/vendor/statamic-members/web'),
-        ], 'statamic-members-views');
+            __DIR__ . '/../config/statamic/memberbox.php' => config_path('statamic/memberbox.php'),
+        ], 'statamic-memberbox-config');
+
+        $this->publishes([
+            __DIR__.'/../resources/views/web' => resource_path('views/vendor/statamic-memberbox/web'),
+        ], 'statamic-memberbox-views');
 
         Nav::extend(function ($nav) {
             $nav->create('Members')
-                ->section('Members')
-                ->route('statamic-members.index')
+                ->section('Memberbox')
+                ->route('memberbox.index')
                 ->active('members')
-                ->can('view members')
+                ->can('mb view members')
                 ->icon('users');
         });
 
         $this->app->booted(function () {
-            Permission::group('members', 'Members', function () {
-                Permission::register('view members')->label(__('statamic-members::permissions.view_members'))->children([
-                    Permission::make('edit members')->label(__('statamic-members::permissions.edit_members'))->children([
-                        Permission::make('create members')->label(__('statamic-members::permissions.create_members')),
+            Permission::group('mb members', 'Members', function () {
+                Permission::register('mb view members')->label(__('statamic-memberbox::permissions.view_members'))->children([
+                    Permission::make('mb edit members')->label(__('statamic-memberbox::permissions.edit_members'))->children([
+                        Permission::make('mb create members')->label(__('statamic-memberbox::permissions.create_members')),
                     ]),
                 ]);
             });

@@ -15,7 +15,7 @@
             <div slot-scope="{ }">
                 <data-list-table :loading="loading">
                     <template slot="cell-email" slot-scope="{ row: user, value }">
-                        <a :href="cp_url(`members/${user.id}`)">
+                        <a :href="cp_url(`memberbox/${user.id}`)">
                             {{ value }}
                         </a>                        
                     </template>
@@ -56,7 +56,7 @@ export default {
                 { label: "Email", field: "email", visible: true },
                 { label: "Name", field: "name", visible: true },
             ],
-            requestUrl: cp_url(`members`),
+            requestUrl: cp_url(`memberbox`),
         }
     },
 

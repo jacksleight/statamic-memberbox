@@ -1,10 +1,10 @@
 <?php
 
-namespace JackSleight\StatamicMembers\Http\Controllers\CP;
+namespace JackSleight\StatamicMemberbox\Http\Controllers\CP;
 
 use Illuminate\Http\Request;
-use JackSleight\StatamicMembers\Facades\Member;
-use JackSleight\StatamicMembers\Notifications\ActivateAccount;
+use JackSleight\StatamicMemberbox\Facades\Member;
+use JackSleight\StatamicMemberbox\Notifications\ActivateAccount;
 use Statamic\Auth\Passwords\PasswordReset;
 use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\CP\Column;
@@ -15,7 +15,7 @@ use Statamic\Http\Controllers\CP\Users\UsersController as StatamicUsersControlle
 use Statamic\Http\Requests\FilteredRequest;
 use Statamic\Http\Resources\CP\Users\Users;
 
-class UsersController extends StatamicUsersController
+class MembersController extends StatamicUsersController
 {
     /**
      * @var UserContract
@@ -24,19 +24,21 @@ class UsersController extends StatamicUsersController
 
     public function index(FilteredRequest $request)
     {
-        $this->authorize('view members', UserContract::class);
+        $this->authorize('mb view members', UserContract::class);
 
         if ($request->wantsJson()) {
             return $this->json($request);
         }
 
-        return view('statamic-members::cp.users.index', [
+        return view('statamic-memberbox::cp.members.index', [
             'filters' => Scope::filters('users'),
         ]);
     }
     
     protected function json($request)
     {
+        $this->authorize('mb view members', UserContract::class);
+        
         $query = Member::query();
 
         if ($search = request('search')) {
@@ -66,7 +68,7 @@ class UsersController extends StatamicUsersController
     public function create(Request $request)
     {
         $this->authorizePro();
-        $this->authorize('create members', UserContract::class);
+        $this->authorize('mb create members', UserContract::class);
 
         $blueprint = User::blueprint();
 
@@ -81,7 +83,7 @@ class UsersController extends StatamicUsersController
             'meta' => $fields->meta(),
             'blueprint' => $blueprint->toPublishArray(),
             'actions' => [
-                'save' => cp_route('statamic-members.store'),
+                'save' => cp_route('memberbox.store'),
             ],
             'expiry' => $expiry,
             'separateNameFields' => $blueprint->hasField('first_name'),
@@ -91,13 +93,13 @@ class UsersController extends StatamicUsersController
             return $viewData;
         }
 
-        return view('statamic-members::cp.users.create', $viewData);
+        return view('statamic-memberbox::cp.members.create', $viewData);
     }
 
     public function store(Request $request)
     {
         $this->authorizePro();
-        $this->authorize('create members', UserContract::class);
+        $this->authorize('mb create members', UserContract::class);
 
         $blueprint = User::blueprint();
 
@@ -121,7 +123,7 @@ class UsersController extends StatamicUsersController
 
         $user->save();
 
-        PasswordReset::resetFormRoute('statamic.members.activate');
+        PasswordReset::resetFormroute('statamic-memberbox.activate');
         PasswordReset::redirectAfterReset(null);
         $token = $user->generateActivateAccountToken();
 
@@ -135,7 +137,7 @@ class UsersController extends StatamicUsersController
         }
 
         return [
-            'redirect' => cp_route('statamic-members.edit', $user->id()),
+            'redirect' => cp_route('memberbox.edit', $user->id()),
             'activationUrl' => $url,
         ];
     }
@@ -145,7 +147,7 @@ class UsersController extends StatamicUsersController
         throw_unless($user = User::find($user), new NotFoundHttpException);
         throw_unless(Member::verify($user), new NotFoundHttpException);
 
-        $this->authorize('edit members', $user);
+        $this->authorize('mb edit members', $user);
 
         $blueprint = $user->blueprint();
 
@@ -165,7 +167,7 @@ class UsersController extends StatamicUsersController
             'blueprint' => $user->blueprint()->toPublishArray(),
             'reference' => $user->reference(),
             'actions' => [
-                'save' => cp_route('statamic-members.update', $user->id()),
+                'save' => cp_route('memberbox.update', $user->id()),
                 'password' => cp_route('users.password.update', $user->id()),
             ],
             'canEditPassword' => User::fromUser($request->user())->can('editPassword', $user),
@@ -175,7 +177,7 @@ class UsersController extends StatamicUsersController
             return $viewData;
         }
 
-        return view('statamic-members::cp.users.edit', $viewData);
+        return view('statamic-memberbox::cp.members.edit', $viewData);
     }
 
     public function update(Request $request, $user)
@@ -183,7 +185,7 @@ class UsersController extends StatamicUsersController
         throw_unless($user = User::find($user), new NotFoundHttpException);
         throw_unless(Member::verify($user), new NotFoundHttpException);
 
-        $this->authorize('edit members', $user);
+        $this->authorize('mb edit members', $user);
 
         $fields = $user->blueprint()->fields()->except(['password'])->addValues($request->all());
 
