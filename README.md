@@ -1,8 +1,3 @@
-# 🚨  Changes Warning (8th November) 🚨
-**After a bit of a rethink I am making some fairly significant changes to this addon. I have tempoarily removed it from the Statamic Marketplace as I don't want anyone to have to deal with a bunch of BC breaks if they install it before the new version is ready. It should be back in the Marketplace this week.**
-
----
-
 <!-- statamic:hide -->
 
 ![Statamic](https://flat.badgen.net/badge/Statamic/3.2+/FF269E)
