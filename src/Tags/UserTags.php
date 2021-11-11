@@ -86,7 +86,14 @@ class UserTags extends SubTag
 
     public function loginUrl()
     {
-        return route('statamic-memberbox.login', ['redirect' => $this->params->get('redirect')]);
+        $redirect = null;
+        if ($this->params->has('append_redirect')) {
+            $append = $this->params->get('append_redirect');
+            $redirect = $append === true
+                ? url()->current()->path()
+                : $append;
+        }
+        return route('statamic-memberbox.login', ['redirect' => $redirect]);
     }
 
     public function profileUrl()

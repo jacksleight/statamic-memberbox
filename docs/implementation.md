@@ -66,7 +66,7 @@ Adding the following to the top of your `resources/views/layout.antlers.html` fi
 
 ```html
 {% raw %}{{ if { url | starts_with:/members-area } && ! { mb:member } }}
-    {{ redirect to="{ mb:user:login_url redirect='{ url }' }" }}
+    {{ redirect to="{ mb:user:login_url append_redirect='{ url }' }" }}
 {{ /if }}{% endraw %}
 ```
 
