@@ -21,7 +21,7 @@ It's up to you exactly how you want to implement the Memberbox features on your 
 
 ## Linking to the form pages from your templates
 
-A set of form page URL tags are avaliable for linking to the form pages, check the [tags reference](tags.html#form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
+Memberbox provides a set of form page URL tags are avaliable for linking to the form pages, check the [tags reference](tags.html#form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
 {% raw %}<header>
