@@ -23,7 +23,7 @@ nav_order: 6
 
 Check if the current user is a member.
 
-### `{% raw %}{{ mb:user:has [field]="value" }}{% endraw %}`
+### `{% raw %}{{ mb:user:has [field]="[value]" }}{% endraw %}`
 
 Check if the current user has the specified field value(s).
 
@@ -64,7 +64,7 @@ Returns the register page URL.
 
 Returns the login page URL.
 
-* **append_redirect (bool|string):** Whether to append a redirect to the URL
+* **append_redirect (bool\|string):** Whether to append a redirect to the URL
 
 ### `{% raw %}{{ mb:user:profile_url }}{% endraw %}`
 

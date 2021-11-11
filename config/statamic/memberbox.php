@@ -26,7 +26,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Profile Fillable
+    | Profile Fields
     |--------------------------------------------------------------------------
     |
     | Which user fields are fillable through the profile form
