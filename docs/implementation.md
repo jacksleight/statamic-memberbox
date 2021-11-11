@@ -67,7 +67,7 @@ Check Statamic's [protection schemes documentation](https://statamic.dev/protect
 Adding the following to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect logged out users to the login page:
 
 ```html
-{% raw %}{{ if ! logged_in && { url | starts_with:/members-area } }}
+{% raw %}{{ if ! logged_in && url | starts_with:/members-area }}
     {{ redirect to="{ mb:user:login_url append_redirect='true' }" }}
 {{ /if }}{% endraw %}
 ```
