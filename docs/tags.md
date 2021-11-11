@@ -17,13 +17,17 @@ nav_order: 6
 
 ---
 
-## Member tag
+## User tags
 
-### `{% raw %}{{ mb:member }}{% endraw %}`
+### `{% raw %}{{ mb:user:member }}{% endraw %}`
 
 Check if the current user is a member.
 
-* **has:[field] (string):** Only matches members with the specified field value
+### `{% raw %}{{ mb:user:has [field]="value" }}{% endraw %}`
+
+Check if the current user has the specified field value(s).
+
+* **[field] (string):** Only matches members with the specified field value
 
 ---
 
@@ -59,6 +63,8 @@ Returns the register page URL.
 ### `{% raw %}{{ mb:user:login_url }}{% endraw %}`
 
 Returns the login page URL.
+
+* **append_redirect (bool|string):** Whether to append a redirect to the URL
 
 ### `{% raw %}{{ mb:user:profile_url }}{% endraw %}`
 

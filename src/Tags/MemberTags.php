@@ -7,10 +7,5 @@ use Statamic\Facades\User;
 
 class MemberTags extends SubTag
 {
-    public function index()
-    {
-        $user = User::current();
-        
-        return Member::authorize($user, $this->params);
-    }
+
 }

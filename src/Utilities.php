@@ -74,33 +74,4 @@ class Utilities
         
         return true;
     }
-
-    public function authorize(UserContract $user = null, $params = [])
-    {
-        $params = collect($params);
-    
-        if (!$user) {
-            return false;
-        }
-    
-        if (!$this->verify($user)) {
-            return false;
-        }
-        
-        $ok = true;
-        collect($params)->filter(function ($value, $key) {
-            return Str::startsWith($key, 'has:');
-        })->each(function ($value, $param) use ($user, &$ok) {
-            $field = substr($param, 4);
-            if ($user->get($field) !== $value) {
-                $ok = false;
-                return false;
-            }
-        });
-        if (!$ok) {
-            return false;
-        }
-    
-        return true;
-    }
 }

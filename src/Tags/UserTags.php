@@ -3,13 +3,32 @@
 namespace JackSleight\StatamicMemberbox\Tags;
 
 use Statamic\Tags\Concerns;
-use Illuminate\Support\Facades\Request;
 
 class UserTags extends SubTag
 {
     use Concerns\GetsFormSession,
         Concerns\GetsRedirects,
         Concerns\RendersForms;
+
+    public function member()
+    {
+        $user = User::current();
+        
+        return Member::verify($user);
+    }
+
+    public function has()
+    {
+        $user = User::current();
+
+        foreach ($this->params as $name => $value) {
+            if ($user->get($name) !== $value) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public function activateForm()
     {
