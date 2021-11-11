@@ -60,7 +60,7 @@ inject:
   protect: logged_in
 ```
 
-Check Statamic's [protection schemes documentation](https://statamic.dev/protecting-content#protecting-an-entry) for full details.
+Check Statamic's [protection](https://statamic.dev/protecting-content#protecting-an-entry) documentation for full details.
 
 ### Restrict an entire area of the site based on a URL prefix
 
@@ -72,7 +72,7 @@ Adding the following to the top of your `resources/views/layout.antlers.html` fi
 {{ /if }}{% endraw %}
 ```
 
-Check Statamic's [tags](https://statamic.dev/reference/tags) and [variables](https://statamic.dev/reference/variables) for full details.
+Check Statamic's [tags](https://statamic.dev/reference/tags) and [variables](https://statamic.dev/reference/variables) documentation for full details.
 
 ### Restrict individual pages based on an entry field
 
