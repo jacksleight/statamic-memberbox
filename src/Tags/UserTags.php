@@ -3,6 +3,8 @@
 namespace JackSleight\StatamicMemberbox\Tags;
 
 use Statamic\Tags\Concerns;
+use Statamic\Facades\User;
+use JackSleight\StatamicMemberbox\Facades\Member;
 
 class UserTags extends SubTag
 {

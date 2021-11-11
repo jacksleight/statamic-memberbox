@@ -11,8 +11,7 @@ class BaseTag extends Tags
     protected static $handle = 'mb';
 
     protected $tagClasses = [
-        'user'   => UserTags::class,
-        'member' => MemberTags::class,
+        'user' => UserTags::class,
     ];
 
     public function wildcard(string $tag)

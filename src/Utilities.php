@@ -54,8 +54,12 @@ class Utilities
         return $query;
     }
 
-    public function verify(UserContract $user)
+    public function verify(UserContract $user = null)
     {       
+        if (!$user) {
+            return false;
+        }
+
         if ($roles = config('statamic.users.new_user_roles')) {
             foreach ($roles as $role) {
                 if (!$user->hasRole($role)) {
