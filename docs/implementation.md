@@ -25,17 +25,16 @@ Memberbox provides a set of form page URL tags are avaliable for linking to the 
 
 ```html
 {% raw %}<header>
-    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center h-16">
-        <a href="/" class="font-bold text-xl hover:text-hot-pink mr-auto">{{ settings:site_name }}</a>
+    <div>
+        <a href="/">{{ settings:site_name }}</a>
         {{ if logged_in }}
-            <a href="{{ mb:user:profile_url }}" class="ml-5 text-l hover:text-hot-pink">{{ user }}{{ name }}{{ /user }}</a>
-            <a href="{{ user:logout_url }}" class="ml-5 text-l hover:text-hot-pink">Log out</a>
+            <a href="{{ mb:user:profile_url }}">{{ user }}{{ name }}{{ /user }}</a>
+            <a href="{{ user:logout_url }}">Log out</a>
         {{ else }}
-            <a href="{{ mb:user:register_url }}" class="ml-5 text-l hover:text-hot-pink">Register</a>
-            <a href="{{ mb:user:login_url }}" class="ml-5 text-l hover:text-hot-pink">Log in</a>
+            <a href="{{ mb:user:register_url }}">Register</a>
+            <a href="{{ mb:user:login_url }}">Log in</a>
         {{ /if }}
     </div>
-    <div class="w-full border-b-2 border-black squiggle"></div>
 </header>{% endraw %}
 ```
 
