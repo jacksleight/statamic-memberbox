@@ -22,5 +22,5 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Update profile
 	* Change password
 * Fully-functional implementations of those forms, plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
-* A tag for checking if the current user is a member
+* Tags for checking if the current user has specific field values or is a member
 * A set of form page URL tags
