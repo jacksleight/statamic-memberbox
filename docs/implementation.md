@@ -15,13 +15,13 @@ nav_order: 4
 {:toc}
 </details>
 
-It's up to you exactly how you want to implement the Memberbox features on your site. When it comes to restricting content Statamic provides almost everying you might need already.
+It's up to you exactly how you want to implement the Memberbox features on your site, check the [customisation](customisation.html) documentation for details on customising the form pages, invitiation emails and control panel. When it comes to protectting front-end content Memberbox comes with a few bonus tags, but Statamic provides almost everying you might need already.
 
 ---
 
 ## Linking to the form pages from your templates
 
-Memberbox provides a set of form page URL tags are avaliable for linking to the form pages, check the [tags reference](tags.html#form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
+Memberbox provides a set of form page URL tags for linking to the form pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
 {% raw %}<header>
@@ -42,9 +42,9 @@ Memberbox provides a set of form page URL tags are avaliable for linking to the 
 
 ## Restricting access to logged in users
 
-Most of the time you'll probably just want to restrict access to any logged in user, not *just* members. That way your control panel users will also have access to that content. There are many ways to do that and below are some common approaches to get you started, but for full details [check](https://statamic.dev/protecting-content) [the](https://statamic.dev/reference/tags) [docs](https://statamic.dev/reference/variables).
+Most of the time you'll probably just want to restrict access to any logged in user, not *just* members. That way your control panel users will also have access to that content as well. There are many ways to do that and below are some common approaches to get you started. For further details [check](https://statamic.dev/protecting-content) [the](https://statamic.dev/reference/tags) [docs](https://statamic.dev/reference/variables).
 
-### Restrict entries or collections using a protection scheme
+### Protect entries or collections using a protection scheme
 
 The best way to protect individual entries or entire collections is to use a protection scheme. Statamic comes with a protection driver called `auth` which will restrict content to logged in users and optionally redirect logged out users to the login page. To implement this just add a `protect` key to your entry:
 
@@ -61,7 +61,7 @@ inject:
 
 Check Statamic's [protection](https://statamic.dev/protecting-content#protecting-an-entry) documentation for full details.
 
-### Restrict an entire area of the site based on a URL prefix
+### Protect an entire area of the site based on a URL prefix
 
 Adding the following to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect logged out users to the login page:
 
@@ -73,7 +73,7 @@ Adding the following to the top of your `resources/views/layout.antlers.html` fi
 
 Check Statamic's [tags](https://statamic.dev/reference/tags) and [variables](https://statamic.dev/reference/variables) documentation for full details.
 
-### Restrict individual pages based on an entry field
+### Protect individual pages based on an entry field
 
 Adding the following to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `secret` toggle field set to `true` and redirect logged out users to the login page:
 
@@ -83,7 +83,7 @@ Adding the following to the top of your `resources/views/pages/show.antlers.html
 {{ /if }}{% endraw %}
 ```
 
-### Restrict sections of a page
+### Protect sections of a page
 
 You can wrap blocks of content to restrict just those sections to logged in or logged out users:
 
@@ -96,7 +96,7 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 {{ /if }}{% endraw %}
 ```
 
-### Restrict based on a user field value
+### Protect based on a user field value
 
 You can check for the presence of specific values within the user data using Memberbox's `{% raw %}{{ mb:user:has }}{% endraw %}` tag. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
@@ -110,7 +110,7 @@ You can check for the presence of specific values within the user data using Mem
 
 ## Restricting access to *just* members
 
-If you really want to restrict content to *just* [members](configuration.html#whos-a-member) and no other logged in users you can use Memberbox's `{% raw %}{{ mb:user:member }}{% endraw %}` tag:
+If you really want to restrict content to just [members](configuration.html#whos-a-member) and no other logged in users you can use Memberbox's `{% raw %}{{ mb:user:member }}{% endraw %}` tag:
 
 ```html
 {% raw %}{{ if logged_in && { mb:user:member } }}
@@ -118,4 +118,4 @@ If you really want to restrict content to *just* [members](configuration.html#wh
 {{ /if }}{% endraw %}
 ```
 
-But bear in mind that doing this might prevent control panel users viewing the content as well, depending on how your roles and groups are configured.
+Bear in mind that doing this might prevent control panel users viewing the content as well, depending on how your roles and groups are configured.
