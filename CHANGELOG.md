@@ -1,17 +1,20 @@
 # Changelog
 
+## 0.4.2 (2021-11-11)
+
+- [break] A couple of planned changes that were overlooked in 0.4.0
+
 ## 0.4.1 (2021-11-10)
 
 - Move members nav item into users section
 
 ## 0.4.0 (2021-11-10)
 
-- [break] 💥 **Everything:** This addon has been significantly reworked and also renamed. I don't *think* this will affect anyone, but if it does I'm sorry for any inconvienence it causes, it wont happen again. Update instructions:
+- [break] 💥 **Everything:** This addon has been significantly reworked and also renamed. Update instructions:
     1. Update `composer.json` to `"jacksleight/statamic-memberbox": "0.4.0",`
     2. Run `composer update`
     3. Republish the config, views and translations if you've published them
     4. Check the new documentation for updated configuration and implemetation guides
-- [new] Added a `mb_member` protection scheme
 
 ## 0.3.0 (2021-10-29)
 
