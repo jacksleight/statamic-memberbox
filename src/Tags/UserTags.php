@@ -3,6 +3,7 @@
 namespace JackSleight\StatamicMemberbox\Tags;
 
 use Statamic\Tags\Concerns;
+use Illuminate\Support\Facades\Request;
 
 class UserTags extends SubTag
 {
@@ -90,7 +91,7 @@ class UserTags extends SubTag
         if ($this->params->has('append_redirect')) {
             $append = $this->params->get('append_redirect');
             $redirect = $append === true
-                ? url()->current()->path()
+                ? url()->current()
                 : $append;
         }
         return route('statamic-memberbox.login', ['redirect' => $redirect]);
