@@ -31,10 +31,10 @@ And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to 
 
 ## Profile form fields
 
-Only fields listed in the `statamic.memberbox.profile_fillable` config option can be submitted through the profile form. If you add additional fields to that form you'll need to add them to the list. To do that open `config/statamic/memberbox.php` and add your fields:
+Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. If you add additional fields to that form you'll need to add them to the list. To do that open `config/statamic/memberbox.php` and add your fields:
 
 ```php
-'profile_fillable' => [
+'profile_fields' => [
     'name',
     'email',
     'nickname',

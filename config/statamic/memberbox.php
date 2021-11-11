@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'profile_fillable' => [
+    'profile_fields' => [
         'name',
         'email',
     ],

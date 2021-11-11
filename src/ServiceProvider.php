@@ -75,8 +75,8 @@ class ServiceProvider extends AddonServiceProvider
             });
         });
 
-        app(ProtectorManager::class)->extend('mb_member', function ($app) {
-            return new Member();
-        });
+        // app(ProtectorManager::class)->extend('mb_member', function ($app) {
+        //     return new Member();
+        // });
     }
 }

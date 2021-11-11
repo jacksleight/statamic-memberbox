@@ -14,11 +14,11 @@ class UsersController extends Controller
     {
         throw_unless($user = User::current(), new UnauthorizedHttpException(403));
 
-        $fillable = collect(config('statamic.memberbox.profile_fillable'));
+        $only = collect(config('statamic.memberbox.profile_fields'));
 
         $blueprint = User::blueprint();
 
-        $fields = $blueprint->fields()->only($fillable->all())->addValues($request->all());
+        $fields = $blueprint->fields()->only($only->all())->addValues($request->all());
 
         $fieldRules = $fields->validator()->withRules([
             'email' => ['required', 'unique_user_value:'.$user->id()],
@@ -36,7 +36,7 @@ class UsersController extends Controller
         foreach ($values as $key => $value) {
             $user->set($key, $value);
         }
-        if ($fillable->contains('email')) {
+        if ($only->contains('email')) {
             $user->email($request->email);
         }
         
