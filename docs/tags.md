@@ -45,6 +45,7 @@ Render the activate form tag.
 Render the profile form tag.
 
 * **redirect (string):** URL to redirect on success
+* **files (boolean):** Enable file uploads (`enctype="multipart/form-data"`)
 
 ### `{% raw %}{{ mb:user:change_password_form }} ... {{ /mb:user:change_password_form }}{% endraw %}`
 
