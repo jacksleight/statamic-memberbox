@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.3 (2021-11-19)
+
+- [fix] Support file uploads through profile form
+
 ## 0.4.2 (2021-11-11)
 
 - [break] A couple of planned changes that were overlooked in 0.4.0
