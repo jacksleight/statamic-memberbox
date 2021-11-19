@@ -2,11 +2,13 @@
 
 namespace JackSleight\StatamicMemberbox\Http\Controllers;
 
+use Arr;
 use Illuminate\Http\Request;
 use Statamic\Auth\Passwords\PasswordDefaults;
 use Statamic\Facades\User;
 use Illuminate\Support\Facades\Validator;
 use Statamic\Exceptions\UnauthorizedHttpException;
+use Statamic\Forms\Uploaders\AssetsUploader;
 
 class UsersController extends Controller
 {
@@ -18,20 +20,24 @@ class UsersController extends Controller
 
         $blueprint = User::blueprint();
 
-        $fields = $blueprint->fields()->only($only->all())->addValues($request->all());
+        $fields = $blueprint->fields()->only($only->all());
+        $values = array_merge($request->all(), $this->normalizeAssetValues($fields, $request));
+        $fields = $fields->addValues($values);
 
-        $fieldRules = $fields->validator()->withRules([
+        $extraRules = array_merge([
             'email' => ['required', 'unique_user_value:'.$user->id()],
-        ])->rules();
-
-        $validator = Validator::make($request->all(), $fieldRules);
-
+        ], $this->assetRules($fields));
+        $fieldRules = $fields->validator()->withRules($extraRules)->rules();
+        
+        $validator = Validator::make($values, $fieldRules);
+        
         if ($validator->fails()) {
             $errors = $validator->errors();
             return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.profile');
         }
-
-        $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
+                
+        $values = array_merge($request->all(), $this->uploadAssetFiles($fields));
+        $values = collect($values)->intersectByKeys($fields->all())->except(['email', 'groups', 'roles']);
 
         foreach ($values as $key => $value) {
             $user->set($key, $value);
@@ -68,5 +74,41 @@ class UsersController extends Controller
         session()->flash('statamic-memberbox.user.change_password.success', __('Password changed successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
+    }
+
+    protected function assetRules($fields)
+    {
+        return $fields->all()
+            ->filter(function ($field) {
+                return $field->fieldtype()->handle() === 'assets';
+            })
+            ->mapWithKeys(function ($field) {
+                return [$field->handle().'.*' => 'file'];
+            })
+            ->all();
+    }
+
+    protected function normalizeAssetValues($fields, $request)
+    {
+        return $fields->all()
+            ->filter(function ($field) {
+                return $field->fieldtype()->handle() === 'assets' && $field->get('max_files') === 1;
+            })
+            ->map(function ($field) use ($request) {
+                return Arr::wrap($request->file($field->handle()));
+            })
+            ->all();
+    }
+
+    protected function uploadAssetFiles($fields)
+    {
+        return $fields->all()
+            ->filter(function ($field) {
+                return $field->fieldtype()->handle() === 'assets' && request()->hasFile($field->handle());
+            })
+            ->map(function ($field) {
+                return AssetsUploader::field($field)->upload(request()->file($field->handle()));
+            })
+            ->all();
     }
 }

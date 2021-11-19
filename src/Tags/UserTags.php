@@ -67,7 +67,7 @@ class UserTags extends SubTag
     {
         $data = $this->getFormSession('statamic-memberbox.user.profile');
 
-        $knownParams = ['redirect'];
+        $knownParams = ['redirect', 'files'];
 
         $html = $this->formOpen(route('statamic-memberbox.profile.action'), 'POST', $knownParams);
 
