@@ -2,9 +2,9 @@
 
 namespace JackSleight\StatamicMemberbox\Tags;
 
-use Statamic\Tags\Concerns;
-use Statamic\Facades\User;
 use JackSleight\StatamicMemberbox\Facades\Member;
+use Statamic\Facades\User;
+use Statamic\Tags\Concerns;
 
 class UserTags extends SubTag
 {
@@ -15,7 +15,7 @@ class UserTags extends SubTag
     public function member()
     {
         $user = User::current();
-        
+
         return Member::verify($user);
     }
 
@@ -115,6 +115,7 @@ class UserTags extends SubTag
                 ? url()->current()
                 : $append;
         }
+
         return route('statamic-memberbox.login', ['redirect' => $redirect]);
     }
 

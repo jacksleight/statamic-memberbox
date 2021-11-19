@@ -2,9 +2,9 @@
 
 namespace JackSleight\StatamicMemberbox\Widgets;
 
-use Statamic\Widgets\Widget;
-use Statamic\Facades\User;
 use Statamic\Facades\Scope;
+use Statamic\Facades\User;
+use Statamic\Widgets\Widget;
 
 class Members extends Widget
 {
@@ -12,7 +12,7 @@ class Members extends Widget
 
     public function html()
     {
-        if (!User::current()->can('mb view members')) {
+        if (! User::current()->can('mb view members')) {
             return;
         }
 

@@ -34,11 +34,11 @@ class MembersController extends StatamicUsersController
             'filters' => Scope::filters('users'),
         ]);
     }
-    
+
     protected function json($request)
     {
         $this->authorize('mb view members', UserContract::class);
-        
+
         $query = Member::query();
 
         if ($search = request('search')) {

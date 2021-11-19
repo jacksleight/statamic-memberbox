@@ -7,4 +7,3 @@ return [
     'create_members' => 'Create members',
 
 ];
-

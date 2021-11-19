@@ -1,8 +1,9 @@
 <?php
+
 namespace JackSleight\StatamicMemberbox;
 
-use Statamic\Facades\User;
 use Statamic\Contracts\Auth\User as UserContract;
+use Statamic\Facades\User;
 use Statamic\Stache\Query\UserQueryBuilder as StacheUserQueryBuilder;
 use Statamic\Stache\Repositories\UserRepository as StacheUserRepository;
 
@@ -14,25 +15,22 @@ class Utilities
     }
 
     public function query()
-    {       
+    {
         $query = User::query();
 
         if ($query instanceof StacheUserQueryBuilder) {
-
             if ($roles = config('statamic.users.new_user_roles')) {
                 foreach ($roles as $role) {
                     $query->where('roles/'.$role, true);
                 }
             }
-    
+
             if ($groups = config('statamic.users.new_user_groups')) {
                 foreach ($groups as $group) {
                     $query->where('groups/'.$group, true);
                 }
             }
-
         } else {
-
             if ($roles = config('statamic.users.new_user_roles')) {
                 foreach ($roles as $role) {
                     $query->whereHas('roles', function ($q) use ($role) {
@@ -40,7 +38,7 @@ class Utilities
                     });
                 }
             }
-    
+
             if ($groups = config('statamic.users.new_user_groups')) {
                 foreach ($groups as $group) {
                     $query->whereHas('groups', function ($q) use ($group) {
@@ -48,34 +46,33 @@ class Utilities
                     });
                 }
             }
-
         }
 
         return $query;
     }
 
     public function verify(UserContract $user = null)
-    {       
-        if (!$user) {
+    {
+        if (! $user) {
             return false;
         }
 
         if ($roles = config('statamic.users.new_user_roles')) {
             foreach ($roles as $role) {
-                if (!$user->hasRole($role)) {
+                if (! $user->hasRole($role)) {
                     return false;
                 }
             }
         }
-    
+
         if ($groups = config('statamic.users.new_user_groups')) {
             foreach ($groups as $group) {
-                if (!$user->isInGroup($group)) {
+                if (! $user->isInGroup($group)) {
                     return false;
                 }
             }
         }
-        
+
         return true;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace JackSleight\StatamicMemberbox\Tags;
 
-use Str;
-use Statamic\Tags\Tags;
 use Statamic\Tags\TagNotFoundException;
+use Statamic\Tags\Tags;
+use Str;
 
 class BaseTag extends Tags
 {

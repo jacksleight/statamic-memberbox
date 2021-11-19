@@ -4,10 +4,10 @@ namespace JackSleight\StatamicMemberbox\Http\Controllers;
 
 use Arr;
 use Illuminate\Http\Request;
-use Statamic\Auth\Passwords\PasswordDefaults;
-use Statamic\Facades\User;
 use Illuminate\Support\Facades\Validator;
+use Statamic\Auth\Passwords\PasswordDefaults;
 use Statamic\Exceptions\UnauthorizedHttpException;
+use Statamic\Facades\User;
 use Statamic\Forms\Uploaders\AssetsUploader;
 
 class UsersController extends Controller
@@ -28,14 +28,15 @@ class UsersController extends Controller
             'email' => ['required', 'unique_user_value:'.$user->id()],
         ], $this->assetRules($fields));
         $fieldRules = $fields->validator()->withRules($extraRules)->rules();
-        
+
         $validator = Validator::make($values, $fieldRules);
-        
+
         if ($validator->fails()) {
             $errors = $validator->errors();
+
             return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.profile');
         }
-                
+
         $values = array_merge($request->all(), $this->uploadAssetFiles($fields));
         $values = collect($values)->intersectByKeys($fields->all())->except(['email', 'groups', 'roles']);
 
@@ -45,7 +46,7 @@ class UsersController extends Controller
         if ($only->contains('email')) {
             $user->email($request->email);
         }
-        
+
         $user->save();
 
         session()->flash('statamic-memberbox.user.profile.success', __('Account updated successfully.'));
@@ -64,6 +65,7 @@ class UsersController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
+
             return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.change_password');
         }
 

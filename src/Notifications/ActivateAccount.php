@@ -3,8 +3,8 @@
 namespace JackSleight\StatamicMemberbox\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
-use Statamic\Notifications\ActivateAccount as StatamicActivateAccount;
 use Statamic\Auth\Passwords\PasswordReset as PasswordResetManager;
+use Statamic\Notifications\ActivateAccount as StatamicActivateAccount;
 
 class ActivateAccount extends StatamicActivateAccount
 {

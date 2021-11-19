@@ -10,9 +10,9 @@ class SubTag extends Tags
     {
         $this->content = $passed->content;
         $this->context = $passed->context;
-        $this->params  = $passed->params;
-        $this->tag     = $passed->tag;
-        $this->method  = $passed->method;
-        $this->parser  = $passed->parser;
+        $this->params = $passed->params;
+        $this->tag = $passed->tag;
+        $this->method = $passed->method;
+        $this->parser = $passed->parser;
     }
 }

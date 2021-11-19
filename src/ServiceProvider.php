@@ -2,12 +2,11 @@
 
 namespace JackSleight\StatamicMemberbox;
 
-use Statamic\Providers\AddonServiceProvider;
-use Statamic\Facades\CP\Nav;
-use Statamic\Facades\Permission;
-use JackSleight\StatamicMemberbox\Utilities;
 use JackSleight\StatamicMemberbox\Protectors\Member;
 use Statamic\Auth\Protect\ProtectorManager;
+use Statamic\Facades\CP\Nav;
+use Statamic\Facades\Permission;
+use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -17,7 +16,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $scripts = [
-        __DIR__ . '/../dist/js/addon.js',
+        __DIR__.'/../dist/js/addon.js',
     ];
 
     protected $tags = [
@@ -26,14 +25,14 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $widgets = [
         \JackSleight\StatamicMemberbox\Widgets\Members::class,
-    ];        
+    ];
 
     public function register()
     {
         parent::register();
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/statamic/memberbox.php', 'statamic.memberbox',
+            __DIR__.'/../config/statamic/memberbox.php', 'statamic.memberbox',
         );
 
         $this->app->singleton(Utilities::class, function () {
@@ -50,7 +49,7 @@ class ServiceProvider extends AddonServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'statamic-memberbox');
 
         $this->publishes([
-            __DIR__ . '/../config/statamic/memberbox.php' => config_path('statamic/memberbox.php'),
+            __DIR__.'/../config/statamic/memberbox.php' => config_path('statamic/memberbox.php'),
         ], 'statamic-memberbox-config');
 
         $this->publishes([
