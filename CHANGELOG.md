@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.4 (2021-11-22)
+
+- [fix] Use full class names instead of aliases
+
 ## 0.4.3 (2021-11-19)
 
 - [fix] Support file uploads through profile form
