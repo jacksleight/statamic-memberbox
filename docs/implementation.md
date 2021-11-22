@@ -46,7 +46,7 @@ Most of the time you'll probably just want to restrict access to any logged in u
 
 ### Protect entries or collections using a protection scheme
 
-The best way to protect individual entries or entire collections is to use a protection scheme. Statamic comes with a protection driver called `auth` which will restrict content to logged in users and optionally redirect logged out users to the login page. To implement this just add a `protect` key to your entry:
+The best way to protect individual entries or entire collections is to use a protection scheme. Statamic comes with a protection scheme called `logged_in` which will restrict content to logged in users and optionally redirect logged out users to the login page. To implement this just add a `protect` key to your entry:
 
 ```yaml
 protect: logged_in
