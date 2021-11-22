@@ -27,7 +27,7 @@ Check if the current user is a member.
 
 Check if the current user has the specified field value(s).
 
-* **[field] (string):** Only matches members with the specified field value
+* **[field] (string):** Only matches users with the specified field value
 
 ---
 
