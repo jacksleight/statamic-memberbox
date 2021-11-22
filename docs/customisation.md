@@ -42,7 +42,7 @@ Only fields listed in the `statamic.memberbox.profile_fields` config option can 
 ],
 ```
 
-### File Uploads
+### Uploading files
 
 You can upload files to user assets fields through the profile form. You'll need to add `files="true"` to the profile form tag, then a `file` input to your template:
 
