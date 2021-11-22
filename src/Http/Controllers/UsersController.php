@@ -2,13 +2,13 @@
 
 namespace JackSleight\StatamicMemberbox\Http\Controllers;
 
-use Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Statamic\Auth\Passwords\PasswordDefaults;
 use Statamic\Exceptions\UnauthorizedHttpException;
 use Statamic\Facades\User;
 use Statamic\Forms\Uploaders\AssetsUploader;
+use Statamic\Support\Arr;
 
 class UsersController extends Controller
 {
