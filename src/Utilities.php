@@ -14,10 +14,8 @@ class Utilities
         return User::getFacadeRoot() instanceof StacheUserRepository;
     }
 
-    public function query()
+    public function query($query)
     {
-        $query = User::query();
-
         if ($query instanceof StacheUserQueryBuilder) {
             if ($roles = config('statamic.users.new_user_roles')) {
                 foreach ($roles as $role) {

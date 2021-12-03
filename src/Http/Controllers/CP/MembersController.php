@@ -39,7 +39,7 @@ class MembersController extends StatamicUsersController
     {
         $this->authorize('mb view members', UserContract::class);
 
-        $query = Member::query();
+        $query = Member::query(User::query());
 
         if ($search = request('search')) {
             $query->where('email', 'like', '%'.$search.'%');
