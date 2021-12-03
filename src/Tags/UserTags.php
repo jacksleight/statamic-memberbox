@@ -13,6 +13,9 @@ class UserTags extends Tags
         Concerns\GetsRedirects,
         Concerns\RendersForms;
 
+    /**
+     * @deprecated
+     */
     public function member()
     {
         $user = User::current();

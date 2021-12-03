@@ -19,9 +19,11 @@ nav_order: 6
 
 ## User tags
 
-### `{% raw %}{{ mb:user:member }}{% endraw %}`
+### `{% raw %}{{ mb:member }}{% endraw %}`
 
-Check if the current user is a member.
+Get the current member or a specific member.
+
+Accepts the same parameters as the [`{{ user }}` tag](https://statamic.dev/tags/user-profile), but will only return member users.
 
 ---
 

@@ -102,7 +102,7 @@ You can check values within the user data. For example if you had a `plan` field
 
 ```html
 {% raw %}{{ user }}
-    {{ if logged_in && plan == "plus" }}
+    {{ if ! no_results && plan == "plus" }}
         <p>This is only visible to plus users</p>
     {{ /if }}
 {{ /user }}{% endraw %}
@@ -112,12 +112,14 @@ You can check values within the user data. For example if you had a `plan` field
 
 ## Restricting access to *just* members
 
-If you really want to restrict content to just [members](configuration.html#whos-a-member) and no other logged in users you can use Memberbox's `{% raw %}{{ mb:user:member }}{% endraw %}` tag:
+If you really want to restrict content to just [members](configuration.html#whos-a-member) and no other logged in users you can use Memberbox's `{% raw %}{{ mb:member }}{% endraw %}` tag to fetch the current member:
 
 ```html
-{% raw %}{{ if logged_in && { mb:user:member } }}
-    <p>This is only visible to members and no one else</p>
-{{ /if }}{% endraw %}
+{% raw %}{{ mb:member }}
+    {{ if ! no_results }}
+        <p>This is only visible to members and no one else</p>
+    {{ /if }}
+{{ /mb:member }}{% endraw %}
 ```
 
 Bear in mind that doing this might prevent control panel users viewing the content as well, depending on how your roles and groups are configured.
