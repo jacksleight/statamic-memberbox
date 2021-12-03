@@ -22,6 +22,8 @@ return [
         'forgot_password' => '/account/forgot-password',
         'reset_password'  => '/account/reset-password',
         'change_password' => '/account/change-password',
+        // 'index'           => '/members',
+        // 'show'            => '/members/{id}',
     ],
 
     /*

@@ -58,12 +58,12 @@ You can upload files to user assets fields through the profile form. You'll need
 
 ## Form page URLs
 
-You can change the URLs used for the form pages by updating the `statamic.memberbox.routes` config option. You can also disable form page entirely by setting their values to `null`:
+You can change the URLs used for the form pages by updating the `statamic.memberbox.routes` config option. You can also disable form page entirely by removing them:
 
 ```php
 'routes' => [
     'login'    => '/login',
-    'register' => null,
+    // 'register' => '/register',
     // ...
 ],
 ```

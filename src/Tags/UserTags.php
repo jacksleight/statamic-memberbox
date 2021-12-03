@@ -145,4 +145,9 @@ class UserTags extends Tags
     {
         return route('statamic-memberbox.change_password');
     }
+
+    public function showUrl()
+    {
+        return route('statamic-memberbox.show', $this->params->all());
+    }
 }

@@ -9,6 +9,8 @@ return [
     'forgot_password_title' => 'Forgot Password',
     'reset_password_title'  => 'Reset Password',
     'change_password_title' => 'Change Password',
+    'index_title'           => 'Members',
+    'show_title'            => 'Member Profile',
 
     'member_wizard_intro'                   => 'Members can access the members area of the site or member only content.',
     'member_wizard_invitation_intro'        => 'Send a welcome email with account activation details to the new member.',

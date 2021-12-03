@@ -44,4 +44,16 @@ Route::name('statamic-memberbox.')->group(function () {
         ])->name('change_password');
         Route::post('/!/statamic-memberbox/change_password', 'UsersController@changePassword')->name('change_password.action');
     }
+
+    if ($route = config('statamic.memberbox.routes.index')) {
+        Route::statamic($route, 'statamic-memberbox::web.index', [
+            'title' => __('statamic-memberbox::messages.index_title'),
+        ])->name('index');
+    }
+
+    if ($route = config('statamic.memberbox.routes.show')) {
+        Route::statamic($route, 'statamic-memberbox::web.show', [
+            'title' => __('statamic-memberbox::messages.show_title'),
+        ])->name('show');
+    }
 });
