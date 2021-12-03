@@ -35,12 +35,22 @@ class BaseTag extends Tags
             throw new TagNotFoundException("Tag [{$tag[0]}] could not be found.");
         }
 
-        if (method_exists($class, $method)) {
-            return (new $class($this))->{$method}();
+        $tags = new $class();
+        $tags->setProperties([
+            'parser'     => $this->parser,
+            'content'    => $this->content,
+            'context'    => $this->context,
+            'params'     => $this->params,
+            'tag'        => $this->tag,
+            'tag_method' => $this->method,
+        ]);
+
+        if (method_exists($tags, $method)) {
+            return $tags->{$method}();
         }
 
-        if (method_exists($class, 'wildcard')) {
-            return (new $class($this))->wildcard($method);
+        if (method_exists($tags, 'wildcard')) {
+            return $tags->wildcard($method);
         }
 
         throw new TagNotFoundException("Tag [{$tag[0]}] could not be found.");
