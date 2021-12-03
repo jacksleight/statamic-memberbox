@@ -2,6 +2,10 @@
 
     {{ mb:member id="{ last_segment }" }}
 
+        {{ if no_results }}
+            {{ 404 }}
+        {{ /if }}
+
         <div class="text-center content">
             <h1 class="mb-4">{{ id | substr:-12:12 }}</h1>
             <p>Here's our member's profile.</p>
