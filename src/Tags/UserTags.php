@@ -20,12 +20,15 @@ class UserTags extends Tags
         return Member::verify($user);
     }
 
+    /**
+     * @deprecated
+     */
     public function has()
     {
         $user = User::current();
 
         foreach ($this->params as $name => $value) {
-            if ($user->get($name) !== $value) {
+            if ($user->get($name) != $value) {
                 return false;
             }
         }

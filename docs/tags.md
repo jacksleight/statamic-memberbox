@@ -23,12 +23,6 @@ nav_order: 6
 
 Check if the current user is a member.
 
-### `{% raw %}{{ mb:user:has [field]="[value]" }}{% endraw %}`
-
-Check if the current user has the specified field value(s).
-
-* **[field] (string):** Only matches users with the specified field value
-
 ---
 
 ## User form tags

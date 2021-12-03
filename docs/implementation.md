@@ -98,12 +98,14 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 
 ### Protect based on a user field value
 
-You can check for the presence of specific values within the user data using Memberbox's `{% raw %}{{ mb:user:has }}{% endraw %}` tag. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
+You can check values within the user data. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{% raw %}{{ if logged_in && { mb:user:has plan="plus" } }}
-    <p>This is only visible to plus users</p>
-{{ /if }}{% endraw %}
+{% raw %}{{ user }}
+    {{ if logged_in && plan == "plus" }}
+        <p>This is only visible to plus users</p>
+    {{ /if }}
+{{ /user }}{% endraw %}
 ```
 
 ---
