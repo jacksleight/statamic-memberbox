@@ -78,3 +78,13 @@ Returns the reset password page URL.
 ### `{% raw %}{{ mb:user:change_password_url }}{% endraw %}`
 
 Returns the change password page URL.
+
+### `{% raw %}{{ mb:user:index_url }}{% endraw %}`
+
+Returns the user listing page URL.
+
+### `{% raw %}{{ mb:user:show_url }}{% endraw %}`
+
+Returns the user detail page URL.
+
+* **anything:** All parameters will be parsed to the route
