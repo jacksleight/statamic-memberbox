@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0 ()
+
+- [new] Frontend user directory routes and starter templates
+- [new] Added `mb:member` tag that returns member data
+- [new] Added `mb:members` tag that lists members
+- [new] Added `mb_member` query scope
+- [new] Added `enable_account` config option to toggle all account pages on/off
+- [break] Page titles are now set from the templates not the translation files
+- Deprecated `mb:user:has` tag
+- Deprecated `mb:user:member` tag
+
 ## 0.4.4 (2021-11-22)
 
 - [fix] Use full class names instead of aliases
