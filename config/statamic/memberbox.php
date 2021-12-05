@@ -7,7 +7,7 @@ return [
     | Enable Account
     |--------------------------------------------------------------------------
     |
-    | Enable the user account login and management pages.
+    | Enable the user account pages.
     |
     */
 
