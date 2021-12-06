@@ -459,33 +459,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Yer a wizard Ron
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: {
+    publishContainer: String,
+    initialFieldset: Object,
+    initialFields: Object,
+    initialValues: Object,
+    initialMeta: Object,
     route: {
       type: String
     },
@@ -497,13 +481,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     activationExpiry: {
       type: Number
-    },
-    separateNameFields: {
-      type: Boolean
     }
   },
   data: function data() {
     return {
+      fieldset: _.clone(this.initialFieldset),
+      fields: _.clone(this.initialFields),
+      values: _.clone(this.initialValues),
+      meta: _.clone(this.initialMeta),
+      error: null,
+      errors: {},
       steps: [__('Member Information'), __('Customize Invitation')],
       user: {
         email: null
@@ -2524,251 +2511,50 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "max-w-md mx-auto px-2 pb-5" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "font-bold text-base mb-sm",
-                  attrs: { for: "email" }
-                },
-                [_vm._v(_vm._s(_vm.__("Email Address")) + "*")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.user.email,
-                    expression: "user.email"
-                  }
-                ],
-                staticClass: "input-text",
-                attrs: {
-                  type: "email",
-                  id: "email",
-                  required: "",
-                  autofocus: "",
-                  tabindex: "1"
-                },
-                domProps: { value: _vm.user.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.user, "email", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.userExists
-                ? _c(
-                    "div",
-                    { staticClass: "text-2xs text-red mt-1 flex items-center" },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.__("This user already exists.")) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-                : _c(
-                    "div",
-                    {
-                      staticClass:
-                        "text-2xs text-grey-60 mt-1 flex items-center"
-                    },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.__("messages.user_wizard_email_instructions")
-                          ) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-            ]),
-            _vm._v(" "),
-            !_vm.separateNameFields
-              ? _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "font-bold text-base mb-sm",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v(_vm._s(_vm.__("Name")))]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.name,
-                        expression: "user.name"
-                      }
-                    ],
-                    staticClass: "input-text",
-                    attrs: {
-                      type: "text",
-                      id: "name",
-                      autofocus: "",
-                      tabindex: "2"
-                    },
-                    domProps: { value: _vm.user.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+            _c(
+              "div",
+              { staticClass: "max-w-md mx-auto pb-5" },
+              [
+                _vm.fields.length
+                  ? _c("publish-container", {
+                      attrs: {
+                        name: _vm.publishContainer,
+                        blueprint: _vm.fieldset,
+                        values: _vm.values,
+                        meta: _vm.meta,
+                        errors: _vm.errors
+                      },
+                      on: {
+                        updated: function($event) {
+                          _vm.values = $event
                         }
-                        _vm.$set(_vm.user, "name", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "text-2xs text-grey-60 mt-1 flex items-center"
-                    },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.__("messages.user_wizard_name_instructions")
-                          ) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-                ])
-              : _c(
-                  "div",
-                  { staticClass: "max-w-md mx-auto px-2 pb-7 flex space-x-4" },
-                  [
-                    _c("div", { staticClass: "flex-1" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "first_name" }
-                        },
-                        [_vm._v(_vm._s(_vm.__("First Name")))]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.first_name,
-                            expression: "user.first_name"
-                          }
-                        ],
-                        staticClass: "input-text",
-                        attrs: {
-                          type: "text",
-                          id: "first_name",
-                          autofocus: "",
-                          tabindex: "2"
-                        },
-                        domProps: { value: _vm.user.first_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.user,
-                              "first_name",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "text-2xs text-grey-60 mt-1 flex items-center"
-                        },
+                      },
+                      scopedSlots: _vm._u(
                         [
-                          _c("svg-icon", {
-                            staticClass: "mr-sm flex items-center mb-px",
-                            attrs: { name: "info-circle" }
-                          }),
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(
-                                _vm.__("messages.user_wizard_name_instructions")
-                              ) +
-                              "\n                    "
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex-1" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "last_name" }
-                        },
-                        [_vm._v(_vm._s(_vm.__("Last Name")))]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.last_name,
-                            expression: "user.last_name"
+                            key: "default",
+                            fn: function(ref) {
+                              var setFieldValue = ref.setFieldValue
+                              var setFieldMeta = ref.setFieldMeta
+                              return _c("publish-fields", {
+                                attrs: { fields: _vm.fields },
+                                on: {
+                                  updated: setFieldValue,
+                                  "meta-updated": setFieldMeta
+                                }
+                              })
+                            }
                           }
                         ],
-                        staticClass: "input-text",
-                        attrs: {
-                          type: "text",
-                          id: "last_name",
-                          autofocus: "",
-                          tabindex: "2"
-                        },
-                        domProps: { value: _vm.user.last_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.user, "last_name", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                )
+                        null,
+                        false,
+                        1196063591
+                      )
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
           ])
         : _vm._e(),
       _vm._v(" "),

@@ -11,11 +11,11 @@ use Statamic\CP\Column;
 use Statamic\Exceptions\NotFoundHttpException;
 use Statamic\Facades\Scope;
 use Statamic\Facades\User;
-use Statamic\Http\Controllers\CP\Users\UsersController as StatamicUsersController;
+use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
 use Statamic\Http\Resources\CP\Users\Users;
 
-class MembersController extends StatamicUsersController
+class MembersController extends UsersController
 {
     /**
      * @var UserContract
@@ -72,7 +72,7 @@ class MembersController extends StatamicUsersController
 
         $blueprint = User::blueprint();
 
-        $fields = $blueprint->fields()->preProcess();
+        $fields = $blueprint->fields()->only(config('statamic.memberbox.cp_create_fields'))->preProcess();
 
         $broker = config('statamic.users.passwords.'.PasswordReset::BROKER_ACTIVATIONS);
         $expiry = config("auth.passwords.{$broker}.expire") / 60;
@@ -80,13 +80,13 @@ class MembersController extends StatamicUsersController
         $viewData = [
             'title' => __('Create'),
             'values' => $fields->values()->all(),
-            'meta' => $fields->meta(),
             'blueprint' => $blueprint->toPublishArray(),
+            'fields' => $fields->toPublishArray(),
+            'meta' => $fields->meta(),
             'actions' => [
                 'save' => cp_route('memberbox.store'),
             ],
             'expiry' => $expiry,
-            'separateNameFields' => $blueprint->hasField('first_name'),
         ];
 
         if ($request->wantsJson()) {

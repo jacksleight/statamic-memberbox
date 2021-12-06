@@ -16,46 +16,25 @@
                 <p class="text-grey" v-text="__('statamic-memberbox::messages.member_wizard_intro')" />
             </div>
 
-            <!-- Email Address -->
-            <div class="max-w-md mx-auto px-2 pb-5">
-                <label class="font-bold text-base mb-sm" for="email">{{ __('Email Address') }}*</label>
-                <input type="email" v-model="user.email" id="email" class="input-text" required autofocus tabindex="1">
-
-                <div class="text-2xs text-red mt-1 flex items-center" v-if="userExists">
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('This user already exists.') }}
-                </div>
-                <div class="text-2xs text-grey-60 mt-1 flex items-center" v-else>
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('messages.user_wizard_email_instructions') }}
-                </div>
+            <div class="max-w-md mx-auto pb-5">
+                <publish-container
+                    v-if="fields.length"
+                    :name="publishContainer"
+                    :blueprint="fieldset"
+                    :values="values"
+                    :meta="meta"
+                    :errors="errors"
+                    @updated="values = $event"
+                >
+                    <publish-fields
+                        slot-scope="{ setFieldValue, setFieldMeta }"
+                        :fields="fields"
+                        @updated="setFieldValue"
+                        @meta-updated="setFieldMeta"
+                    />
+                </publish-container>
             </div>
-
-            <!-- Name -->
-            <div v-if="! separateNameFields" class="max-w-md mx-auto px-2 pb-7">
-                <label class="font-bold text-base mb-sm" for="name">{{ __('Name') }}</label>
-                <input type="text" v-model="user.name" id="name" class="input-text" autofocus tabindex="2">
-                <div class="text-2xs text-grey-60 mt-1 flex items-center">
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('messages.user_wizard_name_instructions') }}
-                </div>
-            </div>
-
-            <div v-else class="max-w-md mx-auto px-2 pb-7 flex space-x-4">
-                <div class="flex-1">
-                    <label class="font-bold text-base mb-sm" for="first_name">{{ __('First Name') }}</label>
-                    <input type="text" v-model="user.first_name" id="first_name" class="input-text" autofocus tabindex="2">
-                    <div class="text-2xs text-grey-60 mt-1 flex items-center">
-                        <svg-icon name="info-circle" class="mr-sm flex items-center mb-px"></svg-icon>
-                        {{ __('messages.user_wizard_name_instructions') }}
-                    </div>
-                </div>
-
-                <div class="flex-1">
-                    <label class="font-bold text-base mb-sm" for="last_name">{{ __('Last Name') }}</label>
-                    <input type="text" v-model="user.last_name" id="last_name" class="input-text" autofocus tabindex="2">
-                </div>
-            </div>
+            
         </div>
 
         <!-- Step 2 -->
@@ -146,15 +125,25 @@ export default {
     mixins: [HasWizardSteps],
 
     props: {
+        publishContainer: String,
+        initialFieldset: Object,
+        initialFields: Object,
+        initialValues: Object,
+        initialMeta: Object,
         route: { type: String },
         usersCreateUrl: { type: String },
         usersIndexUrl: { type: String },
         activationExpiry: { type: Number },
-        separateNameFields: { type: Boolean },
     },
 
     data() {
         return {
+            fieldset: _.clone(this.initialFieldset),
+            fields: _.clone(this.initialFields),
+            values: _.clone(this.initialValues),
+            meta: _.clone(this.initialMeta),
+            error: null,
+            errors: {},
             steps: [__('Member Information'), __('Customize Invitation')],
             user: {
                 email: null,
