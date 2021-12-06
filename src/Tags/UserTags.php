@@ -5,14 +5,10 @@ namespace JackSleight\StatamicMemberbox\Tags;
 use JackSleight\StatamicMemberbox\Facades\Member;
 use Statamic\Facades\User;
 use Statamic\Tags\Concerns;
-use Statamic\Tags\Tags;
+use Statamic\Auth\UserTags as StatamicUserTags;
 
-class UserTags extends Tags
+class UserTags extends StatamicUserTags
 {
-    use Concerns\GetsFormSession,
-        Concerns\GetsRedirects,
-        Concerns\RendersForms;
-
     /**
      * @deprecated
      */

@@ -7,15 +7,19 @@ use Statamic\Facades\User;
 use Statamic\Stache\Query\UserQueryBuilder as StacheUserQueryBuilder;
 use Statamic\Stache\Repositories\UserRepository as StacheUserRepository;
 
-class Utilities
+class Member
 {
     public function isStache()
     {
         return User::getFacadeRoot() instanceof StacheUserRepository;
     }
 
-    public function query($query)
+    public function query($query = null)
     {
+        if (! $query) {
+            $query = User::query();
+        }
+
         if ($query instanceof StacheUserQueryBuilder) {
             if ($roles = config('statamic.users.new_user_roles')) {
                 foreach ($roles as $role) {

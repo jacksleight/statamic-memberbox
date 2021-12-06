@@ -4,37 +4,64 @@ namespace JackSleight\StatamicMemberbox\Tags;
 
 use JackSleight\StatamicMemberbox\Facades\Member;
 use Statamic\Auth\UserTags;
-use Statamic\Tags\Tags;
-use Statamic\View\Antlers\AntlersString;
+use Statamic\Facades\User;
 
-class MemberTags extends Tags
+class MemberTags extends UserTags
 {
-    public function index()
+    public function wildcard(string $name)
     {
-        $user = $this->delegateToStatamic('index');
-        if ($user instanceof AntlersString) {
-            return $user;
+        if (! $user = $this->getUser()) {
+            return $this->parseNoResults();
         }
 
-        if (! Member::verify($user)) {
+        return $user->augmentedValue($name);
+    }
+
+    public function index()
+    {
+        if (! $user = $this->getUser()) {
             return $this->parseNoResults();
         }
 
         return $user;
     }
 
-    protected function delegateToStatamic($method)
+    protected function getUser()
     {
-        $tags = new UserTags();
-        $tags->setProperties([
-            'parser'     => $this->parser,
-            'content'    => $this->content,
-            'context'    => $this->context,
-            'params'     => $this->params,
-            'tag'        => $this->tag,
-            'tag_method' => $this->method,
-        ]);
+        $user = null;
 
-        return $tags->{$method}();
+        // Get a user by ID, if the `id` parameter was used.
+        if ($id = $this->params->get('id')) {
+            if (! $user = User::find($id)) {
+                return null;
+            }
+        }
+
+        // Get a user by email, if the `email` parameter was used.
+        if ($email = $this->params->get('email')) {
+            if (! $user = User::findByEmail($email)) {
+                return null;
+            }
+        }
+
+        // Get a user by field, if the `field` parameter was used.
+        if ($field = $this->params->get('field')) {
+            if (! $user = User::query()->where($field, $this->params->get('value'))->first()) {
+                return null;
+            }
+        }
+
+        // No user found? Get the current one.
+        if (! $user) {
+            if (! $user = User::current()) {
+                return null;
+            }
+        }
+
+        if (! Member::verify($user)) {
+            return null;
+        }
+
+        return $user;
     }
 }

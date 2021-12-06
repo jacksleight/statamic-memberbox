@@ -47,7 +47,7 @@ return [
         'reset_password'  => '/account/reset-password',
         'change_password' => '/account/change-password',
         // 'index'           => '/directory',
-        // 'show'            => '/directory/{id}',
+        // 'show'            => '/directory/{user}',
     ],
 
     /*

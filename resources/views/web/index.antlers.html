@@ -11,7 +11,7 @@ title: Directory
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ users query_scope="mb_member" id:contains="{ get:search }" limit="20" paginate="true" as="members" }}
+        {{ users query_scope="mb_member" name:contains="{ get:search }" limit="20" paginate="true" as="members" }}
             
             <form>
                 <input class="bg-white p-2 w-full rounded-md mb-5" type="search" name="search" value="{{ get:search }}" placeholder="Search…" />
@@ -26,7 +26,7 @@ title: Directory
                     {{ members }}
                         <tr>
                             <th class="text-left">
-                                <a href="{{ mb:user:show_url id='{ id }' }}" class="underline">{{ name }}</a>
+                                <a href="{{ mb:user:show_url user='{ id }' }}" class="underline">{{ name }}</a>
                             </th>
                             <td class="text-right">
                                 —

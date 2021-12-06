@@ -2,6 +2,7 @@
 
 namespace JackSleight\StatamicMemberbox\Tags;
 
+use JackSleight\StatamicMemberbox\Support\Util;
 use Statamic\Support\Str;
 use Statamic\Tags\TagNotFoundException;
 use Statamic\Tags\Tags;
@@ -46,11 +47,11 @@ class BaseTag extends Tags
             'tag_method' => $this->method,
         ]);
 
-        if (method_exists($tags, $method)) {
+        if (Util::methodDefined($tags, $method)) {
             return $tags->{$method}();
         }
 
-        if (method_exists($tags, 'wildcard')) {
+        if (Util::methodDefined($tags, 'wildcard')) {
             return $tags->wildcard($method);
         }
 

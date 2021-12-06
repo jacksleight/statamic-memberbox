@@ -7,7 +7,7 @@
 - [new] Added `mb:members` tag that lists members
 - [new] Added `mb_member` query scope
 - [new] Added `enable_account` config option to toggle all account pages on/off
-- [break] Page titles are now set from the templates not the translation files
+- [break] Page titles are now set from the templates instead of the translation files
 - Deprecated `mb:user:has` tag
 - Deprecated `mb:user:member` tag
 
