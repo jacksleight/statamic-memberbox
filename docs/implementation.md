@@ -37,7 +37,7 @@ To enable the directory pages set the `statamic.memberbox.enable_directory` conf
 'routes' => [
     // ...
     'index' => '/directory',
-    'show'  => '/directory/{id}',
+    'show'  => '/directory/{user}',
 ],
 ```
 
