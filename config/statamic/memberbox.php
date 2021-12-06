@@ -38,4 +38,18 @@ return [
         'email',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Invitation From Address
+    |--------------------------------------------------------------------------
+    |
+    | The address and name invitation emails come from.
+    |
+    */
+
+    'invitation_from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
+    ],
+
 ];
