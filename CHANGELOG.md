@@ -11,6 +11,10 @@
 - Deprecated `mb:user:has` tag
 - Deprecated `mb:user:member` tag
 
+## 0.4.5 (2021-12-06)
+
+- [new] Ability to specify the invitation email from address and name
+
 ## 0.4.4 (2021-11-22)
 
 - [fix] Use full class names instead of aliases
