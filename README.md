@@ -30,7 +30,7 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 ## Documentation
 
-Full documentation is avaliable at [https://jacksleight.github.io/statamic-memberbox/](https://jacksleight.github.io/statamic-memberbox/).
+[Statamic Memberbox Documentation](https://jacksleight.github.io/statamic-memberbox/)
 
 <!-- statamic:hide -->
 
