@@ -15,20 +15,76 @@ nav_order: 4
 {:toc}
 </details>
 
-It's up to you exactly how you want to implement the Memberbox features on your site, check the [customisation](customisation.html) documentation for details on customising the form pages, invitation emails and control panel. When it comes to protecting front-end content Memberbox comes with a couple of bonus tags, but Statamic provides almost everyting you might need already.
+It's up to you exactly how you want to implement the Memberbox features on your site. If you want to get up and running quickly you can use the routes and templates Memberbox provides, or you can implement those yourself and just use the tags. When it comes to protecting front-end content Statamic provides everyting you might need already.
+
+Check the [customisation](customisation.html) documentation for details on customising the profile form fields, invitation emails and control panel
 
 ---
 
-## Linking to the form pages from your templates
+## Setting up the account and directory pages
 
-Memberbox provides a set of form page URL tags for linking to the form pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
+To enable the account pages set the `statamic.memberbox.enable_account` config option to true (enabled by default):
+
+```
+'enable_account' => true,
+```
+
+To enable the directory pages set the `statamic.memberbox.enable_directory` config option to true and uncomment the routes:
+
+```
+'enable_directory' => true,
+
+'routes' => [
+    // ...
+    'index' => '/directory',
+    'show'  => '/directory/{id}',
+],
+```
+
+> *Warning:* Enabling the user directory will expose user data publicly. Make sure your templates only output the data you want to be public!
+
+## Changing the page URLs
+
+You can change the URLs used for the pages by updating the `statamic.memberbox.routes` config option. You can also disable a specific pages by removing them:
+
+```php
+'routes' => [
+    'login'    => '/login',
+    // 'register' => '/register',
+    // ...
+],
+```
+
+### Editing the page templates
+
+The starter templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
+
+```bash
+php please vendor:publish --tag=statamic-memberbox-views
+```
+
+And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to customise the templates.
+
+## Setting the page titles
+
+The starter templates use Antlers front matter to set a title variable which you can access from your layout templates. You don't have to use this method, but if you do you can output the variable in your layout using the `view:title` variable:
+
+```html
+<title>{{ title or view:title }}</title>
+```
+
+---
+
+## Linking to the pages from your templates
+
+Memberbox provides a set of page URL tags for linking to the form pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
 {% raw %}<header>
     <div>
         <a href="/">{{ settings:site_name }}</a>
         {{ if logged_in }}
-            <a href="{{ mb:user:profile_url }}">{{ user }}{{ name }}{{ /user }}</a>
+            <a href="{{ mb:user:profile_url }}">{{ user:name }}</a>
             <a href="{{ user:logout_url }}">Log out</a>
         {{ else }}
             <a href="{{ mb:user:register_url }}">Register</a>
@@ -101,25 +157,7 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 You can check values within the user data. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{% raw %}{{ user }}
-    {{ if ! no_results && plan == "plus" }}
-        <p>This is only visible to plus users</p>
-    {{ /if }}
-{{ /user }}{% endraw %}
+{% raw %}{{ if ! no_results && { user:plan } == "plus" }}
+    <p>This is only visible to plus users</p>
+{{ /if }}{% endraw %}
 ```
-
----
-
-## Restricting access to *just* members
-
-If you really want to restrict content to just [members](configuration.html#whos-a-member) and no other logged in users you can use Memberbox's `{% raw %}{{ mb:member }}{% endraw %}` tag to fetch the current member:
-
-```html
-{% raw %}{{ mb:member }}
-    {{ if ! no_results }}
-        <p>This is only visible to members and no one else</p>
-    {{ /if }}
-{{ /mb:member }}{% endraw %}
-```
-
-Bear in mind that doing this might prevent control panel users viewing the content as well, depending on how your roles and groups are configured.

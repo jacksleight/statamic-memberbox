@@ -23,11 +23,10 @@ This Statamic addon provides an out of the box solution for adding a members are
 	* Activate account
 	* Update profile
 	* Change password
-* Tags for fetching member data and lists of members
-* Fully-functional starter templates for user account and user directory pages, implementing the included tags plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
-* Optional routes for user account pages
-* Optional routes for user directory pages
-* A set of page URL tags
+* Restricted versions of the [built-in user and users tags](https://statamic.dev/reference/tags) for fetching member data and lists of members
+* Fully-functional starter templates for user account and directory pages, implementing the included tags plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
+* Optional routes for user account and directory pages
+* A set of user account and directory URL tags
 
 ## Documentation
 

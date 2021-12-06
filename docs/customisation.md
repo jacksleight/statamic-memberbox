@@ -17,18 +17,6 @@ nav_order: 5
 
 ---
 
-## Form page templates
-
-The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
-
-```bash
-php please vendor:publish --tag=statamic-memberbox-views
-```
-
-And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to customise the templates.
-
----
-
 ## Profile form fields
 
 Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. If you add additional fields to that form you'll need to add them to the list. To do that open `config/statamic/memberbox.php` and add your fields:
@@ -52,20 +40,6 @@ You can upload files to user assets fields through the profile form. You'll need
 
 <!-- multiple files -->
 <input type="file" name="photos[]" multiple />
-```
-
----
-
-## Form page URLs
-
-You can change the URLs used for the form pages by updating the `statamic.memberbox.routes` config option. You can also disable form page entirely by removing them:
-
-```php
-'routes' => [
-    'login'    => '/login',
-    // 'register' => '/register',
-    // ...
-],
 ```
 
 ---

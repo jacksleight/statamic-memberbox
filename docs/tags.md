@@ -17,13 +17,19 @@ nav_order: 6
 
 ---
 
-## User tags
+## Member tags
 
 ### `{% raw %}{{ mb:member }}{% endraw %}`
 
 Get the current member or a specific member.
 
-Accepts the same parameters as the [`{{ user }}` tag](https://statamic.dev/tags/user-profile), but will only return member users.
+Accepts the same parameters as the [`{{ user }}` tag](https://statamic.dev/tags/user-profile), but is restricted to members.
+
+### `{% raw %}{{ mb:members }} ... {{ /mb:members }}{% endraw %}`
+
+Get a list of members.
+
+Accepts the same parameters as the [`{{ users }}` tag](https://statamic.dev/tags/users), but is restricted to members.
 
 ---
 
@@ -51,7 +57,7 @@ Render the change password form tag.
 
 ---
 
-## User form page URL tags
+## User page URL tags
 
 ### `{% raw %}{{ mb:user:register_url }}{% endraw %}`
 
