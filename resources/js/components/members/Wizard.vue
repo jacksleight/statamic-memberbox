@@ -11,7 +11,7 @@
 
         <!-- Step 1 -->
         <div v-if="!completed && currentStep === 0">
-            <div class="max-w-md mx-auto px-2 py-6 text-center">
+            <div class="max-w-md mx-auto px-2 py-6 pb-4 text-center">
                 <h1 class="mb-3">{{ __('Create Member') }}</h1>
                 <p class="text-grey" v-text="__('statamic-memberbox::messages.member_wizard_intro')" />
             </div>

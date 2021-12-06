@@ -2494,7 +2494,7 @@ var render = function() {
         ? _c("div", [
             _c(
               "div",
-              { staticClass: "max-w-md mx-auto px-2 py-6 text-center" },
+              { staticClass: "max-w-md mx-auto px-2 py-6 pb-4 text-center" },
               [
                 _c("h1", { staticClass: "mb-3" }, [
                   _vm._v(_vm._s(_vm.__("Create Member")))
