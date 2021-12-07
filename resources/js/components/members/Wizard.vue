@@ -11,28 +11,31 @@
 
         <!-- Step 1 -->
         <div v-if="!completed && currentStep === 0">
-            <div class="max-w-md mx-auto px-2 py-6 pb-4 text-center">
+            <div class="max-w-md mx-auto px-2 py-6 text-center">
                 <h1 class="mb-3">{{ __('Create Member') }}</h1>
                 <p class="text-grey" v-text="__('statamic-memberbox::messages.member_wizard_intro')" />
             </div>
 
-            <div class="max-w-md mx-auto pb-5">
-                <publish-container
-                    v-if="fields.length"
-                    :name="publishContainer"
-                    :blueprint="fieldset"
-                    :values="values"
-                    :meta="meta"
-                    :errors="errors"
-                    @updated="values = $event"
-                >
-                    <publish-fields
-                        slot-scope="{ setFieldValue, setFieldMeta }"
-                        :fields="fields"
-                        @updated="setFieldValue"
-                        @meta-updated="setFieldMeta"
-                    />
-                </publish-container>
+            <div class="max-w-md mx-auto px-2 pb-6">
+                <div class="-m-3">
+                    <publish-container
+                        v-if="fields.length"
+                        ref="container"
+                        :name="publishContainer"
+                        :blueprint="fieldset"
+                        :values="values"
+                        :meta="meta"
+                        :errors="errors"
+                        @updated="values = $event"
+                    >
+                        <publish-fields
+                            slot-scope="{ setFieldValue, setFieldMeta }"
+                            :fields="fields"
+                            @updated="setFieldValue"
+                            @meta-updated="setFieldMeta"
+                        />
+                    </publish-container>
+                </div>
             </div>
             
         </div>
@@ -70,7 +73,7 @@
 
             <!-- Copy Pasta -->
             <div class="max-w-md mx-auto px-2 pb-7" v-else>
-                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share_before', { email: user.email })" />
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share_before', { email: values.email })" />
             </div>
         </div>
 
@@ -83,11 +86,11 @@
 
             <!-- Copy Pasta -->
             <div class="max-w-md mx-auto px-2 pb-7">
-                <p class="mb-1" v-html="__('messages.user_wizard_invitation_share', { email: user.email })" />
+                <p class="mb-1" v-html="__('messages.user_wizard_invitation_share', { email: values.email })" />
                 <textarea readonly class="input-text" v-elastic onclick="this.select()">
 {{ __('Activation URL') }}: {{ activationUrl }}
 
-{{ __('Username') }}: {{ user.email }}
+{{ __('Username') }}: {{ values.email }}
 </textarea>
             </div>
         </div>
@@ -127,7 +130,7 @@ export default {
     props: {
         publishContainer: String,
         initialFieldset: Object,
-        initialFields: Object,
+        initialFields: Array,
         initialValues: Object,
         initialMeta: Object,
         route: { type: String },
@@ -145,15 +148,11 @@ export default {
             error: null,
             errors: {},
             steps: [__('Member Information'), __('Customize Invitation')],
-            user: {
-                email: null,
-            },
             invitation: {
                 send: true,
                 subject: __('statamic-memberbox::messages.invitation_subject', { site: window.location.hostname }),
                 message: __('statamic-memberbox::messages.invitation_body', { site: window.location.hostname, expiry: this.activationExpiry }),
             },
-            userExists: false,
             completed: false,
             activationUrl: null,
             editUrl: null,
@@ -165,7 +164,10 @@ export default {
             return this.invitation.send ? __('Create and Send Email') : __('Create Member');
         },
         isValidEmail() {
-            return this.user.email && isEmail(this.user.email)
+            return this.values.email && isEmail(this.values.email)
+        },
+        hasErrors() {
+            return this.error || Object.keys(this.errors).length;
         }
     },
 
@@ -174,20 +176,19 @@ export default {
             if (this.completed) return false;
 
             if (step >= 1) {
-                return this.isValidEmail && ! this.userExists;
+                return this.isValidEmail;
             }
 
             return true;
         },
-        checkIfUserExists() {
-            this.$axios.post(cp_url('user-exists'), {email: this.user.email}).then(response => {
-                this.userExists = response.data.exists
-            }).catch(error => {
-                this.$toast.error(error.response.data.message);
-            });
+        clearErrors() {
+            this.error = null;
+            this.errors = {};
         },
         submit() {
-            let payload = {...this.user, invitation: this.invitation};
+            this.clearErrors();
+
+            let payload = {...this.values, invitation: this.invitation};
 
             this.$axios.post(this.route, payload).then(response => {
                 if (this.invitation.send) {
@@ -197,17 +198,19 @@ export default {
                     this.editUrl = response.data.redirect;
                     this.activationUrl = response.data.activationUrl;
                 }
-            }).catch(error => {
-                this.$toast.error(error.response.data.message);
+            }).catch(e => {
+                this.currentStep = 0;
+                this.$nextTick(() => {
+                    if (e.response && e.response.status === 422) {
+                        const { message, errors } = e.response.data;
+                        this.error = message;
+                        this.errors = errors;  
+                        this.$toast.error(message);
+                    } else {
+                        this.$toast.error(__('Something went wrong'));
+                    }
+                });
             });
-        }
-    },
-
-    watch: {
-        'user.email': function(email) {
-            if (this.isValidEmail) {
-                this.checkIfUserExists()
-            }
         }
     },
 
