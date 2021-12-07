@@ -194,7 +194,6 @@ export default {
             let payload = {...this.values, invitation: this.invitation};
 
             this.$axios.post(this.route, payload).then(response => {
-                this.$toast.success(response.data.message);
                 this.completed = true;
                 this.editUrl = response.data.redirect;
                 this.activationUrl = response.data.activationUrl;

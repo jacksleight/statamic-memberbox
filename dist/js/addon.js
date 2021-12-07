@@ -548,8 +548,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
 
       this.$axios.post(this.route, payload).then(function (response) {
-        _this.$toast.success(response.data.message);
-
         _this.completed = true;
         _this.editUrl = response.data.redirect;
         _this.activationUrl = response.data.activationUrl;
