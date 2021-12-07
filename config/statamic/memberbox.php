@@ -40,10 +40,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Create Fields
+    | Control Panel Create Fields
     |--------------------------------------------------------------------------
     |
-    | Which user fields are fillable through the create form
+    | Which user fields are appear in the create form
     |
     */
 
