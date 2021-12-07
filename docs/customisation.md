@@ -82,6 +82,23 @@ And then opening `lang/vendor/statamic-memberbox/en/messages.php` to customise t
 
 ---
 
+## Control panel create form fields
+
+You can add additional fields to the control panel create user form by adding them to the User blueprint and then updating the `statamic.memberbox.cp_create_fields` config option:
+
+```php
+'cp_create_fields' => [
+    'name',
+    'email',
+    'nickname',
+    // ...
+],
+```
+
+Fields will appear in the order they're defined in the User blueprint. The `email` field will always be included. The `password`, `roles` and `groups` fields will always be excluded.
+
+---
+
 ## Control panel labels
 
 If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/en.json` and add the strings you'd like to change. For example:

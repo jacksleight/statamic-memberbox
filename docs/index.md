@@ -13,7 +13,7 @@ This Statamic addon provides an out of the box solution for adding a members are
 
 * A self-contained members section in the control panel that:
 	* Only lists members and allows you to search them
-	* Allows you to create members through a simplified user wizard
+	* Allows you to create members through a simplified and customizable user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Uses seperate view, create and edit member permissions
 * A members widget for the dashboard
