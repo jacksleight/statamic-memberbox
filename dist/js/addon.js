@@ -462,6 +462,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 // Yer a wizard Ron
 
 
@@ -545,13 +548,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
 
       this.$axios.post(this.route, payload).then(function (response) {
-        if (_this.invitation.send) {
-          window.location = response.data.redirect;
-        } else {
-          _this.completed = true;
-          _this.editUrl = response.data.redirect;
-          _this.activationUrl = response.data.activationUrl;
-        }
+        _this.$toast.success(response.data.message);
+
+        _this.completed = true;
+        _this.editUrl = response.data.redirect;
+        _this.activationUrl = response.data.activationUrl;
       })["catch"](function (e) {
         _this.currentStep = 0;
 
@@ -2056,7 +2057,7 @@ var render = function() {
                               ],
                               staticClass: "p-3 text-center text-grey-50",
                               domProps: {
-                                textContent: _vm._s(_vm.__("No results"))
+                                textContent: _vm._s(_vm.__("No members found"))
                               }
                             }),
                             _vm._v(" "),
@@ -2175,7 +2176,7 @@ var render = function() {
               ],
               null,
               false,
-              1465898373
+              3908801642
             )
           })
         : _vm._e()
@@ -2590,7 +2591,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "max-w-md mx-auto px-2 mb-3 flex items-center" },
+              {
+                staticClass:
+                  "max-w-md mx-auto px-2 mb-3 flex items-center justify-center"
+              },
               [
                 _c("toggle-input", {
                   model: {
@@ -2692,19 +2696,23 @@ var render = function() {
                     ])
                   ]
                 )
-              : _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-                  _c("p", {
-                    staticClass: "mb-1",
-                    domProps: {
-                      innerHTML: _vm._s(
-                        _vm.__(
-                          "statamic-memberbox::messages.member_wizard_invitation_share_before",
-                          { email: _vm.values.email }
+              : _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_share_before",
+                            { email: _vm.values.email }
+                          )
                         )
-                      )
-                    }
-                  })
-                ])
+                      }
+                    })
+                  ]
+                )
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2731,39 +2739,66 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-              _c("p", {
-                staticClass: "mb-1",
-                domProps: {
-                  innerHTML: _vm._s(
-                    _vm.__("messages.user_wizard_invitation_share", {
-                      email: _vm.values.email
+            !_vm.invitation.send
+              ? _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_share",
+                            { email: _vm.values.email }
+                          )
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "textarea",
+                      {
+                        directives: [{ name: "elastic", rawName: "v-elastic" }],
+                        staticClass: "input-text",
+                        attrs: { readonly: "", onclick: "this.select()" }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.__("Activation URL")) +
+                            ": " +
+                            _vm._s(_vm.activationUrl) +
+                            "\n\n" +
+                            _vm._s(_vm.__("Username")) +
+                            ": " +
+                            _vm._s(_vm.values.email) +
+                            "\n"
+                        )
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.invitation.send
+              ? _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_sent",
+                            { email: _vm.values.email }
+                          )
+                        )
+                      }
                     })
-                  )
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "textarea",
-                {
-                  directives: [{ name: "elastic", rawName: "v-elastic" }],
-                  staticClass: "input-text",
-                  attrs: { readonly: "", onclick: "this.select()" }
-                },
-                [
-                  _vm._v(
-                    _vm._s(_vm.__("Activation URL")) +
-                      ": " +
-                      _vm._s(_vm.activationUrl) +
-                      "\n\n" +
-                      _vm._s(_vm.__("Username")) +
-                      ": " +
-                      _vm._s(_vm.values.email) +
-                      "\n"
-                  )
-                ]
-              )
-            ])
+                  ]
+                )
+              : _vm._e()
           ])
         : _vm._e(),
       _vm._v(" "),

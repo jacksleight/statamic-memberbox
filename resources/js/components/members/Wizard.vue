@@ -48,7 +48,7 @@
             </div>
 
             <!-- Send Email? -->
-            <div class="max-w-md mx-auto px-2 mb-3 flex items-center">
+            <div class="max-w-md mx-auto px-2 mb-3 flex items-center justify-center">
                 <toggle-input v-model="invitation.send" />
                 <label class="font-bold ml-1">{{ __('Send Email Invitation') }}</label>
             </div>
@@ -72,7 +72,7 @@
             </div>
 
             <!-- Copy Pasta -->
-            <div class="max-w-md mx-auto px-2 pb-7" v-else>
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-else>
                 <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share_before', { email: values.email })" />
             </div>
         </div>
@@ -85,13 +85,16 @@
             </div>
 
             <!-- Copy Pasta -->
-            <div class="max-w-md mx-auto px-2 pb-7">
-                <p class="mb-1" v-html="__('messages.user_wizard_invitation_share', { email: values.email })" />
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-if="!invitation.send">
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share', { email: values.email })" />
                 <textarea readonly class="input-text" v-elastic onclick="this.select()">
 {{ __('Activation URL') }}: {{ activationUrl }}
 
 {{ __('Username') }}: {{ values.email }}
 </textarea>
+            </div>
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-if="invitation.send">
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_sent', { email: values.email })" />
             </div>
         </div>
 
@@ -191,13 +194,10 @@ export default {
             let payload = {...this.values, invitation: this.invitation};
 
             this.$axios.post(this.route, payload).then(response => {
-                if (this.invitation.send) {
-                    window.location = response.data.redirect;
-                } else {
-                    this.completed = true;
-                    this.editUrl = response.data.redirect;
-                    this.activationUrl = response.data.activationUrl;
-                }
+                this.$toast.success(response.data.message);
+                this.completed = true;
+                this.editUrl = response.data.redirect;
+                this.activationUrl = response.data.activationUrl;
             }).catch(e => {
                 this.currentStep = 0;
                 this.$nextTick(() => {
