@@ -44,6 +44,20 @@ You can upload files to user assets fields through the profile form. You'll need
 
 ---
 
+## Form page URLs
+
+You can change the URLs used for the form pages by updating the `statamic.memberbox.routes` config option. You can also disable form page entirely by setting their values to `null`:
+
+```php
+'routes' => [
+    'login'    => '/login',
+    'register' => null,
+    // ...
+],
+```
+
+---
+
 ## Invitation email text
 
 You can customise the welcome email text by publishing the translation files:
@@ -53,6 +67,19 @@ php please vendor:publish --tag=statamic-memberbox-translations
 ```
 
 And then opening `lang/vendor/statamic-memberbox/en/messages.php` to customise the text.
+
+---
+
+## Invitation email from address and name
+
+You can customise who the invitation email comes from by updating the `statamic.memberbox.invitation_from` config option:
+
+```php
+'invitation_from' => [
+    'address' => 'members@example.com',
+    'name' => 'Member Services',
+],
+```
 
 ---
 
