@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.5.0 ()
+## 0.5.0 (2021-12-14)
 
+- [new] Ability to configure the CP create form fields
 - [new] Frontend user directory routes and starter templates
-- [new] Added `mb:member` tag that returns member data
-- [new] Added `mb:members` tag that lists members
+- [new] Added `mb:members` and `mb:member` tags that list and fetch members
 - [new] Added `mb_member` query scope
-- [new] Added `enable_account` config option to toggle all account pages on/off
+- [new] Added `enable_account` config option to toggle all account routes on/off
 - [break] Page titles are now set from the templates instead of the translation files
 - Deprecated `mb:user:has` tag
 - Deprecated `mb:user:member` tag
