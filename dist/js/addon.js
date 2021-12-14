@@ -465,27 +465,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Yer a wizard Ron
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: {
+    publishContainer: String,
+    initialFieldset: Object,
+    initialFields: Array,
+    initialValues: Object,
+    initialMeta: Object,
     route: {
       type: String
     },
@@ -497,17 +487,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     activationExpiry: {
       type: Number
-    },
-    separateNameFields: {
-      type: Boolean
     }
   },
   data: function data() {
     return {
+      fieldset: _.clone(this.initialFieldset),
+      fields: _.clone(this.initialFields),
+      values: _.clone(this.initialValues),
+      meta: _.clone(this.initialMeta),
+      error: null,
+      errors: {},
       steps: [__('Member Information'), __('Customize Invitation')],
-      user: {
-        email: null
-      },
       invitation: {
         send: true,
         subject: __('statamic-memberbox::messages.invitation_subject', {
@@ -518,7 +508,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           expiry: this.activationExpiry
         })
       },
-      userExists: false,
       completed: false,
       activationUrl: null,
       editUrl: null
@@ -529,7 +518,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.invitation.send ? __('Create and Send Email') : __('Create Member');
     },
     isValidEmail: function isValidEmail() {
-      return this.user.email && validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default()(this.user.email);
+      return this.values.email && validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default()(this.values.email);
+    },
+    hasErrors: function hasErrors() {
+      return this.error || Object.keys(this.errors).length;
     }
   },
   methods: {
@@ -537,57 +529,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.completed) return false;
 
       if (step >= 1) {
-        return this.isValidEmail && !this.userExists;
+        return this.isValidEmail;
       }
 
       return true;
     },
-    checkIfUserExists: function checkIfUserExists() {
-      var _this = this;
-
-      this.$axios.post(cp_url('user-exists'), {
-        email: this.user.email
-      }).then(function (response) {
-        _this.userExists = response.data.exists;
-      })["catch"](function (error) {
-        _this.$toast.error(error.response.data.message);
-      });
+    clearErrors: function clearErrors() {
+      this.error = null;
+      this.errors = {};
     },
     submit: function submit() {
-      var _this2 = this;
+      var _this = this;
 
-      var payload = _objectSpread(_objectSpread({}, this.user), {}, {
+      this.clearErrors();
+
+      var payload = _objectSpread(_objectSpread({}, this.values), {}, {
         invitation: this.invitation
       });
 
       this.$axios.post(this.route, payload).then(function (response) {
-        if (_this2.invitation.send) {
-          window.location = response.data.redirect;
-        } else {
-          _this2.completed = true;
-          _this2.editUrl = response.data.redirect;
-          _this2.activationUrl = response.data.activationUrl;
-        }
-      })["catch"](function (error) {
-        _this2.$toast.error(error.response.data.message);
+        _this.completed = true;
+        _this.editUrl = response.data.redirect;
+        _this.activationUrl = response.data.activationUrl;
+      })["catch"](function (e) {
+        _this.currentStep = 0;
+
+        _this.$nextTick(function () {
+          if (e.response && e.response.status === 422) {
+            var _e$response$data = e.response.data,
+                message = _e$response$data.message,
+                errors = _e$response$data.errors;
+            _this.error = message;
+            _this.errors = errors;
+
+            _this.$toast.error(message);
+          } else {
+            _this.$toast.error(__('Something went wrong'));
+          }
+        });
       });
     }
   },
-  watch: {
-    'user.email': function userEmail(email) {
-      if (this.isValidEmail) {
-        this.checkIfUserExists();
-      }
-    }
-  },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
     this.$keys.bindGlobal(['command+return'], function (e) {
-      _this3.next();
+      _this2.next();
     });
     this.$keys.bindGlobal(['command+delete'], function (e) {
-      _this3.previous();
+      _this2.previous();
     });
   }
 });
@@ -2065,7 +2055,7 @@ var render = function() {
                               ],
                               staticClass: "p-3 text-center text-grey-50",
                               domProps: {
-                                textContent: _vm._s(_vm.__("No results"))
+                                textContent: _vm._s(_vm.__("No members found"))
                               }
                             }),
                             _vm._v(" "),
@@ -2184,7 +2174,7 @@ var render = function() {
               ],
               null,
               false,
-              1465898373
+              3908801642
             )
           })
         : _vm._e()
@@ -2524,251 +2514,53 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "max-w-md mx-auto px-2 pb-5" }, [
+            _c("div", { staticClass: "max-w-md mx-auto px-2 pb-6" }, [
               _c(
-                "label",
-                {
-                  staticClass: "font-bold text-base mb-sm",
-                  attrs: { for: "email" }
-                },
-                [_vm._v(_vm._s(_vm.__("Email Address")) + "*")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.user.email,
-                    expression: "user.email"
-                  }
-                ],
-                staticClass: "input-text",
-                attrs: {
-                  type: "email",
-                  id: "email",
-                  required: "",
-                  autofocus: "",
-                  tabindex: "1"
-                },
-                domProps: { value: _vm.user.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.user, "email", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.userExists
-                ? _c(
-                    "div",
-                    { staticClass: "text-2xs text-red mt-1 flex items-center" },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.__("This user already exists.")) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-                : _c(
-                    "div",
-                    {
-                      staticClass:
-                        "text-2xs text-grey-60 mt-1 flex items-center"
-                    },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.__("messages.user_wizard_email_instructions")
-                          ) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-            ]),
-            _vm._v(" "),
-            !_vm.separateNameFields
-              ? _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "font-bold text-base mb-sm",
-                      attrs: { for: "name" }
-                    },
-                    [_vm._v(_vm._s(_vm.__("Name")))]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.name,
-                        expression: "user.name"
-                      }
-                    ],
-                    staticClass: "input-text",
-                    attrs: {
-                      type: "text",
-                      id: "name",
-                      autofocus: "",
-                      tabindex: "2"
-                    },
-                    domProps: { value: _vm.user.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.user, "name", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "text-2xs text-grey-60 mt-1 flex items-center"
-                    },
-                    [
-                      _c("svg-icon", {
-                        staticClass: "h-4 w-4 mr-sm flex items-center mb-px",
-                        attrs: { name: "info-circle" }
-                      }),
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.__("messages.user_wizard_name_instructions")
-                          ) +
-                          "\n                "
-                      )
-                    ],
-                    1
-                  )
-                ])
-              : _c(
-                  "div",
-                  { staticClass: "max-w-md mx-auto px-2 pb-7 flex space-x-4" },
-                  [
-                    _c("div", { staticClass: "flex-1" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "first_name" }
-                        },
-                        [_vm._v(_vm._s(_vm.__("First Name")))]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.first_name,
-                            expression: "user.first_name"
-                          }
-                        ],
-                        staticClass: "input-text",
+                "div",
+                { staticClass: "-m-3" },
+                [
+                  _vm.fields.length
+                    ? _c("publish-container", {
+                        ref: "container",
                         attrs: {
-                          type: "text",
-                          id: "first_name",
-                          autofocus: "",
-                          tabindex: "2"
+                          name: _vm.publishContainer,
+                          blueprint: _vm.fieldset,
+                          values: _vm.values,
+                          meta: _vm.meta,
+                          errors: _vm.errors
                         },
-                        domProps: { value: _vm.user.first_name },
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          updated: function($event) {
+                            _vm.values = $event
+                          }
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var setFieldValue = ref.setFieldValue
+                                var setFieldMeta = ref.setFieldMeta
+                                return _c("publish-fields", {
+                                  attrs: { fields: _vm.fields },
+                                  on: {
+                                    updated: setFieldValue,
+                                    "meta-updated": setFieldMeta
+                                  }
+                                })
+                              }
                             }
-                            _vm.$set(
-                              _vm.user,
-                              "first_name",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "text-2xs text-grey-60 mt-1 flex items-center"
-                        },
-                        [
-                          _c("svg-icon", {
-                            staticClass: "mr-sm flex items-center mb-px",
-                            attrs: { name: "info-circle" }
-                          }),
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(
-                                _vm.__("messages.user_wizard_name_instructions")
-                              ) +
-                              "\n                    "
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex-1" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "last_name" }
-                        },
-                        [_vm._v(_vm._s(_vm.__("Last Name")))]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.last_name,
-                            expression: "user.last_name"
-                          }
-                        ],
-                        staticClass: "input-text",
-                        attrs: {
-                          type: "text",
-                          id: "last_name",
-                          autofocus: "",
-                          tabindex: "2"
-                        },
-                        domProps: { value: _vm.user.last_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.user, "last_name", $event.target.value)
-                          }
-                        }
+                          ],
+                          null,
+                          false,
+                          1196063591
+                        )
                       })
-                    ])
-                  ]
-                )
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2797,7 +2589,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "max-w-md mx-auto px-2 mb-3 flex items-center" },
+              {
+                staticClass:
+                  "max-w-md mx-auto px-2 mb-3 flex items-center justify-center"
+              },
               [
                 _c("toggle-input", {
                   model: {
@@ -2899,19 +2694,23 @@ var render = function() {
                     ])
                   ]
                 )
-              : _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-                  _c("p", {
-                    staticClass: "mb-1",
-                    domProps: {
-                      innerHTML: _vm._s(
-                        _vm.__(
-                          "statamic-memberbox::messages.member_wizard_invitation_share_before",
-                          { email: _vm.user.email }
+              : _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_share_before",
+                            { email: _vm.values.email }
+                          )
                         )
-                      )
-                    }
-                  })
-                ])
+                      }
+                    })
+                  ]
+                )
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2938,39 +2737,66 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "max-w-md mx-auto px-2 pb-7" }, [
-              _c("p", {
-                staticClass: "mb-1",
-                domProps: {
-                  innerHTML: _vm._s(
-                    _vm.__("messages.user_wizard_invitation_share", {
-                      email: _vm.user.email
+            !_vm.invitation.send
+              ? _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_share",
+                            { email: _vm.values.email }
+                          )
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "textarea",
+                      {
+                        directives: [{ name: "elastic", rawName: "v-elastic" }],
+                        staticClass: "input-text",
+                        attrs: { readonly: "", onclick: "this.select()" }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.__("Activation URL")) +
+                            ": " +
+                            _vm._s(_vm.activationUrl) +
+                            "\n\n" +
+                            _vm._s(_vm.__("Username")) +
+                            ": " +
+                            _vm._s(_vm.values.email) +
+                            "\n"
+                        )
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.invitation.send
+              ? _c(
+                  "div",
+                  { staticClass: "max-w-md mx-auto px-2 pb-7 text-center" },
+                  [
+                    _c("p", {
+                      staticClass: "mb-1",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.__(
+                            "statamic-memberbox::messages.member_wizard_invitation_sent",
+                            { email: _vm.values.email }
+                          )
+                        )
+                      }
                     })
-                  )
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "textarea",
-                {
-                  directives: [{ name: "elastic", rawName: "v-elastic" }],
-                  staticClass: "input-text",
-                  attrs: { readonly: "", onclick: "this.select()" }
-                },
-                [
-                  _vm._v(
-                    _vm._s(_vm.__("Activation URL")) +
-                      ": " +
-                      _vm._s(_vm.activationUrl) +
-                      "\n\n" +
-                      _vm._s(_vm.__("Username")) +
-                      ": " +
-                      _vm._s(_vm.user.email) +
-                      "\n"
-                  )
-                ]
-              )
-            ])
+                  ]
+                )
+              : _vm._e()
           ])
         : _vm._e(),
       _vm._v(" "),

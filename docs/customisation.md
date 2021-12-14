@@ -17,6 +17,18 @@ nav_order: 5
 
 ---
 
+## Form page templates
+
+The default view templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) starter kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
+
+```bash
+php please vendor:publish --tag=statamic-memberbox-views
+```
+
+And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to customise the templates.
+
+---
+
 ## Profile form fields
 
 Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. If you add additional fields to that form you'll need to add them to the list. To do that open `config/statamic/memberbox.php` and add your fields:
@@ -80,6 +92,23 @@ You can customise who the invitation email comes from by updating the `statamic.
     'name' => 'Member Services',
 ],
 ```
+
+---
+
+## Control panel create form fields
+
+You can add additional fields to the control panel create user form by adding them to the User blueprint and then updating the `statamic.memberbox.cp_create_fields` config option:
+
+```php
+'cp_create_fields' => [
+    'name',
+    'email',
+    'nickname',
+    // ...
+],
+```
+
+Fields will appear in the order they're defined in the User blueprint. The `email` field will always be included. The `password`, `roles` and `groups` fields will always be excluded.
 
 ---
 

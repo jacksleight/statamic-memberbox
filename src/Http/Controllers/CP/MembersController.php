@@ -11,11 +11,11 @@ use Statamic\CP\Column;
 use Statamic\Exceptions\NotFoundHttpException;
 use Statamic\Facades\Scope;
 use Statamic\Facades\User;
-use Statamic\Http\Controllers\CP\Users\UsersController as StatamicUsersController;
+use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
 use Statamic\Http\Resources\CP\Users\Users;
 
-class MembersController extends StatamicUsersController
+class MembersController extends UsersController
 {
     /**
      * @var UserContract
@@ -72,21 +72,24 @@ class MembersController extends StatamicUsersController
 
         $blueprint = User::blueprint();
 
-        $fields = $blueprint->fields()->preProcess();
+        $only = array_merge(['email'], config('statamic.memberbox.cp_create_fields'));
+        $except = ['groups', 'roles', 'password'];
+
+        $fields = $blueprint->fields()->only($only)->except($except)->preProcess();
 
         $broker = config('statamic.users.passwords.'.PasswordReset::BROKER_ACTIVATIONS);
         $expiry = config("auth.passwords.{$broker}.expire") / 60;
 
         $viewData = [
-            'title' => __('Create'),
-            'values' => $fields->values()->all(),
-            'meta' => $fields->meta(),
+            'title'     => __('Create'),
+            'values'    => $fields->values()->all(),
             'blueprint' => $blueprint->toPublishArray(),
-            'actions' => [
+            'fields'    => $fields->toPublishArray(),
+            'meta'      => $fields->meta(),
+            'expiry'    => $expiry,
+            'actions'   => [
                 'save' => cp_route('memberbox.store'),
             ],
-            'expiry' => $expiry,
-            'separateNameFields' => $blueprint->hasField('first_name'),
         ];
 
         if ($request->wantsJson()) {
@@ -103,11 +106,14 @@ class MembersController extends StatamicUsersController
 
         $blueprint = User::blueprint();
 
-        $fields = $blueprint->fields()->only(['email', 'name', 'first_name', 'last_name'])->addValues($request->all());
+        $only = array_merge(['email'], config('statamic.memberbox.cp_create_fields'));
+        $except = ['groups', 'roles', 'password'];
+
+        $fields = $blueprint->fields()->only($only)->except($except)->addValues($request->all());
 
         $fields->validate(['email' => 'required|email|unique_user_value']);
 
-        $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
+        $values = $fields->process()->values()->except(['email', 'groups', 'roles', 'password']);
 
         $user = User::make()
             ->email($request->email)

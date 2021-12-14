@@ -18,7 +18,7 @@
                     <div class="data-list-header">
                         <data-list-search v-model="searchQuery" />
                     </div>
-                    <div v-show="items.length === 0" class="p-3 text-center text-grey-50" v-text="__('No results')" />
+                    <div v-show="items.length === 0" class="p-3 text-center text-grey-50" v-text="__('No members found')" />
                     <data-list-bulk-actions
                         class="rounded"
                         :url="actionUrl"

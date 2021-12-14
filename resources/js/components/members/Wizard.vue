@@ -16,46 +16,28 @@
                 <p class="text-grey" v-text="__('statamic-memberbox::messages.member_wizard_intro')" />
             </div>
 
-            <!-- Email Address -->
-            <div class="max-w-md mx-auto px-2 pb-5">
-                <label class="font-bold text-base mb-sm" for="email">{{ __('Email Address') }}*</label>
-                <input type="email" v-model="user.email" id="email" class="input-text" required autofocus tabindex="1">
-
-                <div class="text-2xs text-red mt-1 flex items-center" v-if="userExists">
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('This user already exists.') }}
-                </div>
-                <div class="text-2xs text-grey-60 mt-1 flex items-center" v-else>
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('messages.user_wizard_email_instructions') }}
-                </div>
-            </div>
-
-            <!-- Name -->
-            <div v-if="! separateNameFields" class="max-w-md mx-auto px-2 pb-7">
-                <label class="font-bold text-base mb-sm" for="name">{{ __('Name') }}</label>
-                <input type="text" v-model="user.name" id="name" class="input-text" autofocus tabindex="2">
-                <div class="text-2xs text-grey-60 mt-1 flex items-center">
-                    <svg-icon name="info-circle" class="h-4 w-4 mr-sm flex items-center mb-px"></svg-icon>
-                    {{ __('messages.user_wizard_name_instructions') }}
+            <div class="max-w-md mx-auto px-2 pb-6">
+                <div class="-m-3">
+                    <publish-container
+                        v-if="fields.length"
+                        ref="container"
+                        :name="publishContainer"
+                        :blueprint="fieldset"
+                        :values="values"
+                        :meta="meta"
+                        :errors="errors"
+                        @updated="values = $event"
+                    >
+                        <publish-fields
+                            slot-scope="{ setFieldValue, setFieldMeta }"
+                            :fields="fields"
+                            @updated="setFieldValue"
+                            @meta-updated="setFieldMeta"
+                        />
+                    </publish-container>
                 </div>
             </div>
-
-            <div v-else class="max-w-md mx-auto px-2 pb-7 flex space-x-4">
-                <div class="flex-1">
-                    <label class="font-bold text-base mb-sm" for="first_name">{{ __('First Name') }}</label>
-                    <input type="text" v-model="user.first_name" id="first_name" class="input-text" autofocus tabindex="2">
-                    <div class="text-2xs text-grey-60 mt-1 flex items-center">
-                        <svg-icon name="info-circle" class="mr-sm flex items-center mb-px"></svg-icon>
-                        {{ __('messages.user_wizard_name_instructions') }}
-                    </div>
-                </div>
-
-                <div class="flex-1">
-                    <label class="font-bold text-base mb-sm" for="last_name">{{ __('Last Name') }}</label>
-                    <input type="text" v-model="user.last_name" id="last_name" class="input-text" autofocus tabindex="2">
-                </div>
-            </div>
+            
         </div>
 
         <!-- Step 2 -->
@@ -66,7 +48,7 @@
             </div>
 
             <!-- Send Email? -->
-            <div class="max-w-md mx-auto px-2 mb-3 flex items-center">
+            <div class="max-w-md mx-auto px-2 mb-3 flex items-center justify-center">
                 <toggle-input v-model="invitation.send" />
                 <label class="font-bold ml-1">{{ __('Send Email Invitation') }}</label>
             </div>
@@ -90,8 +72,8 @@
             </div>
 
             <!-- Copy Pasta -->
-            <div class="max-w-md mx-auto px-2 pb-7" v-else>
-                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share_before', { email: user.email })" />
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-else>
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share_before', { email: values.email })" />
             </div>
         </div>
 
@@ -103,13 +85,16 @@
             </div>
 
             <!-- Copy Pasta -->
-            <div class="max-w-md mx-auto px-2 pb-7">
-                <p class="mb-1" v-html="__('messages.user_wizard_invitation_share', { email: user.email })" />
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-if="!invitation.send">
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_share', { email: values.email })" />
                 <textarea readonly class="input-text" v-elastic onclick="this.select()">
 {{ __('Activation URL') }}: {{ activationUrl }}
 
-{{ __('Username') }}: {{ user.email }}
+{{ __('Username') }}: {{ values.email }}
 </textarea>
+            </div>
+            <div class="max-w-md mx-auto px-2 pb-7 text-center" v-if="invitation.send">
+                <p class="mb-1" v-html="__('statamic-memberbox::messages.member_wizard_invitation_sent', { email: values.email })" />
             </div>
         </div>
 
@@ -146,25 +131,31 @@ export default {
     mixins: [HasWizardSteps],
 
     props: {
+        publishContainer: String,
+        initialFieldset: Object,
+        initialFields: Array,
+        initialValues: Object,
+        initialMeta: Object,
         route: { type: String },
         usersCreateUrl: { type: String },
         usersIndexUrl: { type: String },
         activationExpiry: { type: Number },
-        separateNameFields: { type: Boolean },
     },
 
     data() {
         return {
+            fieldset: _.clone(this.initialFieldset),
+            fields: _.clone(this.initialFields),
+            values: _.clone(this.initialValues),
+            meta: _.clone(this.initialMeta),
+            error: null,
+            errors: {},
             steps: [__('Member Information'), __('Customize Invitation')],
-            user: {
-                email: null,
-            },
             invitation: {
                 send: true,
                 subject: __('statamic-memberbox::messages.invitation_subject', { site: window.location.hostname }),
                 message: __('statamic-memberbox::messages.invitation_body', { site: window.location.hostname, expiry: this.activationExpiry }),
             },
-            userExists: false,
             completed: false,
             activationUrl: null,
             editUrl: null,
@@ -176,7 +167,10 @@ export default {
             return this.invitation.send ? __('Create and Send Email') : __('Create Member');
         },
         isValidEmail() {
-            return this.user.email && isEmail(this.user.email)
+            return this.values.email && isEmail(this.values.email)
+        },
+        hasErrors() {
+            return this.error || Object.keys(this.errors).length;
         }
     },
 
@@ -185,40 +179,37 @@ export default {
             if (this.completed) return false;
 
             if (step >= 1) {
-                return this.isValidEmail && ! this.userExists;
+                return this.isValidEmail;
             }
 
             return true;
         },
-        checkIfUserExists() {
-            this.$axios.post(cp_url('user-exists'), {email: this.user.email}).then(response => {
-                this.userExists = response.data.exists
-            }).catch(error => {
-                this.$toast.error(error.response.data.message);
-            });
+        clearErrors() {
+            this.error = null;
+            this.errors = {};
         },
         submit() {
-            let payload = {...this.user, invitation: this.invitation};
+            this.clearErrors();
+
+            let payload = {...this.values, invitation: this.invitation};
 
             this.$axios.post(this.route, payload).then(response => {
-                if (this.invitation.send) {
-                    window.location = response.data.redirect;
-                } else {
-                    this.completed = true;
-                    this.editUrl = response.data.redirect;
-                    this.activationUrl = response.data.activationUrl;
-                }
-            }).catch(error => {
-                this.$toast.error(error.response.data.message);
+                this.completed = true;
+                this.editUrl = response.data.redirect;
+                this.activationUrl = response.data.activationUrl;
+            }).catch(e => {
+                this.currentStep = 0;
+                this.$nextTick(() => {
+                    if (e.response && e.response.status === 422) {
+                        const { message, errors } = e.response.data;
+                        this.error = message;
+                        this.errors = errors;  
+                        this.$toast.error(message);
+                    } else {
+                        this.$toast.error(__('Something went wrong'));
+                    }
+                });
             });
-        }
-    },
-
-    watch: {
-        'user.email': function(email) {
-            if (this.isValidEmail) {
-                this.checkIfUserExists()
-            }
         }
     },
 
