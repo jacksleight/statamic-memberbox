@@ -84,7 +84,7 @@ Memberbox provides a set of page URL tags for linking to the form pages, check t
     <div>
         <a href="/">{{ settings:site_name }}</a>
         {{ if logged_in }}
-            <a href="{{ mb:user:profile_url }}">{{ user:name }}</a>
+            <a href="{{ mb:user:profile_url }}">{{ current_user:name }}</a>
             <a href="{{ user:logout_url }}">Log out</a>
         {{ else }}
             <a href="{{ mb:user:register_url }}">Register</a>
@@ -157,7 +157,7 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 You can check values within the user data. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{% raw %}{{ if logged_in && { user:plan } == "plus" }}
+{% raw %}{{ if logged_in && { current_user:plan } == "plus" }}
     <p>This is only visible to plus users</p>
 {{ /if }}{% endraw %}
 ```
