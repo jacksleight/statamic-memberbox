@@ -70,7 +70,7 @@ And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to 
 The starter templates use Antlers front matter to set a title variable which you can access from your layout templates. You don't have to use this method, but if you do you can output the variable in your layout using the `view:title` variable:
 
 ```html
-<title>{{ title or view:title }}</title>
+{% raw %}<title>{{ title or view:title }}</title>{% endraw %}
 ```
 
 ---
