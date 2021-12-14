@@ -55,7 +55,9 @@ You can change the URLs used for the pages by updating the `statamic.memberbox.r
 ],
 ```
 
-### Editing the page templates
+---
+
+## Editing the page templates
 
 The starter templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
 
