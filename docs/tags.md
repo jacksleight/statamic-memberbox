@@ -23,13 +23,13 @@ nav_order: 6
 
 Get the current member or a specific member.
 
-Accepts the same parameters as the [`{{ user }}` tag](https://statamic.dev/tags/user-profile), but is restricted to members.
+Accepts the same parameters as the [`{% raw %}{{ user }}{% endraw %}` tag](https://statamic.dev/tags/user-profile), but is restricted to members.
 
 ### `{% raw %}{{ mb:members }} ... {{ /mb:members }}{% endraw %}`
 
 Get a list of members.
 
-Accepts the same parameters as the [`{{ users }}` tag](https://statamic.dev/tags/users), but is restricted to members.
+Accepts the same parameters as the [`{% raw %}{{ users }}{% endraw %}` tag](https://statamic.dev/tags/users), but is restricted to members.
 
 ---
 
