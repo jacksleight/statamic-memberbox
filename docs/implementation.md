@@ -43,18 +43,6 @@ To enable the directory pages set the `statamic.memberbox.enable_directory` conf
 
 > *Warning:* Enabling the user directory will expose user data publicly. Make sure your templates only output the data you want to be public!
 
-## Changing the page URLs
-
-You can change the URLs used for the pages by updating the `statamic.memberbox.routes` config option. You can also disable a specific pages by removing them:
-
-```php
-'routes' => [
-    'login'    => '/login',
-    // 'register' => '/register',
-    // ...
-],
-```
-
 ---
 
 ## Editing the page templates
@@ -67,9 +55,7 @@ php please vendor:publish --tag=statamic-memberbox-views
 
 And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to customise the templates.
 
----
-
-## Setting the page titles
+### Setting the page titles
 
 The starter templates use Antlers front matter to set a title variable which you can access from your layout templates. You don't have to use this method, but if you do you can output the variable in your layout using the `view:title` variable:
 
