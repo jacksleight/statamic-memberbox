@@ -19,7 +19,7 @@ nav_order: 6
 
 ## Member tags
 
-### `{% raw %}{{ mb:member }}{% endraw %}`
+### `{% raw %}{{ mb:member }} ... {{ /mb:member }}{% endraw %}`
 
 Get the current member or a specific member.
 
