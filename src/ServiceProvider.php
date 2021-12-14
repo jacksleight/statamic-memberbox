@@ -27,6 +27,10 @@ class ServiceProvider extends AddonServiceProvider
         \JackSleight\StatamicMemberbox\Widgets\Members::class,
     ];
 
+    protected $scopes = [
+        \JackSleight\StatamicMemberbox\Scopes\Member::class,
+    ];
+
     public function register()
     {
         parent::register();
@@ -40,10 +44,8 @@ class ServiceProvider extends AddonServiceProvider
         });
     }
 
-    public function boot()
+    public function bootAddon()
     {
-        parent::boot();
-
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-memberbox');
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'statamic-memberbox');

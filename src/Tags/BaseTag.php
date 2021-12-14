@@ -2,6 +2,7 @@
 
 namespace JackSleight\StatamicMemberbox\Tags;
 
+use JackSleight\StatamicMemberbox\Support\Util;
 use Statamic\Support\Str;
 use Statamic\Tags\TagNotFoundException;
 use Statamic\Tags\Tags;
@@ -11,7 +12,9 @@ class BaseTag extends Tags
     protected static $handle = 'mb';
 
     protected $tagClasses = [
-        'user' => UserTags::class,
+        'user'    => UserTags::class,
+        'member'  => MemberTags::class,
+        'members' => MembersTags::class,
     ];
 
     public function wildcard(string $tag)
@@ -35,12 +38,22 @@ class BaseTag extends Tags
             throw new TagNotFoundException("Tag [{$tag[0]}] could not be found.");
         }
 
-        if (method_exists($class, $method)) {
-            return (new $class($this))->{$method}();
+        $tags = new $class();
+        $tags->setProperties([
+            'parser'     => $this->parser,
+            'content'    => $this->content,
+            'context'    => $this->context,
+            'params'     => $this->params,
+            'tag'        => $this->tag,
+            'tag_method' => $this->method,
+        ]);
+
+        if (Util::methodDefined($tags, $method)) {
+            return $tags->{$method}();
         }
 
-        if (method_exists($class, 'wildcard')) {
-            return (new $class($this))->wildcard($method);
+        if (Util::methodDefined($tags, 'wildcard')) {
+            return $tags->wildcard($method);
         }
 
         throw new TagNotFoundException("Tag [{$tag[0]}] could not be found.");

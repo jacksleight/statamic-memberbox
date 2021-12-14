@@ -1,3 +1,11 @@
+---
+title: Update Profile
+---
+
+{{ if ! logged_in }}
+    {{ redirect to="{ mb:user:login_url append_redirect='true' }" }}
+{{ /if }}
+
 <div class="max-w-6xl mx-auto">
 
     <div class="text-center content">

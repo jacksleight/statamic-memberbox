@@ -5,13 +5,13 @@ namespace JackSleight\StatamicMemberbox\Tags;
 use JackSleight\StatamicMemberbox\Facades\Member;
 use Statamic\Facades\User;
 use Statamic\Tags\Concerns;
+use Statamic\Auth\UserTags as StatamicUserTags;
 
-class UserTags extends SubTag
+class UserTags extends StatamicUserTags
 {
-    use Concerns\GetsFormSession,
-        Concerns\GetsRedirects,
-        Concerns\RendersForms;
-
+    /**
+     * @deprecated
+     */
     public function member()
     {
         $user = User::current();
@@ -19,12 +19,15 @@ class UserTags extends SubTag
         return Member::verify($user);
     }
 
+    /**
+     * @deprecated
+     */
     public function has()
     {
         $user = User::current();
 
         foreach ($this->params as $name => $value) {
-            if ($user->get($name) !== $value) {
+            if ($user->get($name) != $value) {
                 return false;
             }
         }
@@ -137,5 +140,15 @@ class UserTags extends SubTag
     public function changePasswordUrl()
     {
         return route('statamic-memberbox.change_password');
+    }
+
+    public function indexUrl()
+    {
+        return route('statamic-memberbox.index');
+    }
+
+    public function showUrl()
+    {
+        return route('statamic-memberbox.show', $this->params->all());
     }
 }

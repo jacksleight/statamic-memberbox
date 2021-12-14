@@ -8,6 +8,6 @@ class Member extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \JackSleight\StatamicMemberbox\Utilities::class;
+        return \JackSleight\StatamicMemberbox\Member::class;
     }
 }

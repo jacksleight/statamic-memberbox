@@ -4,24 +4,50 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Enable Account
+    |--------------------------------------------------------------------------
+    |
+    | Enable the user account pages.
+    |
+    */
+
+    'enable_account' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable Directory
+    |--------------------------------------------------------------------------
+    |
+    | Enable the user directory pages. You'll also need to uncomment the routes.
+    |
+    | WARNING:
+    | Enabling the user directory will expose user data publicly. Make sure your
+    | templates only output the data you want to be public!
+    |
+    */
+
+    'enable_directory' => false,
+
+    /*
+    |--------------------------------------------------------------------------
     | Routes
     |--------------------------------------------------------------------------
     |
-    | The route paths used for all form pages. To disable a route/form set the
-    | value to false. If you disable the activate route the welcome emails will
-    | not work unless you manaully define your own `statamic.memberbox.activate`
-    | route. Same applies to the login route and the redirect tag.
+    | The route paths used for account and directory pages. Commented out
+    | routes will not be enabled.
     |
     */
 
     'routes' => [
         'activate'        => '/account/activate',
-        'register'        => '/account/register',
         'login'           => '/account/login',
-        'profile'         => '/account/profile',
+        // 'register'        => '/account/register',
+        // 'profile'         => '/account/profile',
         'forgot_password' => '/account/forgot-password',
         'reset_password'  => '/account/reset-password',
         'change_password' => '/account/change-password',
+        // 'index'           => '/directory',
+        // 'show'            => '/directory/{user}',
     ],
 
     /*

@@ -70,7 +70,7 @@ You can change the URLs used for the form pages by updating the `statamic.member
 
 ---
 
-## Invitation email content
+## Invitation email text
 
 You can customise the welcome email text by publishing the translation files:
 

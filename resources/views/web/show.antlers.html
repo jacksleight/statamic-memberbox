@@ -1,0 +1,26 @@
+---
+title: Profile
+---
+
+<div class="max-w-6xl mx-auto">
+
+    {{ mb:member id="{ user }" }}
+
+        {{ if no_results }}
+            {{ 404 }}
+        {{ /if }}
+
+        <div class="text-center content">
+            <h1 class="mb-4">{{ name }}</h1>
+            <p>{{ id }}</p>
+        </div>
+
+        <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
+            
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ducimus voluptatum soluta, aliquid cum distinctio, exercitationem explicabo quod, laboriosam obcaecati quisquam amet quis placeat dolores. Illum eligendi velit at enim.</p>
+
+        </div>
+
+    {{ /mb:member }}
+
+</div>
