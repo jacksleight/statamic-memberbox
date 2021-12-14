@@ -1,0 +1,51 @@
+---
+title: Directory
+---
+
+<div class="max-w-6xl mx-auto">
+
+    <div class="text-center content">
+        <h1 class="mb-4">Members</h1>
+        <p>Browse our member directory.</p>
+    </div>
+
+    <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
+        
+        {{ mb:members name:contains="{ get:search }" limit="20" paginate="true" as="members" }}
+            
+            <form>
+                <input class="bg-white p-2 w-full rounded-md mb-5" type="search" name="search" value="{{ get:search }}" placeholder="Search…" />
+            </form>
+
+            {{ if no_results }}
+                <p class="text-center">Nothing found!</p>
+            {{ /if }}
+
+            <table class="w-full mb-5">
+                <tbody>
+                    {{ members }}
+                        <tr>
+                            <th class="text-left">
+                                <a href="{{ mb:user:show_url user='{ id }' }}" class="underline">{{ name }}</a>
+                            </th>
+                            <td class="text-right">
+                                —
+                            </td>
+                        </tr>
+                    {{ /members }}
+                </tbody>
+            </table>
+
+            {{ paginate }}
+                <div class="flex justify-between">
+                    <a href="{{ prev_page }}">⬅ Prev</a>
+                    <span>Page {{ current_page }} of {{ total_pages }}</span>    
+                    <a href="{{ next_page }}">Next ➡</a>
+                </div>
+            {{ /paginate }}
+
+        {{ /mb:members }}
+
+    </div>
+
+</div>

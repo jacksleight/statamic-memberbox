@@ -17,17 +17,19 @@ nav_order: 6
 
 ---
 
-## User tags
+## Member tags
 
-### `{% raw %}{{ mb:user:member }}{% endraw %}`
+### `{% raw %}{{ mb:member }} ... {{ /mb:member }}{% endraw %}`
 
-Check if the current user is a member.
+Get the current member or a specific member.
 
-### `{% raw %}{{ mb:user:has [field]="[value]" }}{% endraw %}`
+Accepts the same parameters as the [`{{ user }}` tag](https://statamic.dev/tags/user-profile), but is restricted to members.
 
-Check if the current user has the specified field value(s).
+### `{% raw %}{{ mb:members }} ... {{ /mb:members }}{% endraw %}`
 
-* **[field] (string):** Only matches users with the specified field value
+Get a list of members.
+
+Accepts the same parameters as the [`{{ users }}` tag](https://statamic.dev/tags/users), but is restricted to members.
 
 ---
 
@@ -55,7 +57,7 @@ Render the change password form tag.
 
 ---
 
-## User form page URL tags
+## User page URL tags
 
 ### `{% raw %}{{ mb:user:register_url }}{% endraw %}`
 
@@ -82,3 +84,13 @@ Returns the reset password page URL.
 ### `{% raw %}{{ mb:user:change_password_url }}{% endraw %}`
 
 Returns the change password page URL.
+
+### `{% raw %}{{ mb:user:index_url }}{% endraw %}`
+
+Returns the user listing page URL.
+
+### `{% raw %}{{ mb:user:show_url }}{% endraw %}`
+
+Returns the user detail page URL.
+
+* **anything:** All parameters will be parsed to the route
