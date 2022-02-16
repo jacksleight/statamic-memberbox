@@ -15,7 +15,7 @@ nav_order: 4
 {:toc}
 </details>
 
-It's up to you exactly how you want to implement the Memberbox features on your site. If you want to get up and running quickly you can use the routes and templates Memberbox provides, or you can implement those yourself and just use the tags. When it comes to protecting front-end content Statamic provides everyting you might need already.
+It's up to you exactly how you want to implement the Memberbox features on your site. If you want to get up and running quickly you can use the routes and templates Memberbox provides, or you can implement those yourself and just use the tags. When it comes to protecting front-end content Statamic provides everything you might need already.
 
 Check the [customisation](customisation.html) documentation for details on customising the profile form fields, invitation emails and control panel
 
