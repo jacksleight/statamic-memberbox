@@ -67,7 +67,7 @@ The starter templates use Antlers front matter to set a title variable which you
 
 ## Linking to the pages from your templates
 
-Memberbox provides a set of page URL tags for linking to the form pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
+Memberbox provides a set of page URL tags for linking to the pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
 {% raw %}<header>
