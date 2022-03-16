@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 (2022-03-16)
+
+- [new] Statamic 3.3 compatibility
+
 ## 0.5.0 (2021-12-14)
 
 - [new] Ability to configure the CP create form fields
