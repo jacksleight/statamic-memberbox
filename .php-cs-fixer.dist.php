@@ -144,6 +144,7 @@ $rules = [
 $finder = Finder::create()
     ->in([
         __DIR__.'/src',
+        __DIR__.'/routes',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
