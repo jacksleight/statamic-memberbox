@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0 (2022-06-21)
+
+* [new] Ability to export members as either a CSV or JSON file
+* [new] Fresh install configuration check and introduction
+* [fix] Better message when there's an error during member creation
+
 ## 0.5.1 (2022-03-16)
 
 - [new] Statamic 3.3 compatibility
