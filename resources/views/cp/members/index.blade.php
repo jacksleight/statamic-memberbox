@@ -17,7 +17,7 @@
         </dropdown-list>
         
         @if (Statamic::pro() && auth()->user()->can('mb create members'))
-            <a href="{{ cp_route('memberbox.create') }}" class="btn-primary ml-1">{{ __('Create Member') }}</a>
+            <a href="{{ cp_route('memberbox.create') }}" class="btn-primary ml-2">{{ __('Create Member') }}</a>
         @endif
 
     </header>

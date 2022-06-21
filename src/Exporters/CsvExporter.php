@@ -2,11 +2,10 @@
 
 namespace JackSleight\StatamicMemberbox\Exporters;
 
-use JackSleight\StatamicMemberbox\Facades\Member;
 use League\Csv\Writer;
 use SplTempFileObject;
 
-class CsvExporter
+class CsvExporter extends AbstractExporter
 {
     private $writer;
 
@@ -17,21 +16,8 @@ class CsvExporter
 
     public function export()
     {
-        $users = Member::query()->get()->toArray();
-
-        if (! count($users)) {
-            return (string) $this->writer;
-        }
-
-        $this->writer->insertOne(array_keys($users[0]));
-
-        $data = collect($users)->map(function ($user) {
-            return collect($user)->map(function ($value) {
-                return (is_array($value)) ? implode(', ', $value) : $value;
-            })->all();
-        })->all();
-
-        $this->writer->insertAll($data);
+        $this->writer->insertOne($this->getHeaders());
+        $this->writer->insertAll($this->getData());
 
         return (string) $this->writer;
     }

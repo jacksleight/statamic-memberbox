@@ -2,15 +2,11 @@
 
 namespace JackSleight\StatamicMemberbox\Exporters;
 
-use JackSleight\StatamicMemberbox\Facades\Member;
-
-class JsonExporter
+class JsonExporter extends AbstractExporter
 {
     public function export()
     {
-        $users = Member::query()->get()->toArray();
-
-        return json_encode($users);
+        return json_encode($this->getData());
     }
 
     public function contentType()
