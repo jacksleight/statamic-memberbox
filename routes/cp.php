@@ -7,4 +7,5 @@ Route::group(['prefix' => 'memberbox'], function () {
     Route::get('{user}', 'CP\MembersController@edit')->name('memberbox.edit');
     Route::patch('{user}', 'CP\MembersController@update')->name('memberbox.update');
     Route::delete('destroy', 'CP\MembersController@destroy')->name('memberbox.destroy');
+    Route::get('export/{type}', 'CP\MembersController@export')->name('memberbox.export');
 });
