@@ -33,6 +33,14 @@ class MembersController extends UsersController
             return $this->json($request);
         }
 
+        if (! count(config('statamic.users.new_user_roles', [])) && ! count(config('statamic.users.new_user_groups', []))) {
+            return view('statamic-memberbox::cp.members.incomplete');
+        }
+
+        if (Member::query()->count() === 0) {
+            return view('statamic-memberbox::cp.members.empty');
+        }
+
         return view('statamic-memberbox::cp.members.index', [
             'filters' => Scope::filters('users'),
         ]);

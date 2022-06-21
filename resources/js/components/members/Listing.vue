@@ -79,11 +79,7 @@ export default {
     methods: {
 
         filterActions(actions) {
-            const i = actions.findIndex(action => action.handle === 'send_password_reset');
-            return [
-                ...actions.slice(0, i),
-                ...actions.slice(i + 1)
-            ];
+            return actions.filter(action => ['delete'].includes(action.handle));
         }
 
     }

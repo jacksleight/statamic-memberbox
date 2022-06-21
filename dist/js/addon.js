@@ -13,18 +13,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _vendor_statamic_cms_resources_js_components_Listing_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../vendor/statamic/cms/resources/js/components/Listing.vue */ "./vendor/statamic/cms/resources/js/components/Listing.vue");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 //
 //
 //
@@ -99,10 +87,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     filterActions: function filterActions(actions) {
-      var i = actions.findIndex(function (action) {
-        return action.handle === 'send_password_reset';
+      return actions.filter(function (action) {
+        return ['delete'].includes(action.handle);
       });
-      return [].concat(_toConsumableArray(actions.slice(0, i)), _toConsumableArray(actions.slice(i + 1)));
     }
   }
 });
@@ -619,7 +606,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return [];
       }
     },
-    filters: Array
+    filters: Array,
+    actionUrl: String
   },
   data: function data() {
     return {
@@ -921,10 +909,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    actionUrl: String
-  },
   methods: {
     actionStarted: function actionStarted() {
       this.loading = true;
@@ -936,7 +933,20 @@ __webpack_require__.r(__webpack_exports__);
       if (successful === false) return;
       this.$events.$emit('clear-selections');
       this.$events.$emit('reset-action-modals');
-      this.$toast.success(response.message || __('Action completed'));
+
+      if (response.callback) {
+        var _Statamic$$callbacks;
+
+        (_Statamic$$callbacks = Statamic.$callbacks).call.apply(_Statamic$$callbacks, [response.callback[0]].concat(_toConsumableArray(response.callback.slice(1))));
+      }
+
+      if (response.message !== false) {
+        this.$toast.success(response.message || __("Action completed"));
+      }
+
+      this.afterActionSuccessfullyCompleted();
+    },
+    afterActionSuccessfullyCompleted: function afterActionSuccessfullyCompleted() {
       this.request();
     }
   }
