@@ -206,7 +206,7 @@ export default {
                         this.errors = errors;  
                         this.$toast.error(message);
                     } else {
-                        this.$toast.error(__('Something went wrong'));
+                        this.$toast.error(e.response.data.message);
                     }
                 });
             });

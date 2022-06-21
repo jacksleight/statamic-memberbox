@@ -334,12 +334,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validator/lib/isEmail */ "./node_modules/validator/lib/isEmail.js");
-/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../vendor/statamic/cms/resources/js/components/HasWizardSteps.js */ "./vendor/statamic/cms/resources/js/components/HasWizardSteps.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator/lib/isEmail */ "./node_modules/validator/lib/isEmail.js");
+/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../vendor/statamic/cms/resources/js/components/HasWizardSteps.js */ "./vendor/statamic/cms/resources/js/components/HasWizardSteps.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -469,7 +469,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [_vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  mixins: [_vendor_statamic_cms_resources_js_components_HasWizardSteps_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     publishContainer: String,
     initialFieldset: Object,
@@ -518,7 +518,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.invitation.send ? __('Create and Send Email') : __('Create Member');
     },
     isValidEmail: function isValidEmail() {
-      return this.values.email && validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default()(this.values.email);
+      return this.values.email && validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_1___default()(this.values.email);
     },
     hasErrors: function hasErrors() {
       return this.error || Object.keys(this.errors).length;
@@ -564,7 +564,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             _this.$toast.error(message);
           } else {
-            _this.$toast.error(__('Something went wrong'));
+            _this.$toast.error(e.response.data.message);
           }
         });
       });
@@ -598,9 +598,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_list_HasFilters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data-list/HasFilters */ "./vendor/statamic/cms/resources/js/components/data-list/HasFilters.js");
 /* harmony import */ var _data_list_HasPagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data-list/HasPagination */ "./vendor/statamic/cms/resources/js/components/data-list/HasPagination.js");
 /* harmony import */ var _data_list_HasPreferences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data-list/HasPreferences */ "./vendor/statamic/cms/resources/js/components/data-list/HasPreferences.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -1165,7 +1165,7 @@ var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assert
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /* eslint-disable prefer-rest-params */
 function isByteLength(str, options) {
@@ -1220,40 +1220,100 @@ var default_email_options = {
   allow_display_name: false,
   require_display_name: false,
   allow_utf8_local_part: true,
-  require_tld: true
+  require_tld: true,
+  blacklisted_chars: '',
+  ignore_max_length: false,
+  host_blacklist: []
 };
 /* eslint-disable max-len */
 
 /* eslint-disable no-control-regex */
 
-var displayName = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\.\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\,\.\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF\s]*<(.+)>$/i;
+var splitNameAddress = /^([^\x00-\x1F\x7F-\x9F\cX]+)</i;
 var emailUserPart = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~]+$/i;
 var gmailUserPart = /^[a-z\d]+$/;
 var quotedEmailUser = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f]))*$/i;
 var emailUserUtf8Part = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i;
 var quotedEmailUserUtf8 = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*$/i;
+var defaultMaxEmailLength = 254;
 /* eslint-enable max-len */
 
 /* eslint-enable no-control-regex */
+
+/**
+ * Validate display name according to the RFC2822: https://tools.ietf.org/html/rfc2822#appendix-A.1.2
+ * @param {String} display_name
+ */
+
+function validateDisplayName(display_name) {
+  var display_name_without_quotes = display_name.replace(/^"(.+)"$/, '$1'); // display name with only spaces is not valid
+
+  if (!display_name_without_quotes.trim()) {
+    return false;
+  } // check whether display name contains illegal character
+
+
+  var contains_illegal = /[\.";<>]/.test(display_name_without_quotes);
+
+  if (contains_illegal) {
+    // if contains illegal characters,
+    // must to be enclosed in double-quotes, otherwise it's not a valid display name
+    if (display_name_without_quotes === display_name) {
+      return false;
+    } // the quotes in display name must start with character symbol \
+
+
+    var all_start_with_back_slash = display_name_without_quotes.split('"').length === display_name_without_quotes.split('\\"').length;
+
+    if (!all_start_with_back_slash) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 function isEmail(str, options) {
   (0, _assertString.default)(str);
   options = (0, _merge.default)(options, default_email_options);
 
   if (options.require_display_name || options.allow_display_name) {
-    var display_email = str.match(displayName);
+    var display_email = str.match(splitNameAddress);
 
     if (display_email) {
-      str = display_email[1];
+      var display_name = display_email[1]; // Remove display name and angle brackets to get email address
+      // Can be done in the regex but will introduce a ReDOS (See  #1597 for more info)
+
+      str = str.replace(display_name, '').replace(/(^<|>$)/g, ''); // sometimes need to trim the last space to get the display name
+      // because there may be a space between display name and email address
+      // eg. myname <address@gmail.com>
+      // the display name is `myname` instead of `myname `, so need to trim the last space
+
+      if (display_name.endsWith(' ')) {
+        display_name = display_name.substr(0, display_name.length - 1);
+      }
+
+      if (!validateDisplayName(display_name)) {
+        return false;
+      }
     } else if (options.require_display_name) {
       return false;
     }
   }
 
+  if (!options.ignore_max_length && str.length > defaultMaxEmailLength) {
+    return false;
+  }
+
   var parts = str.split('@');
   var domain = parts.pop();
-  var user = parts.join('@');
   var lower_domain = domain.toLowerCase();
+
+  if (options.host_blacklist.includes(lower_domain)) {
+    return false;
+  }
+
+  var user = parts.join('@');
 
   if (options.domain_specific_validation && (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com')) {
     /*
@@ -1267,7 +1327,7 @@ function isEmail(str, options) {
 
     var username = user.split('+')[0]; // Dots are not included in gmail length restriction
 
-    if (!(0, _isByteLength.default)(username.replace('.', ''), {
+    if (!(0, _isByteLength.default)(username.replace(/\./g, ''), {
       min: 6,
       max: 30
     })) {
@@ -1283,11 +1343,11 @@ function isEmail(str, options) {
     }
   }
 
-  if (!(0, _isByteLength.default)(user, {
+  if (options.ignore_max_length === false && (!(0, _isByteLength.default)(user, {
     max: 64
   }) || !(0, _isByteLength.default)(domain, {
     max: 254
-  })) {
+  }))) {
     return false;
   }
 
@@ -1325,6 +1385,10 @@ function isEmail(str, options) {
     }
   }
 
+  if (options.blacklisted_chars) {
+    if (user.search(new RegExp("[".concat(options.blacklisted_chars, "]+"), 'g')) !== -1) return false;
+  }
+
   return true;
 }
 
@@ -1355,7 +1419,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var default_fqdn_options = {
   require_tld: true,
   allow_underscores: false,
-  allow_trailing_dot: false
+  allow_trailing_dot: false,
+  allow_numeric_tld: false,
+  allow_wildcard: false
 };
 
 function isFQDN(str, options) {
@@ -1366,50 +1432,62 @@ function isFQDN(str, options) {
   if (options.allow_trailing_dot && str[str.length - 1] === '.') {
     str = str.substring(0, str.length - 1);
   }
+  /* Remove the optional wildcard before checking validity */
 
-  var parts = str.split('.');
 
-  for (var i = 0; i < parts.length; i++) {
-    if (parts[i].length > 63) {
-      return false;
-    }
+  if (options.allow_wildcard === true && str.indexOf('*.') === 0) {
+    str = str.substring(2);
   }
 
-  if (options.require_tld) {
-    var tld = parts.pop();
+  var parts = str.split('.');
+  var tld = parts[parts.length - 1];
 
-    if (!parts.length || !/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) {
+  if (options.require_tld) {
+    // disallow fqdns without tld
+    if (parts.length < 2) {
+      return false;
+    }
+
+    if (!/^([a-z\u00A1-\u00A8\u00AA-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) {
       return false;
     } // disallow spaces
 
 
-    if (/[\s\u2002-\u200B\u202F\u205F\u3000\uFEFF\uDB40\uDC20]/.test(tld)) {
+    if (/\s/.test(tld)) {
       return false;
     }
+  } // reject numeric TLDs
+
+
+  if (!options.allow_numeric_tld && /^\d+$/.test(tld)) {
+    return false;
   }
 
-  for (var part, _i = 0; _i < parts.length; _i++) {
-    part = parts[_i];
-
-    if (options.allow_underscores) {
-      part = part.replace(/_/g, '');
+  return parts.every(function (part) {
+    if (part.length > 63) {
+      return false;
     }
 
-    if (!/^[a-z\u00a1-\uffff0-9-]+$/i.test(part)) {
+    if (!/^[a-z_\u00a1-\uffff0-9-]+$/i.test(part)) {
       return false;
     } // disallow full-width chars
 
 
     if (/[\uff01-\uff5e]/.test(part)) {
       return false;
-    }
+    } // disallow parts starting or ending with hyphen
 
-    if (part[0] === '-' || part[part.length - 1] === '-') {
+
+    if (/^-|-$/.test(part)) {
       return false;
     }
-  }
 
-  return true;
+    if (!options.allow_underscores && /_/.test(part)) {
+      return false;
+    }
+
+    return true;
+  });
 }
 
 module.exports = exports.default;
@@ -1434,8 +1512,40 @@ var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assert
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ipv4Maybe = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/;
-var ipv6Block = /^[0-9A-F]{1,4}$/i;
+/**
+11.3.  Examples
+
+   The following addresses
+
+             fe80::1234 (on the 1st link of the node)
+             ff02::5678 (on the 5th link of the node)
+             ff08::9abc (on the 10th organization of the node)
+
+   would be represented as follows:
+
+             fe80::1234%1
+             ff02::5678%5
+             ff08::9abc%10
+
+   (Here we assume a natural translation from a zone index to the
+   <zone_id> part, where the Nth zone of any scope is translated into
+   "N".)
+
+   If we use interface names as <zone_id>, those addresses could also be
+   represented as follows:
+
+            fe80::1234%ne0
+            ff02::5678%pvc1.3
+            ff08::9abc%interface10
+
+   where the interface "ne0" belongs to the 1st link, "pvc1.3" belongs
+   to the 5th link, and "interface10" belongs to the 10th organization.
+ * * */
+var IPv4SegmentFormat = '(?:[0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])';
+var IPv4AddressFormat = "(".concat(IPv4SegmentFormat, "[.]){3}").concat(IPv4SegmentFormat);
+var IPv4AddressRegExp = new RegExp("^".concat(IPv4AddressFormat, "$"));
+var IPv6SegmentFormat = '(?:[0-9a-fA-F]{1,4})';
+var IPv6AddressRegExp = new RegExp('^(' + "(?:".concat(IPv6SegmentFormat, ":){7}(?:").concat(IPv6SegmentFormat, "|:)|") + "(?:".concat(IPv6SegmentFormat, ":){6}(?:").concat(IPv4AddressFormat, "|:").concat(IPv6SegmentFormat, "|:)|") + "(?:".concat(IPv6SegmentFormat, ":){5}(?::").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,2}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){4}(?:(:").concat(IPv6SegmentFormat, "){0,1}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,3}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){3}(?:(:").concat(IPv6SegmentFormat, "){0,2}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,4}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){2}(?:(:").concat(IPv6SegmentFormat, "){0,3}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,5}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){1}(?:(:").concat(IPv6SegmentFormat, "){0,4}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,6}|:)|") + "(?::((?::".concat(IPv6SegmentFormat, "){0,5}:").concat(IPv4AddressFormat, "|(?::").concat(IPv6SegmentFormat, "){1,7}|:))") + ')(%[0-9a-zA-Z-.:]{1,})?$');
 
 function isIP(str) {
   var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -1444,8 +1554,10 @@ function isIP(str) {
 
   if (!version) {
     return isIP(str, 4) || isIP(str, 6);
-  } else if (version === '4') {
-    if (!ipv4Maybe.test(str)) {
+  }
+
+  if (version === '4') {
+    if (!IPv4AddressRegExp.test(str)) {
       return false;
     }
 
@@ -1453,55 +1565,10 @@ function isIP(str) {
       return a - b;
     });
     return parts[3] <= 255;
-  } else if (version === '6') {
-    var blocks = str.split(':');
-    var foundOmissionBlock = false; // marker to indicate ::
-    // At least some OS accept the last 32 bits of an IPv6 address
-    // (i.e. 2 of the blocks) in IPv4 notation, and RFC 3493 says
-    // that '::ffff:a.b.c.d' is valid for IPv4-mapped IPv6 addresses,
-    // and '::a.b.c.d' is deprecated, but also valid.
+  }
 
-    var foundIPv4TransitionBlock = isIP(blocks[blocks.length - 1], 4);
-    var expectedNumberOfBlocks = foundIPv4TransitionBlock ? 7 : 8;
-
-    if (blocks.length > expectedNumberOfBlocks) {
-      return false;
-    } // initial or final ::
-
-
-    if (str === '::') {
-      return true;
-    } else if (str.substr(0, 2) === '::') {
-      blocks.shift();
-      blocks.shift();
-      foundOmissionBlock = true;
-    } else if (str.substr(str.length - 2) === '::') {
-      blocks.pop();
-      blocks.pop();
-      foundOmissionBlock = true;
-    }
-
-    for (var i = 0; i < blocks.length; ++i) {
-      // test for a :: which can not be at the string start/end
-      // since those cases have been handled above
-      if (blocks[i] === '' && i > 0 && i < blocks.length - 1) {
-        if (foundOmissionBlock) {
-          return false; // multiple :: in address
-        }
-
-        foundOmissionBlock = true;
-      } else if (foundIPv4TransitionBlock && i === blocks.length - 1) {// it has been checked before that the last
-        // block is a valid IPv4 address
-      } else if (!ipv6Block.test(blocks[i])) {
-        return false;
-      }
-    }
-
-    if (foundOmissionBlock) {
-      return blocks.length >= 1;
-    }
-
-    return blocks.length === expectedNumberOfBlocks;
+  if (version === '6') {
+    return !!IPv6AddressRegExp.test(str);
   }
 
   return false;
@@ -1525,27 +1592,16 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = assertString;
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function assertString(input) {
   var isString = typeof input === 'string' || input instanceof String;
 
   if (!isString) {
-    var invalidType;
+    var invalidType = _typeof(input);
 
-    if (input === null) {
-      invalidType = 'null';
-    } else {
-      invalidType = _typeof(input);
-
-      if (invalidType === 'object' && input.constructor && input.constructor.hasOwnProperty('name')) {
-        invalidType = input.constructor.name;
-      } else {
-        invalidType = "a ".concat(invalidType);
-      }
-    }
-
-    throw new TypeError("Expected string but received ".concat(invalidType, "."));
+    if (input === null) invalidType = 'null';else if (invalidType === 'object') invalidType = input.constructor.name;
+    throw new TypeError("Expected a string but received a ".concat(invalidType));
   }
 }
 
@@ -1993,7 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2011,13 +2067,13 @@ var render = function() {
               rows: _vm.items,
               sort: false,
               "sort-column": _vm.sortColumn,
-              "sort-direction": _vm.sortDirection
+              "sort-direction": _vm.sortDirection,
             },
             scopedSlots: _vm._u(
               [
                 {
                   key: "default",
-                  fn: function(ref) {
+                  fn: function (ref) {
                     var hasSelections = ref.hasSelections
                     return _c(
                       "div",
@@ -2034,12 +2090,12 @@ var render = function() {
                                 _c("data-list-search", {
                                   model: {
                                     value: _vm.searchQuery,
-                                    callback: function($$v) {
+                                    callback: function ($$v) {
                                       _vm.searchQuery = $$v
                                     },
-                                    expression: "searchQuery"
-                                  }
-                                })
+                                    expression: "searchQuery",
+                                  },
+                                }),
                               ],
                               1
                             ),
@@ -2050,13 +2106,13 @@ var render = function() {
                                   name: "show",
                                   rawName: "v-show",
                                   value: _vm.items.length === 0,
-                                  expression: "items.length === 0"
-                                }
+                                  expression: "items.length === 0",
+                                },
                               ],
                               staticClass: "p-3 text-center text-grey-50",
                               domProps: {
-                                textContent: _vm._s(_vm.__("No members found"))
-                              }
+                                textContent: _vm._s(_vm.__("No members found")),
+                              },
                             }),
                             _vm._v(" "),
                             _c("data-list-bulk-actions", {
@@ -2064,8 +2120,8 @@ var render = function() {
                               attrs: { url: _vm.actionUrl },
                               on: {
                                 started: _vm.actionStarted,
-                                completed: _vm.actionCompleted
-                              }
+                                completed: _vm.actionCompleted,
+                              },
                             }),
                             _vm._v(" "),
                             _c("data-list-table", {
@@ -2074,8 +2130,8 @@ var render = function() {
                                   name: "show",
                                   rawName: "v-show",
                                   value: _vm.items.length,
-                                  expression: "items.length"
-                                }
+                                  expression: "items.length",
+                                },
                               ],
                               attrs: { "allow-bulk-actions": false },
                               on: { sorted: _vm.sorted },
@@ -2083,7 +2139,7 @@ var render = function() {
                                 [
                                   {
                                     key: "cell-email",
-                                    fn: function(ref) {
+                                    fn: function (ref) {
                                       var user = ref.row
                                       var value = ref.value
                                       return [
@@ -2093,23 +2149,23 @@ var render = function() {
                                             attrs: {
                                               href: _vm.cp_url(
                                                 "memberbox/" + user.id
-                                              )
-                                            }
+                                              ),
+                                            },
                                           },
                                           [
                                             _vm._v(
                                               "\n                            " +
                                                 _vm._s(value) +
                                                 "\n                        "
-                                            )
+                                            ),
                                           ]
-                                        )
+                                        ),
                                       ]
-                                    }
+                                    },
                                   },
                                   {
                                     key: "actions",
-                                    fn: function(ref) {
+                                    fn: function (ref) {
                                       var user = ref.row
                                       var index = ref.index
                                       return [
@@ -2122,8 +2178,8 @@ var render = function() {
                                                     text: _vm.__("Edit"),
                                                     redirect: _vm.cp_url(
                                                       "memberbox/" + user.id
-                                                    )
-                                                  }
+                                                    ),
+                                                  },
                                                 })
                                               : _vm._e(),
                                             _vm._v(" "),
@@ -2133,24 +2189,24 @@ var render = function() {
                                                 url: _vm.actionUrl,
                                                 actions: _vm.filterActions(
                                                   user.actions
-                                                )
+                                                ),
                                               },
                                               on: {
                                                 started: _vm.actionStarted,
-                                                completed: _vm.actionCompleted
-                                              }
-                                            })
+                                                completed: _vm.actionCompleted,
+                                              },
+                                            }),
                                           ],
                                           1
-                                        )
+                                        ),
                                       ]
-                                    }
-                                  }
+                                    },
+                                  },
                                 ],
                                 null,
                                 true
-                              )
-                            })
+                              ),
+                            }),
                           ],
                           1
                         ),
@@ -2159,25 +2215,25 @@ var render = function() {
                           staticClass: "mt-3",
                           attrs: {
                             "resource-meta": _vm.meta,
-                            "per-page": _vm.perPage
+                            "per-page": _vm.perPage,
                           },
                           on: {
                             "page-selected": _vm.selectPage,
-                            "per-page-changed": _vm.changePerPage
-                          }
-                        })
+                            "per-page-changed": _vm.changePerPage,
+                          },
+                        }),
                       ],
                       1
                     )
-                  }
-                }
+                  },
+                },
               ],
               null,
               false,
               3908801642
-            )
+            ),
           })
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
@@ -2200,7 +2256,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2212,7 +2268,7 @@ var render = function() {
         { staticClass: "mb-3" },
         [
           _c("breadcrumb", {
-            attrs: { url: _vm.cp_url("memberbox"), title: _vm.__("Members") }
+            attrs: { url: _vm.cp_url("memberbox"), title: _vm.__("Members") },
           }),
           _vm._v(" "),
           _c(
@@ -2221,13 +2277,13 @@ var render = function() {
             [
               _c("h1", {
                 staticClass: "flex-1",
-                domProps: { textContent: _vm._s(_vm.title) }
+                domProps: { textContent: _vm._s(_vm.title) },
               }),
               _vm._v(" "),
               _vm.canEditPassword
                 ? _c("change-password", {
                     staticClass: "mr-2",
-                    attrs: { "save-url": _vm.actions.password }
+                    attrs: { "save-url": _vm.actions.password },
                   })
                 : _vm._e(),
               _vm._v(" "),
@@ -2235,17 +2291,17 @@ var render = function() {
                 staticClass: "btn-primary",
                 domProps: { textContent: _vm._s(_vm.__("Save")) },
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     $event.preventDefault()
                     return _vm.save.apply(null, arguments)
-                  }
-                }
+                  },
+                },
               }),
               _vm._v(" "),
-              _vm._t("action-buttons-right")
+              _vm._t("action-buttons-right"),
             ],
             2
-          )
+          ),
         ],
         1
       ),
@@ -2259,18 +2315,18 @@ var render = function() {
               values: _vm.values,
               reference: _vm.initialReference,
               meta: _vm.meta,
-              errors: _vm.errors
+              errors: _vm.errors,
             },
             on: {
-              updated: function($event) {
+              updated: function ($event) {
                 _vm.values = $event
-              }
+              },
             },
             scopedSlots: _vm._u(
               [
                 {
                   key: "default",
-                  fn: function(ref) {
+                  fn: function (ref) {
                     var container = ref.container
                     var setFieldValue = ref.setFieldValue
                     var setFieldMeta = ref.setFieldMeta
@@ -2281,31 +2337,31 @@ var render = function() {
                         _c("publish-sections", {
                           attrs: {
                             "enable-sidebar": false,
-                            "can-toggle-labels": true
+                            "can-toggle-labels": true,
                           },
                           on: {
                             updated: setFieldValue,
                             "meta-updated": setFieldMeta,
-                            focus: function($event) {
+                            focus: function ($event) {
                               return container.$emit("focus", $event)
                             },
-                            blur: function($event) {
+                            blur: function ($event) {
                               return container.$emit("blur", $event)
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ],
                       1
                     )
-                  }
-                }
+                  },
+                },
               ],
               null,
               false,
               2801405004
-            )
+            ),
           })
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
@@ -2328,7 +2384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2346,13 +2402,13 @@ var render = function() {
               columns: _vm.cols,
               sort: false,
               "sort-column": _vm.sortColumn,
-              "sort-direction": _vm.sortDirection
+              "sort-direction": _vm.sortDirection,
             },
             scopedSlots: _vm._u(
               [
                 {
                   key: "default",
-                  fn: function(ref) {
+                  fn: function (ref) {
                     return _c(
                       "div",
                       {},
@@ -2363,7 +2419,7 @@ var render = function() {
                             [
                               {
                                 key: "cell-email",
-                                fn: function(ref) {
+                                fn: function (ref) {
                                   var user = ref.row
                                   var value = ref.value
                                   return [
@@ -2373,23 +2429,23 @@ var render = function() {
                                         attrs: {
                                           href: _vm.cp_url(
                                             "memberbox/" + user.id
-                                          )
-                                        }
+                                          ),
+                                        },
                                       },
                                       [
                                         _vm._v(
                                           "\n                        " +
                                             _vm._s(value) +
                                             "\n                    "
-                                        )
+                                        ),
                                       ]
-                                    )
+                                    ),
                                   ]
-                                }
+                                },
                               },
                               {
                                 key: "cell-name",
-                                fn: function(ref) {
+                                fn: function (ref) {
                                   var user = ref.row
                                   var value = ref.value
                                   return [
@@ -2397,14 +2453,14 @@ var render = function() {
                                       "\n                    " +
                                         _vm._s(value) +
                                         "\n                "
-                                    )
+                                    ),
                                   ]
-                                }
-                              }
+                                },
+                              },
                             ],
                             null,
                             true
-                          )
+                          ),
                         }),
                         _vm._v(" "),
                         _vm.paginate && _vm.meta.last_page != 1
@@ -2413,29 +2469,29 @@ var render = function() {
                                 "py-1 border-t bg-grey-20 rounded-b-lg text-sm",
                               attrs: {
                                 "resource-meta": _vm.meta,
-                                "scroll-to-top": false
+                                "scroll-to-top": false,
                               },
-                              on: { "page-selected": _vm.selectPage }
+                              on: { "page-selected": _vm.selectPage },
                             })
-                          : _vm._e()
+                          : _vm._e(),
                       ],
                       1
                     )
-                  }
-                }
+                  },
+                },
               ],
               null,
               false,
               2002159902
-            )
+            ),
           })
         : !_vm.initializing && !_vm.items.length
         ? _c("p", { staticClass: "p-2 pt-1 text-sm text-grey-50" }, [
             _vm._v(
               "\n        " + _vm._s(_vm.__("There are no members")) + "\n    "
-            )
+            ),
           ])
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
@@ -2458,7 +2514,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2470,27 +2526,27 @@ var render = function() {
         _c(
           "div",
           { staticClass: "wizard-steps" },
-          _vm._l(_vm.steps, function(step, index) {
+          _vm._l(_vm.steps, function (step, index) {
             return _c(
               "a",
               {
                 staticClass: "step",
                 class: { complete: _vm.currentStep >= index },
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     return _vm.goToStep(index)
-                  }
-                }
+                  },
+                },
               },
               [
                 _c("div", { staticClass: "ball" }, [_vm._v(_vm._s(index + 1))]),
                 _vm._v(" "),
-                _c("div", { staticClass: "label" }, [_vm._v(_vm._s(step))])
+                _c("div", { staticClass: "label" }, [_vm._v(_vm._s(step))]),
               ]
             )
           }),
           0
-        )
+        ),
       ]),
       _vm._v(" "),
       !_vm.completed && _vm.currentStep === 0
@@ -2500,7 +2556,7 @@ var render = function() {
               { staticClass: "max-w-md mx-auto px-2 py-6 text-center" },
               [
                 _c("h1", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.__("Create Member")))
+                  _vm._v(_vm._s(_vm.__("Create Member"))),
                 ]),
                 _vm._v(" "),
                 _c("p", {
@@ -2508,9 +2564,9 @@ var render = function() {
                   domProps: {
                     textContent: _vm._s(
                       _vm.__("statamic-memberbox::messages.member_wizard_intro")
-                    )
-                  }
-                })
+                    ),
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -2527,40 +2583,40 @@ var render = function() {
                           blueprint: _vm.fieldset,
                           values: _vm.values,
                           meta: _vm.meta,
-                          errors: _vm.errors
+                          errors: _vm.errors,
                         },
                         on: {
-                          updated: function($event) {
+                          updated: function ($event) {
                             _vm.values = $event
-                          }
+                          },
                         },
                         scopedSlots: _vm._u(
                           [
                             {
                               key: "default",
-                              fn: function(ref) {
+                              fn: function (ref) {
                                 var setFieldValue = ref.setFieldValue
                                 var setFieldMeta = ref.setFieldMeta
                                 return _c("publish-fields", {
                                   attrs: { fields: _vm.fields },
                                   on: {
                                     updated: setFieldValue,
-                                    "meta-updated": setFieldMeta
-                                  }
+                                    "meta-updated": setFieldMeta,
+                                  },
                                 })
-                              }
-                            }
+                              },
+                            },
                           ],
                           null,
                           false,
                           1196063591
-                        )
+                        ),
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ],
                 1
-              )
-            ])
+              ),
+            ]),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2571,7 +2627,7 @@ var render = function() {
               { staticClass: "max-w-md mx-auto px-2 py-6 text-center" },
               [
                 _c("h1", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.__("Invitation")))
+                  _vm._v(_vm._s(_vm.__("Invitation"))),
                 ]),
                 _vm._v(" "),
                 _c("p", {
@@ -2581,9 +2637,9 @@ var render = function() {
                       _vm.__(
                         "statamic-memberbox::messages.member_wizard_invitation_intro"
                       )
-                    )
-                  }
-                })
+                    ),
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -2591,22 +2647,22 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "max-w-md mx-auto px-2 mb-3 flex items-center justify-center"
+                  "max-w-md mx-auto px-2 mb-3 flex items-center justify-center",
               },
               [
                 _c("toggle-input", {
                   model: {
                     value: _vm.invitation.send,
-                    callback: function($$v) {
+                    callback: function ($$v) {
                       _vm.$set(_vm.invitation, "send", $$v)
                     },
-                    expression: "invitation.send"
-                  }
+                    expression: "invitation.send",
+                  },
                 }),
                 _vm._v(" "),
                 _c("label", { staticClass: "font-bold ml-1" }, [
-                  _vm._v(_vm._s(_vm.__("Send Email Invitation")))
-                ])
+                  _vm._v(_vm._s(_vm.__("Send Email Invitation"))),
+                ]),
               ],
               1
             ),
@@ -2616,7 +2672,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "max-w-lg mx-auto bg-grey-10 py-5 mb-7 border rounded-lg "
+                      "max-w-lg mx-auto bg-grey-10 py-5 mb-7 border rounded-lg ",
                   },
                   [
                     _c("div", { staticClass: "max-w-md mx-auto px-2 pb-5" }, [
@@ -2624,7 +2680,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "email" }
+                          attrs: { for: "email" },
                         },
                         [_vm._v(_vm._s(_vm.__("Email Subject")))]
                       ),
@@ -2635,14 +2691,14 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.invitation.subject,
-                            expression: "invitation.subject"
-                          }
+                            expression: "invitation.subject",
+                          },
                         ],
                         staticClass: "input-text bg-white",
                         attrs: { type: "text" },
                         domProps: { value: _vm.invitation.subject },
                         on: {
-                          input: function($event) {
+                          input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
@@ -2651,9 +2707,9 @@ var render = function() {
                               "subject",
                               $event.target.value
                             )
-                          }
-                        }
-                      })
+                          },
+                        },
+                      }),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "max-w-md mx-auto px-2" }, [
@@ -2661,7 +2717,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "font-bold text-base mb-sm",
-                          attrs: { for: "email" }
+                          attrs: { for: "email" },
                         },
                         [_vm._v(_vm._s(_vm.__("Email Content")))]
                       ),
@@ -2672,14 +2728,14 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.invitation.message,
-                            expression: "invitation.message"
+                            expression: "invitation.message",
                           },
-                          { name: "elastic", rawName: "v-elastic" }
+                          { name: "elastic", rawName: "v-elastic" },
                         ],
                         staticClass: "input-text min-h-48 p-2 bg-white",
                         domProps: { value: _vm.invitation.message },
                         on: {
-                          input: function($event) {
+                          input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
@@ -2688,10 +2744,10 @@ var render = function() {
                               "message",
                               $event.target.value
                             )
-                          }
-                        }
-                      })
-                    ])
+                          },
+                        },
+                      }),
+                    ]),
                   ]
                 )
               : _c(
@@ -2706,11 +2762,11 @@ var render = function() {
                             "statamic-memberbox::messages.member_wizard_invitation_share_before",
                             { email: _vm.values.email }
                           )
-                        )
-                      }
-                    })
+                        ),
+                      },
+                    }),
                   ]
-                )
+                ),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2721,7 +2777,7 @@ var render = function() {
               { staticClass: "max-w-md mx-auto px-2 py-6 text-center" },
               [
                 _c("h1", { staticClass: "mb-3" }, [
-                  _vm._v(_vm._s(_vm.__("Member Created")))
+                  _vm._v(_vm._s(_vm.__("Member Created"))),
                 ]),
                 _vm._v(" "),
                 _c("p", {
@@ -2731,9 +2787,9 @@ var render = function() {
                       _vm.__(
                         "statamic-memberbox::messages.member_wizard_account_created"
                       )
-                    )
-                  }
-                })
+                    ),
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -2750,8 +2806,8 @@ var render = function() {
                             "statamic-memberbox::messages.member_wizard_invitation_share",
                             { email: _vm.values.email }
                           )
-                        )
-                      }
+                        ),
+                      },
                     }),
                     _vm._v(" "),
                     _c(
@@ -2759,7 +2815,7 @@ var render = function() {
                       {
                         directives: [{ name: "elastic", rawName: "v-elastic" }],
                         staticClass: "input-text",
-                        attrs: { readonly: "", onclick: "this.select()" }
+                        attrs: { readonly: "", onclick: "this.select()" },
                       },
                       [
                         _vm._v(
@@ -2771,9 +2827,9 @@ var render = function() {
                             ": " +
                             _vm._s(_vm.values.email) +
                             "\n"
-                        )
+                        ),
                       ]
-                    )
+                    ),
                   ]
                 )
               : _vm._e(),
@@ -2791,12 +2847,12 @@ var render = function() {
                             "statamic-memberbox::messages.member_wizard_invitation_sent",
                             { email: _vm.values.email }
                           )
-                        )
-                      }
-                    })
+                        ),
+                      },
+                    }),
                   ]
                 )
-              : _vm._e()
+              : _vm._e(),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2811,14 +2867,14 @@ var render = function() {
                   {
                     staticClass: "btn mx-2 w-32",
                     attrs: { tabindex: "3" },
-                    on: { click: _vm.previous }
+                    on: { click: _vm.previous },
                   },
                   [
                     _vm._v(
                       "\n                    ← " +
                         _vm._s(_vm.__("Previous")) +
                         "\n                "
-                    )
+                    ),
                   ]
                 )
               : _vm._e(),
@@ -2829,14 +2885,14 @@ var render = function() {
                   {
                     staticClass: "btn mx-2 w-32",
                     attrs: { tabindex: "4", disabled: !_vm.canContinue },
-                    on: { click: _vm.next }
+                    on: { click: _vm.next },
                   },
                   [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.__("Next")) +
                         " →\n                "
-                    )
+                    ),
                   ]
                 )
               : _vm._e(),
@@ -2847,14 +2903,14 @@ var render = function() {
                   {
                     staticClass: "btn-primary mx-2",
                     attrs: { tabindex: "4" },
-                    on: { click: _vm.submit }
+                    on: { click: _vm.submit },
                   },
                   [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.finishButtonText) +
                         "\n                "
-                    )
+                    ),
                   ]
                 )
               : _vm._e(),
@@ -2864,14 +2920,14 @@ var render = function() {
                   "a",
                   {
                     staticClass: "btn mx-2",
-                    attrs: { href: _vm.usersIndexUrl }
+                    attrs: { href: _vm.usersIndexUrl },
                   },
                   [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.__("Back to Members")) +
                         "\n                "
-                    )
+                    ),
                   ]
                 )
               : _vm._e(),
@@ -2881,20 +2937,20 @@ var render = function() {
                   "a",
                   {
                     staticClass: "btn-primary mx-2",
-                    attrs: { href: _vm.usersCreateUrl }
+                    attrs: { href: _vm.usersCreateUrl },
                   },
                   [
                     _vm._v(
                       "\n                    " +
                         _vm._s(_vm.__("Create Another")) +
                         "\n                "
-                    )
+                    ),
                   ]
                 )
-              : _vm._e()
+              : _vm._e(),
           ]
-        )
-      ])
+        ),
+      ]),
     ]
   )
 }
@@ -2916,7 +2972,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2925,7 +2981,7 @@ var render = function() {
       staticClass: "btn",
       attrs: { slot: "trigger" },
       domProps: { textContent: _vm._s(_vm.__("Change Password")) },
-      slot: "trigger"
+      slot: "trigger",
     }),
     _vm._v(" "),
     _vm.saving
@@ -2947,15 +3003,15 @@ var render = function() {
             handle: "password",
             display: _vm.__("Password"),
             errors: _vm.errors.password,
-            config: { input_type: this.inputType }
+            config: { input_type: this.inputType },
           },
           model: {
             value: _vm.password,
-            callback: function($$v) {
+            callback: function ($$v) {
               _vm.password = $$v
             },
-            expression: "password"
-          }
+            expression: "password",
+          },
         }),
         _vm._v(" "),
         _c("form-group", {
@@ -2963,16 +3019,16 @@ var render = function() {
           attrs: {
             handle: "confirmation",
             display: _vm.__("Password Confirmation"),
-            config: { input_type: this.inputType }
+            config: { input_type: this.inputType },
           },
           model: {
             value: _vm.confirmation,
-            callback: function($$v) {
+            callback: function ($$v) {
               _vm.confirmation = $$v
             },
-            expression: "confirmation"
-          }
-        })
+            expression: "confirmation",
+          },
+        }),
       ],
       1
     ),
@@ -2980,7 +3036,8 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "flex items-center bg-grey-21 border-t rounded-b px-2 py-1"
+        staticClass:
+          "flex items-center bg-grey-21 border-t rounded-b px-2 py-1",
       },
       [
         _c(
@@ -2988,11 +3045,11 @@ var render = function() {
           {
             staticClass: "btn-primary",
             on: {
-              click: function($event) {
+              click: function ($event) {
                 $event.preventDefault()
                 return _vm.save.apply(null, arguments)
-              }
-            }
+              },
+            },
           },
           [_vm._v(_vm._s(_vm.__("Change Password")))]
         ),
@@ -3004,17 +3061,17 @@ var render = function() {
                 name: "model",
                 rawName: "v-model",
                 value: _vm.reveal,
-                expression: "reveal"
-              }
+                expression: "reveal",
+              },
             ],
             attrs: { type: "checkbox" },
             domProps: {
               checked: Array.isArray(_vm.reveal)
                 ? _vm._i(_vm.reveal, null) > -1
-                : _vm.reveal
+                : _vm.reveal,
             },
             on: {
-              change: function($event) {
+              change: function ($event) {
                 var $$a = _vm.reveal,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
@@ -3032,15 +3089,15 @@ var render = function() {
                 } else {
                   _vm.reveal = $$c
                 }
-              }
-            }
+              },
+            },
           }),
           _vm._v(
             "\n            " + _vm._s(_vm.__("Reveal Password")) + "\n        "
-          )
-        ])
+          ),
+        ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = []
