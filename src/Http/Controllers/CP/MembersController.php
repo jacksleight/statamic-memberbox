@@ -8,12 +8,15 @@ use JackSleight\StatamicMemberbox\Notifications\ActivateAccount;
 use Statamic\Auth\Passwords\PasswordReset;
 use Statamic\Contracts\Auth\User as UserContract;
 use Statamic\CP\Column;
+use Statamic\Exceptions\FatalException;
 use Statamic\Exceptions\NotFoundHttpException;
+use Statamic\Facades\File;
 use Statamic\Facades\Scope;
 use Statamic\Facades\User;
 use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
 use Statamic\Http\Resources\CP\Users\Users;
+use Statamic\Support\Str;
 
 class MembersController extends UsersController
 {
@@ -35,15 +38,22 @@ class MembersController extends UsersController
         ]);
     }
 
+    protected function indexQuery()
+    {
+        $query = Member::query();
+
+        if ($search = request('search')) {
+            $query->where('email', 'like', '%'.$search.'%')->orWhere('name', 'like', '%'.$search.'%');
+        }
+
+        return $query;
+    }
+
     protected function json($request)
     {
         $this->authorize('mb view members', UserContract::class);
 
-        $query = Member::query();
-
-        if ($search = request('search')) {
-            $query->where('email', 'like', '%'.$search.'%');
-        }
+        $query = $this->indexQuery();
 
         $activeFilterBadges = $this->queryFilters($query, $request->filters);
 
@@ -207,5 +217,30 @@ class MembersController extends UsersController
         $user->save();
 
         return ['title' => $user->title()];
+    }
+
+    public function export($type)
+    {
+        $this->authorize('mb view members', UserContract::class);
+
+        $exporter = 'JackSleight\StatamicMemberbox\Exporters\\'.Str::studly($type).'Exporter';
+
+        if (! class_exists($exporter)) {
+            throw new FatalException("Exporter of type [$type] does not exist.");
+        }
+
+        $exporter = new $exporter;
+
+        $content = $exporter->export();
+
+        if ($this->request->has('download')) {
+            $path = storage_path('statamic/tmp/memberbox/'.time().'.'.$type);
+            File::put($path, $content);
+            $response = response()->download($path)->deleteFileAfterSend(true);
+        } else {
+            $response = response($content)->header('Content-Type', $exporter->contentType());
+        }
+
+        return $response;
     }
 }

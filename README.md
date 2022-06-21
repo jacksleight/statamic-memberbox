@@ -17,6 +17,7 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 	* Only lists members and allows you to search them
 	* Allows you to create members through a simplified and customizable user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
+	* Allows you to export all members as either a CSV or JSON file
 	* Uses seperate view, create and edit member permissions
 * A members widget for the dashboard
 * These additional user form tags:
