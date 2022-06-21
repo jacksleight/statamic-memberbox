@@ -2,6 +2,8 @@
 
 return [
 
+    'member_intro'                          => 'Members are users that can only access the members area of the site or member only content.',
+
     'member_wizard_intro'                   => 'Members can access the members area of the site or member only content.',
     'member_wizard_invitation_intro'        => 'Send a welcome email with account activation details to the new member.',
     'member_wizard_invitation_share_before' => 'After creating the member, details will be provided to share with <code>:email</code> via your preferred method.',
