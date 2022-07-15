@@ -4,6 +4,7 @@ namespace JackSleight\StatamicMemberbox\Http\Controllers\CP;
 
 use Illuminate\Http\Request;
 use JackSleight\StatamicMemberbox\Facades\Member;
+use JackSleight\StatamicMemberbox\Http\Resources\CP\Members\Members;
 use JackSleight\StatamicMemberbox\Notifications\ActivateAccount;
 use Statamic\Auth\Passwords\PasswordReset;
 use Statamic\Contracts\Auth\User as UserContract;
@@ -15,7 +16,6 @@ use Statamic\Facades\Scope;
 use Statamic\Facades\User;
 use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
-use Statamic\Http\Resources\CP\Users\Users;
 use Statamic\Support\Str;
 
 class MembersController extends UsersController
@@ -69,17 +69,15 @@ class MembersController extends UsersController
             ->orderBy($sort = request('sort', 'email'), request('order', 'asc'))
             ->paginate(request('perPage'));
 
-        $blueprint = User::blueprint();
-        $blueprint->columns(collect([
-            Column::make('email')->label(__('Email')),
-            $blueprint->hasField('name') ? Column::make('name')->label(__('Name')) : null,
-            $blueprint->hasField('first_name') ? Column::make('first_name')->label(__('First Name')) : null,
-            $blueprint->hasField('last_name') ? Column::make('last_name')->label(__('Last Name')) : null,
-            Column::make('last_login')->label(__('Last Login'))->sortable(false),
-        ])->filter()->values()->all());
-
-        return (new Users($users))
-            ->blueprint($blueprint)
+        return (new Members($users))
+            ->blueprint($blueprint = User::blueprint())
+            ->columns(collect([
+                Column::make('email')->label(__('Email')),
+                $blueprint->hasField('name') ? Column::make('name')->label(__('Name')) : null,
+                $blueprint->hasField('first_name') ? Column::make('first_name')->label(__('First Name')) : null,
+                $blueprint->hasField('last_name') ? Column::make('last_name')->label(__('Last Name')) : null,
+                Column::make('last_login')->label(__('Last Login'))->sortable(false),
+            ])->filter()->values()->all())
             ->additional(['meta' => [
                 'activeFilterBadges' => $activeFilterBadges,
             ]]);
