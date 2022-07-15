@@ -2,7 +2,7 @@
 
 ## 1.0.1 (2022-07-15)
 
-* [fix] Fix index page error with Statamic 3.3.18+
+* [fix] Index page error with Statamic 3.3.18+
 
 ## 1.0.0 (2022-06-21)
 
