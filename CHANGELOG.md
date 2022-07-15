@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 (2022-07-15)
+
+* [fix] Fix index page error with Statamic 3.3.18+
+
 ## 1.0.0 (2022-06-21)
 
 * [new] Ability to export members as either a CSV or JSON file
