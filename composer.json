@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "statamic/cms": "^3.3"
+        "statamic/cms": "^3.2"
     },
     "config": {
         "allow-plugins": {
