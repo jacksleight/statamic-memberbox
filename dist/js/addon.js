@@ -74,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_vendor_statamic_cms_resources_js_components_Listing_vue__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -2224,6 +2225,7 @@ var render = function () {
                         _c("data-list-pagination", {
                           staticClass: "mt-3",
                           attrs: {
+                            "show-totals": true,
                             "resource-meta": _vm.meta,
                             "per-page": _vm.perPage,
                           },
@@ -2240,7 +2242,7 @@ var render = function () {
               ],
               null,
               false,
-              3908801642
+              3353462965
             ),
           })
         : _vm._e(),

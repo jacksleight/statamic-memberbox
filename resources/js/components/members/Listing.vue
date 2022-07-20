@@ -48,6 +48,7 @@
 
                 <data-list-pagination
                     class="mt-3"
+                    :show-totals="true"
                     :resource-meta="meta"
                     :per-page="perPage"
                     @page-selected="selectPage"
