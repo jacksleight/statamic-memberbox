@@ -51,7 +51,9 @@ class MembersController extends UsersController
         $query = Member::query();
 
         if ($search = request('search')) {
-            $query->where('email', 'like', '%'.$search.'%')->orWhere('name', 'like', '%'.$search.'%');
+            $query->where(function ($query) use ($search) {
+                $query->where('email', 'like', '%'.$search.'%')->orWhere('name', 'like', '%'.$search.'%');
+            });
         }
 
         return $query;

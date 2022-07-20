@@ -1,8 +1,12 @@
 # Changelog
 
+## 1.1.0 (2022-07-20)
+
+* [new] Add pagination totals to listing page
+
 ## 1.0.1 (2022-07-15)
 
-* [fix] Index page error with Statamic 3.3.18+
+* [fix] CP listing page error with Statamic 3.3.18+
 
 ## 1.0.0 (2022-06-21)
 
