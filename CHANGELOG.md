@@ -1,8 +1,9 @@
 # Changelog
 
-## 1.1.0 (2022-07-20)
+## 1.0.2 (2022-07-20)
 
-* [new] Add pagination totals to listing page
+* [new] Add pagination totals to CP listing page
+* [fix] CP search returning non-members
 
 ## 1.0.1 (2022-07-15)
 
