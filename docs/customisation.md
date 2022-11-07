@@ -1,19 +1,11 @@
 ---
 title: Customisation
-nav_order: 5
+order: 5
 ---
 
 # Customisation
-{:.no_toc}
 
-<details open markdown="block">
-  <summary>
-      Table of contents
-  </summary>
-  {: .text-delta }
-* TOC
-{:toc}
-</details>
+[TOC]
 
 ---
 
@@ -102,7 +94,7 @@ Fields will appear in the order they're defined in the User blueprint. The `emai
 
 ## Control panel labels
 
-If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/en.json` and add the strings you'd like to change. For example:
+If you'd like to rename the control panel section and other references to "members" create a new JSON file at `resources/lang/*.json` and add the strings you'd like to change. For example:
 
 ```json
 {

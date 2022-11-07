@@ -1,6 +1,6 @@
 ---
 title: Installation
-nav_order: 2
+order: 2
 ---
 
 # Installation
@@ -10,7 +10,3 @@ You can search for this addon in the `Tools > Addons` section of the Statamic co
 ```bash
 composer require jacksleight/statamic-memberbox
 ```
-
-## Licencing
-
-Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.

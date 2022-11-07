@@ -1,55 +1,47 @@
 ---
 title: Tags Reference
-nav_order: 6
+order: 6
 ---
 
 # Tags Reference
-{:.no_toc}
 
-<details open markdown="block">
-  <summary>
-      Table of contents
-  </summary>
-  {: .text-delta }
-* TOC
-{:toc}
-</details>
+[TOC]
 
 ---
 
 ## Member tags
 
-### `{% raw %}{{ mb:member }} ... {{ /mb:member }}{% endraw %}`
+### `mb:member`
 
 Get the current member or a specific member.
 
-Accepts the same parameters as the [`{% raw %}{{ user }}{% endraw %}` tag](https://statamic.dev/tags/user-profile), but is restricted to members.
+Accepts the same parameters as the [user tag](https://statamic.dev/tags/user-profile), but is restricted to members.
 
-### `{% raw %}{{ mb:members }} ... {{ /mb:members }}{% endraw %}`
+### `mb:members`
 
 Get a list of members.
 
-Accepts the same parameters as the [`{% raw %}{{ users }}{% endraw %}` tag](https://statamic.dev/tags/users), but is restricted to members.
+Accepts the same parameters as the [users tag](https://statamic.dev/tags/users), but is restricted to members.
 
 ---
 
 ## User form tags
 
-### `{% raw %}{{ mb:user:activate_form }} ... {{ /mb:user:activate_form }}{% endraw %}`
+### `mb:user:activate_form`
 
 Render the activate form tag.
 
 * **redirect (string):** URL to redirect on success
 * **error_redirect (string):** URL to redirect on error
 
-### `{% raw %}{{ mb:user:profile_form }} ... {{ /mb:user:profile_form }}{% endraw %}`
+### `mb:user:profile_form`
 
 Render the profile form tag.
 
 * **redirect (string):** URL to redirect on success
 * **files (boolean):** Enable file uploads (`enctype="multipart/form-data"`)
 
-### `{% raw %}{{ mb:user:change_password_form }} ... {{ /mb:user:change_password_form }}{% endraw %}`
+### `mb:user:change_password_form`
 
 Render the change password form tag.
 
@@ -59,37 +51,37 @@ Render the change password form tag.
 
 ## User page URL tags
 
-### `{% raw %}{{ mb:user:register_url }}{% endraw %}`
+### `mb:user:register_url`
 
 Returns the register page URL.
 
-### `{% raw %}{{ mb:user:login_url }}{% endraw %}`
+### `mb:user:login_url`
 
 Returns the login page URL.
 
 * **append_redirect (bool\|string):** Whether to append a redirect to the URL
 
-### `{% raw %}{{ mb:user:profile_url }}{% endraw %}`
+### `mb:user:profile_url`
 
 Returns the profile page URL.
 
-### `{% raw %}{{ mb:user:forgot_password_url }}{% endraw %}`
+### `mb:user:forgot_password_url`
 
 Returns the forgot password page URL.
 
-### `{% raw %}{{ mb:user:reset_password_url }}{% endraw %}`
+### `mb:user:reset_password_url`
 
 Returns the reset password page URL.
 
-### `{% raw %}{{ mb:user:change_password_url }}{% endraw %}`
+### `mb:user:change_password_url`
 
 Returns the change password page URL.
 
-### `{% raw %}{{ mb:user:index_url }}{% endraw %}`
+### `mb:user:index_url`
 
 Returns the user listing page URL.
 
-### `{% raw %}{{ mb:user:show_url }}{% endraw %}`
+### `mb:user:show_url`
 
 Returns the user detail page URL.
 

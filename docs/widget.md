@@ -1,6 +1,6 @@
 ---
 title: Widget
-nav_order: 7
+order: 7
 ---
 
 # Widget
@@ -28,4 +28,6 @@ The widget has a number of options that can be used to customise it, for example
 ],
 ```
 
-> **Note:** The `created_at` and `updated_at` dates are only stored by the Eloquent user driver, that data is not avaliable with the file user driver.
+:::note
+The `created_at` and `updated_at` dates are only stored by the Eloquent user driver, that data is not avaliable with the file user driver.
+:::

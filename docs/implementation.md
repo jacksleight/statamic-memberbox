@@ -1,23 +1,15 @@
 ---
 title: Implementation
-nav_order: 4
+order: 4
 ---
 
 # Implementation
-{:.no_toc}
 
-<details open markdown="block">
-  <summary>
-      Table of contents
-  </summary>
-  {: .text-delta }
-* TOC
-{:toc}
-</details>
+It's up to you exactly how you implement the Memberbox features on your site. If you want to get up and running quickly you can use the routes and templates Memberbox provides, or you can implement those yourself and just use the tags. When it comes to protecting front-end content Statamic provides everything you need already.
 
-It's up to you exactly how you want to implement the Memberbox features on your site. If you want to get up and running quickly you can use the routes and templates Memberbox provides, or you can implement those yourself and just use the tags. When it comes to protecting front-end content Statamic provides everything you might need already.
+Check the [customisation](customisation.html) documentation for details on customising the profile form fields, invitation emails and control panel.
 
-Check the [customisation](customisation.html) documentation for details on customising the profile form fields, invitation emails and control panel
+[TOC]
 
 ---
 
@@ -60,7 +52,7 @@ And then open `resources/views/vendor/statamic-memberbox/web/*.antlers.html` to 
 The starter templates use Antlers front matter to set a title variable which you can access from your layout templates. You don't have to use this method, but if you do you can output the variable in your layout using the `view:title` variable:
 
 ```html
-{% raw %}<title>{{ title or view:title }}</title>{% endraw %}
+<title>{{ title or view:title }}</title>
 ```
 
 ---
@@ -70,7 +62,7 @@ The starter templates use Antlers front matter to set a title variable which you
 Memberbox provides a set of page URL tags for linking to the pages, check the [tags reference](tags.html#user-form-page-url-tags) for a full list. Here's an example header template that shows how you might implement these in your site:
 
 ```html
-{% raw %}<header>
+<header>
     <div>
         <a href="/">{{ settings:site_name }}</a>
         {{ if logged_in }}
@@ -81,7 +73,7 @@ Memberbox provides a set of page URL tags for linking to the pages, check the [t
             <a href="{{ mb:user:login_url }}">Log in</a>
         {{ /if }}
     </div>
-</header>{% endraw %}
+</header>
 ```
 
 ---
@@ -112,9 +104,9 @@ Check Statamic's [protection](https://statamic.dev/protecting-content#protecting
 Adding the following to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect logged out users to the login page:
 
 ```html
-{% raw %}{{ if ! logged_in && url | starts_with:/members-area }}
+{{ if ! logged_in && url | starts_with:/members-area }}
     {{ redirect to="{ mb:user:login_url append_redirect='true' }" }}
-{{ /if }}{% endraw %}
+{{ /if }}
 ```
 
 Check Statamic's [tags](https://statamic.dev/reference/tags) and [variables](https://statamic.dev/reference/variables) documentation for full details.
@@ -124,9 +116,9 @@ Check Statamic's [tags](https://statamic.dev/reference/tags) and [variables](htt
 Adding the following to the top of your `resources/views/pages/show.antlers.html` file will restrict access to all page entries that have a `secret` toggle field set to `true` and redirect logged out users to the login page:
 
 ```html
-{% raw %}{{ if ! logged_in && secret }}
+{{ if ! logged_in && secret }}
     {{ redirect to="{ mb:user:login_url append_redirect='true' }" }}
-{{ /if }}{% endraw %}
+{{ /if }}
 ```
 
 ### Protect sections of a page
@@ -134,12 +126,12 @@ Adding the following to the top of your `resources/views/pages/show.antlers.html
 You can wrap blocks of content to restrict just those sections to logged in or logged out users:
 
 ```html
-{% raw %}{{ if logged_in }}
+{{ if logged_in }}
     <p>This is only visible to logged in users</p>
 {{ /if }}
 {{ if ! logged_in }}
     <p>This is only visible to logged out users</p>
-{{ /if }}{% endraw %}
+{{ /if }}
 ```
 
 ### Protect based on a user field value
@@ -147,7 +139,7 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 You can check values within the user data. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{% raw %}{{ if logged_in && { current_user:plan } == "plus" }}
+{{ if logged_in && { current_user:plan } == "plus" }}
     <p>This is only visible to plus users</p>
-{{ /if }}{% endraw %}
+{{ /if }}
 ```
