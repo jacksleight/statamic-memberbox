@@ -61,6 +61,22 @@ Changing member passwords and deleting members is currently restricted to users 
 
 ---
 
+## Using Laravel middleware to redirect unauthenticated users?
+
+If you're using Laravel's auth middleware to rediect unauthenticated users to a login page, and want to use Memberbox's login route for that, you'll need to update it with the Memberbox route name:
+
+```php
+// /app/Http/Middleware/Authenticate.php
+protected function redirectTo($request)
+{
+    if (! $request->expectsJson()) {
+        return route('statamic-memberbox.login');
+    }
+}
+```
+
+---
+
 ## Using the Eloquent user driver?
 
 If you're using the Eloquent user driver you need to ensure the **roles** and **groups** relationships are defined on your user model. For example:
