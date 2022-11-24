@@ -31,7 +31,7 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 
 ## Documentation
 
-[Statamic Memberbox Documentation](https://jacksleight.github.io/statamic-memberbox/)
+[Statamic Memberbox Documentation](https://jacksleight.dev/docs/memberbox)
 
 <!-- statamic:hide -->
 
