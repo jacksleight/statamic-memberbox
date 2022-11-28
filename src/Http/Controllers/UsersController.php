@@ -24,9 +24,12 @@ class UsersController extends Controller
         $values = array_merge($request->all(), $this->normalizeAssetValues($fields, $request));
         $fields = $fields->addValues($values);
 
-        $extraRules = array_merge([
-            'email' => ['required', 'unique_user_value:'.$user->id()],
-        ], $this->assetRules($fields));
+        $extraRules = $this->assetRules($fields);
+        if ($only->contains('email')) {
+            $extraRules = array_merge([
+                'email' => ['required', 'unique_user_value:'.$user->id()],
+            ], $extraRules);
+        }
         $fieldRules = $fields->validator()->withRules($extraRules)->rules();
 
         $validator = Validator::make($values, $fieldRules);
