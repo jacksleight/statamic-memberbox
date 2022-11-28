@@ -104,7 +104,7 @@ Check Statamic's [protection](https://statamic.dev/protecting-content#protecting
 Adding the following to the top of your `resources/views/layout.antlers.html` file will restrict access to everything under `/members-area` and redirect logged out users to the login page:
 
 ```html
-{{ if ! logged_in && url | starts_with:/members-area }}
+{{ if ! logged_in && url | starts_with('/members-area') }}
     {{ redirect to="{ mb:user:login_url append_redirect='true' }" }}
 {{ /if }}
 ```
@@ -139,7 +139,7 @@ You can wrap blocks of content to restrict just those sections to logged in or l
 You can check values within the user data. For example if you had a `plan` field and wanted to limit content to users on the **plus** plan you could do this:
 
 ```html
-{{ if logged_in && { current_user:plan } == "plus" }}
+{{ if logged_in && current_user:plan == "plus" }}
     <p>This is only visible to plus users</p>
 {{ /if }}
 ```

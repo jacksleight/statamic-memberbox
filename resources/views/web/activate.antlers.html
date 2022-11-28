@@ -11,7 +11,7 @@ title: Activate Account
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ mb:user:activate_form redirect="{ homepage }" }}
+        {{ mb:user:activate_form :redirect="homepage" }}
             
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
