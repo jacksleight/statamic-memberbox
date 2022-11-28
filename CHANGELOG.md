@@ -1,5 +1,9 @@
 # Changelog
 
+## NEXT ()
+
+* Updated templates to use runtime parser syntax
+
 ## 1.0.4 (2022-11-28)
 
 * [fix] Profile form values not being processed before save
