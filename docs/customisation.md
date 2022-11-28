@@ -21,6 +21,17 @@ You can change the URLs used for the pages by updating the `statamic.memberbox.r
 ],
 ```
 
+If you want to use something other than the user's ID in the listing show URLs you can update the `mb:user:show_url` tag in the index template and the `mb:member` tag in the show template as follows:
+
+```html
+{{ mb:user:show_url :user='handle' }}
+```
+```html
+{{ mb:member field="handle" :value="user" }}
+    //...
+{{ /mb:member }}
+```
+
 ---
 
 ## Profile form fields
