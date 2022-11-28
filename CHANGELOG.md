@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 (2022-11-28)
+
+* [fix] Email field now optional in profile_form
+
 ## 1.0.2 (2022-07-20)
 
 * [new] Add pagination totals to CP listing page
