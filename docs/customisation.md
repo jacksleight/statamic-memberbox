@@ -25,7 +25,7 @@ You can change the URLs used for the pages by updating the `statamic.memberbox.r
 
 ## Profile form fields
 
-Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. If you add additional fields to that form you'll need to add them to the list. To do that open `config/statamic/memberbox.php` and add your fields:
+Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. The fields listed must match the fields in your form. To do that open `config/statamic/memberbox.php` and add your fields:
 
 ```php
 'profile_fields' => [
