@@ -41,12 +41,14 @@ class UsersController extends Controller
         }
 
         $values = array_merge($request->all(), $this->uploadAssetFiles($fields));
-        $values = collect($values)->intersectByKeys($fields->all())->except(['email', 'groups', 'roles']);
+        $fields = $fields->addValues($values);
+        // only() added here to filter out fields that weren't actualy submitted
+        $values = $fields->process()->values()->only(array_keys($values))->except(['email', 'password', 'groups', 'roles']);
 
         foreach ($values as $key => $value) {
             $user->set($key, $value);
         }
-        if ($only->contains('email')) {
+        if ($only->contains('email') && $request->email) {
             $user->email($request->email);
         }
 

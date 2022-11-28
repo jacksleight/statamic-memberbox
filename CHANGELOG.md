@@ -1,8 +1,12 @@
 # Changelog
 
+## 1.0.4 (2022-11-28)
+
+* [fix] Profile form values not being processed before save
+
 ## 1.0.3 (2022-11-28)
 
-* [fix] Email field now optional in profile_form
+* [fix] Email field now optional in profile form
 
 ## 1.0.2 (2022-07-20)
 
