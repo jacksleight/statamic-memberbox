@@ -62,6 +62,7 @@ return [
     'profile_fields' => [
         'name',
         'email',
+        'avatar',
     ],
 
     /*

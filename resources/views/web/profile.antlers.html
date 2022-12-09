@@ -15,7 +15,7 @@ title: Update Profile
 
     <div class="max-w-md mx-auto p-5 bg-gray-300 rounded-xl">
         
-        {{ mb:user:profile_form }}
+        {{ mb:user:profile_form files="true" }}
 
             {{ if errors }}
                 <div class="bg-red-600 text-white p-2 rounded-md mb-5 text-center">
@@ -43,6 +43,18 @@ title: Update Profile
                 <div class="mb-5">
                     <label for="email" class="block mb-1">Email</label>
                     <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email ?? email }}" />
+                </div>
+
+                <div class="mb-5">
+                    <label for="avatar" class="block mb-1">Avatar</label>
+                    <div class="flex gap-3 items-center">
+                        <input class="bg-white p-2 w-full rounded-md" type="file" name="avatar" id="avatar" />
+                        {{ if avatar }}
+                            <img src="{{ glide:avatar width="88" height="88" }}" alt="{{ name }}" class="w-11 h-11 rounded-full shrink-0">
+                        {{ else }}
+                            <div class="w-11 h-11 rounded-full shrink-0 bg-gray-200"></div>
+                        {{ /if }}
+                    </div>
                 </div>
 
             {{ /user }}

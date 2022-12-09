@@ -3,6 +3,7 @@
 ## NEXT ()
 
 * Updated templates to use runtime parser syntax
+* Include avatar field in profile template
 
 ## 1.0.4 (2022-11-28)
 
