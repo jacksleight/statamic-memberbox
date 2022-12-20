@@ -2,8 +2,10 @@
 
 ## NEXT ()
 
+* The `mb:user:change_password_form` tag has been deprecated
+* Updated templates and documentation to use new Statamic tags
 * Updated templates to use runtime parser syntax
-* Include avatar field in profile template
+* Include file field example in profile template
 
 ## 1.0.4 (2022-11-28)
 

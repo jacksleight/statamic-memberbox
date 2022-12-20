@@ -80,11 +80,14 @@ class UserTags extends StatamicUserTags
 
         $html .= $this->parse($data);
 
-        $html .= $this->formClose();
+        $html .= $this->formClose();        
 
         return $html;
     }
 
+    /**
+     * @deprecated
+     */
     public function changePasswordForm()
     {
         $data = $this->getFormSession('statamic-memberbox.user.change_password');

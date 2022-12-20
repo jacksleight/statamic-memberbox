@@ -59,6 +59,9 @@ class UsersController extends Controller
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }
 
+    /**
+     * @deprecated
+     */
     public function changePassword(Request $request)
     {
         throw_unless($user = User::current(), new UnauthorizedHttpException(403));

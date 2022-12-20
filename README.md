@@ -22,8 +22,7 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 * A members widget for the dashboard
 * These additional user form tags:
 	* Activate account
-	* Update profile
-	* Change password
+	* Update profile (with support for file uploads)
 * Restricted versions of the [built-in user and users tags](https://statamic.dev/reference/tags) for fetching member data and lists of members
 * Fully-functional starter templates for user account and directory pages, implementing the included tags plus all the [built-in user form tags](https://statamic.dev/reference/tags) (register, login, forgot password and reset password)
 * Optional routes for user account and directory pages

@@ -36,12 +36,20 @@ Render the activate form tag.
 
 ### `mb:user:profile_form`
 
+:::warning
+If you don't need file upload support you should use Statamic's built-in `user:profile_form` tag instead. Available in Statamic 3.3.61+.
+:::
+
 Render the profile form tag.
 
 * **redirect (string):** URL to redirect on success
 * **files (boolean):** Enable file uploads (`enctype="multipart/form-data"`)
 
 ### `mb:user:change_password_form`
+
+:::warning
+This tag has been deprecated, you should use Statamic's built-in `user:password_form` tag instead. Available in Statamic 3.3.61+.
+:::
 
 Render the change password form tag.
 

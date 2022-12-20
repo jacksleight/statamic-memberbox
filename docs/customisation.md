@@ -36,6 +36,10 @@ If you want to use something other than the user's ID in the listing show URLs y
 
 ## Profile form fields
 
+:::warning
+If you don't need file upload support you should use Statamic's built-in `user:profile_form` tag instead. Available in Statamic 3.3.61+.
+:::
+
 Only fields listed in the `statamic.memberbox.profile_fields` config option can be submitted through the profile form. The fields listed must match the fields in your form. To do that open `config/statamic/memberbox.php` and add your fields:
 
 ```php
