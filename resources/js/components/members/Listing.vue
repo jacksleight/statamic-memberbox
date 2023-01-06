@@ -25,11 +25,19 @@
                         @started="actionStarted"
                         @completed="actionCompleted"
                     />
-                    <data-list-table :allow-bulk-actions="false" v-show="items.length" @sorted="sorted">
+                    <data-list-table
+                        :allow-bulk-actions="false"
+                        v-show="items.length"
+                        :allow-column-picker="true"
+                        :column-preferences-key="preferencesKey('columns')"
+                        @sorted="sorted">
                         <template slot="cell-email" slot-scope="{ row: user, value }">
                             <a :href="cp_url(`memberbox/${user.id}`)">
                                 {{ value }}
                             </a>
+                        </template>
+                        <template slot="cell-groups" slot-scope="{ row: user, value: groups }">
+                            <span v-for="group in (groups || [])" class="badge-pill-sm mr-sm">{{ group.title }}</span>
                         </template>
                         <template slot="actions" slot-scope="{ row: user, index }">
                             <dropdown-list>
@@ -73,6 +81,7 @@ export default {
 
     data() {
         return {
+            preferencesPrefix: 'mb_members',
             requestUrl: cp_url('memberbox'),
         }
     },

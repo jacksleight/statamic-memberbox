@@ -73,13 +73,7 @@ class MembersController extends UsersController
 
         return (new Members($users))
             ->blueprint($blueprint = User::blueprint())
-            ->columns(collect([
-                Column::make('email')->label(__('Email')),
-                $blueprint->hasField('name') ? Column::make('name')->label(__('Name')) : null,
-                $blueprint->hasField('first_name') ? Column::make('first_name')->label(__('First Name')) : null,
-                $blueprint->hasField('last_name') ? Column::make('last_name')->label(__('Last Name')) : null,
-                Column::make('last_login')->label(__('Last Login'))->sortable(false),
-            ])->filter()->values()->all())
+            ->columnPreferenceKey('mb_members.columns')
             ->additional(['meta' => [
                 'activeFilterBadges' => $activeFilterBadges,
             ]]);

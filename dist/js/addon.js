@@ -75,6 +75,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_vendor_statamic_cms_resources_js_components_Listing_vue__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -83,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      preferencesPrefix: 'mb_members',
       requestUrl: cp_url('memberbox')
     };
   },
@@ -2144,7 +2153,12 @@ var render = function () {
                                   expression: "items.length",
                                 },
                               ],
-                              attrs: { "allow-bulk-actions": false },
+                              attrs: {
+                                "allow-bulk-actions": false,
+                                "allow-column-picker": true,
+                                "column-preferences-key":
+                                  _vm.preferencesKey("columns"),
+                              },
                               on: { sorted: _vm.sorted },
                               scopedSlots: _vm._u(
                                 [
@@ -2172,6 +2186,26 @@ var render = function () {
                                           ]
                                         ),
                                       ]
+                                    },
+                                  },
+                                  {
+                                    key: "cell-groups",
+                                    fn: function (ref) {
+                                      var user = ref.row
+                                      var groups = ref.value
+                                      return _vm._l(
+                                        groups || [],
+                                        function (group) {
+                                          return _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge-pill-sm mr-sm",
+                                            },
+                                            [_vm._v(_vm._s(group.title))]
+                                          )
+                                        }
+                                      )
                                     },
                                   },
                                   {
@@ -2242,7 +2276,7 @@ var render = function () {
               ],
               null,
               false,
-              3353462965
+              2428369212
             ),
           })
         : _vm._e(),
