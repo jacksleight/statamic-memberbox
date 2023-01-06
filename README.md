@@ -35,12 +35,12 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 
 <!-- statamic:hide -->
 
-## Contributing
-
-All contributions are very welcome and appreciated! However, plese bear in mind that while Memberbox's source code is open source and publicly available, it is proprietary. Everything in this repo, including any community-contributed code, is the property of Jack Sleight.
-
 ## Licencing
 
 Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
+
+## Contributing
+
+All contributions are very welcome and appreciated! However, plese bear in mind that while Memberbox's source code is open source and publicly available, it is proprietary. Everything in this repo, including any community-contributed code, is the property of Jack Sleight.
 
 <!-- /statamic:hide -->
