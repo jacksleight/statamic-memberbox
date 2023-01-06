@@ -2,7 +2,7 @@
 
 ## 1.1.1 (2023-01-06)
 
-* [new] Added Danish translations by @rabol in https://github.com/jacksleight/statamic-memberbox/pull/19
+* [new] Added Danish translations
 
 ## 1.1.0 (2023-01-06)
 
