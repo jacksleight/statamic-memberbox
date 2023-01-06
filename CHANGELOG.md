@@ -1,6 +1,6 @@
 # Changelog
 
-## NEXT ()
+## 1.1.0 (2023-01-06)
 
 * [new] Added column selector to members listing
 * The `mb:user:change_password_form` tag has been deprecated
