@@ -30,4 +30,4 @@ This addon requires Statamic’s [multi-user features](https://statamic.dev/user
 
 ## Licencing
 
-Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
+Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.

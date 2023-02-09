@@ -31,13 +31,13 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 
 ## Documentation
 
-[Statamic Memberbox Documentation](https://jacksleight.dev/docs/memberbox)
+[Memberbox Documentation](https://jacksleight.dev/docs/memberbox)
 
 <!-- statamic:hide -->
 
 ## Licencing
 
-Statamic Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
+Memberbox is not free software. You will need to purchase a license via the [Statamic Marketplace](https://statamic.com/addons/jacksleight/memberbox) to use it in production.
 
 ## Contributing
 
