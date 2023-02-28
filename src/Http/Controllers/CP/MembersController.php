@@ -142,7 +142,7 @@ class MembersController extends UsersController
 
         $user->save();
 
-        if (config('statamic.memberbox.enable_account')) {
+        if (config('statamic.memberbox.enable_account', true)) {
             PasswordReset::resetFormRoute('statamic-memberbox.activate');
         } else {
             PasswordReset::resetFormUrl(url(config('statamic.memberbox.routes.activate')));

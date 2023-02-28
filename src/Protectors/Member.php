@@ -13,7 +13,7 @@ class Member extends Protector
         $user = User::current();
 
         $params = ['redirect' => url()->current()];
-        if (config('statamic.memberbox.enable_account')) {
+        if (config('statamic.memberbox.enable_account', true)) {
             $url = route('statamic-memberbox.login', $params);
         } else {
             $url = url(config('statamic.memberbox.routes.login').'?'.Arr::query($params));

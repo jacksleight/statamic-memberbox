@@ -157,7 +157,7 @@ class UserTags extends StatamicUserTags
 
     protected function accountRouteUrl($name, array $params = [])
     {
-        if (config('statamic.memberbox.enable_account')) {
+        if (config('statamic.memberbox.enable_account', true)) {
             return route('statamic-memberbox.'.$name, $params);
         }
         return $this->routeUrl($name, $params);
@@ -165,7 +165,7 @@ class UserTags extends StatamicUserTags
 
     protected function directoryRouteUrl($name, array $params = [])
     {
-        if (config('statamic.memberbox.enable_directory')) {
+        if (config('statamic.memberbox.enable_directory', false)) {
             return route('statamic-memberbox.'.$name, $params);
         }
         return $this->routeUrl($name, $params);
