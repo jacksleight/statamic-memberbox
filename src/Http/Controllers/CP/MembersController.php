@@ -8,7 +8,6 @@ use JackSleight\StatamicMemberbox\Http\Resources\CP\Members\Members;
 use JackSleight\StatamicMemberbox\Notifications\ActivateAccount;
 use Statamic\Auth\Passwords\PasswordReset;
 use Statamic\Contracts\Auth\User as UserContract;
-use Statamic\CP\Column;
 use Statamic\Exceptions\FatalException;
 use Statamic\Exceptions\NotFoundHttpException;
 use Statamic\Facades\File;
@@ -143,7 +142,11 @@ class MembersController extends UsersController
 
         $user->save();
 
-        PasswordReset::resetFormUrl(url(config('statamic.memberbox.routes.activate')));
+        if (config('statamic.memberbox.enable_account')) {
+            PasswordReset::resetFormRoute('statamic-memberbox.activate');
+        } else {
+            PasswordReset::resetFormUrl(url(config('statamic.memberbox.routes.activate')));
+        }
         PasswordReset::redirectAfterReset(null);
         $token = $user->generateActivateAccountToken();
 
