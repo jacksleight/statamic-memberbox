@@ -4,7 +4,7 @@ namespace JackSleight\StatamicMemberbox\Tags;
 
 use JackSleight\StatamicMemberbox\Facades\Member;
 use Statamic\Facades\User;
-use Statamic\Tags\Concerns;
+use Statamic\Support\Arr;
 use Statamic\Auth\UserTags as StatamicUserTags;
 
 class UserTags extends StatamicUserTags
@@ -109,7 +109,7 @@ class UserTags extends StatamicUserTags
 
     public function registerUrl()
     {
-        return route('statamic-memberbox.register');
+        return $this->accountRouteUrl('register');
     }
 
     public function loginUrl()
@@ -122,36 +122,57 @@ class UserTags extends StatamicUserTags
                 : $append;
         }
 
-        return route('statamic-memberbox.login', ['redirect' => $redirect]);
+        return $this->accountRouteUrl('login', ['redirect' => $redirect]);
     }
 
     public function profileUrl()
     {
-        return route('statamic-memberbox.profile');
+        return $this->accountRouteUrl('profile');
     }
 
     public function forgotPasswordUrl()
     {
-        return route('statamic-memberbox.forgot_password');
+        return $this->accountRouteUrl('forgot_password');
     }
 
     public function resetPasswordUrl()
     {
-        return route('statamic-memberbox.reset_password');
+        return $this->accountRouteUrl('reset_password');
     }
 
     public function changePasswordUrl()
     {
-        return route('statamic-memberbox.change_password');
+        return $this->accountRouteUrl('change_password');
     }
 
     public function indexUrl()
     {
-        return route('statamic-memberbox.index');
+        return $this->directoryRouteUrl('index');
     }
 
     public function showUrl()
     {
-        return route('statamic-memberbox.show', $this->params->all());
+        return $this->directoryRouteUrl('show', $this->params->all());
+    }
+
+    protected function accountRouteUrl($name, array $params = [])
+    {
+        if (config('statamic.memberbox.enable_account')) {
+            return route('statamic-memberbox.'.$name, $params);
+        }
+        return $this->routeUrl($name, $params);
+    }
+
+    protected function directoryRouteUrl($name, array $params = [])
+    {
+        if (config('statamic.memberbox.enable_directory')) {
+            return route('statamic-memberbox.'.$name, $params);
+        }
+        return $this->routeUrl($name, $params);
+    }
+
+    protected function routeUrl($name, array $params = [])
+    {
+        return url(config('statamic.memberbox.routes.'.$name).($params ? ('?'.Arr::query($params)) : null));
     }
 }

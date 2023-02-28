@@ -12,9 +12,11 @@ class Member extends Protector
     {
         $user = User::current();
 
-        abort_unless(
-            Facades\Member::authorize($user),
-            redirect(route('statamic-memberbox.login', ['redirect' => url()->current()]))
-        );
+        $params = ['redirect' => url()->current()];
+        $url = config('statamic.memberbox.enable_account')
+            ? route('statamic-memberbox.login', $params)
+            : url(config('statamic.memberbox.routes.login').'?'.Arr::query($params));
+
+        abort_unless(Facades\Member::authorize($user), $url);
     }
 }
