@@ -3,7 +3,7 @@
 Route::name('statamic-memberbox.')->group(function () {
     if (config('statamic.memberbox.enable_account', true)) {
         if ($route = config('statamic.memberbox.routes.activate')) {
-            Route::statamic($route.'/{token}', 'statamic-memberbox::web.activate')->name('activate');
+            Route::statamic($route, 'statamic-memberbox::web.activate')->name('activate');
         }
 
         if ($route = config('statamic.memberbox.routes.register')) {
