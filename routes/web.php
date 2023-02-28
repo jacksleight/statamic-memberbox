@@ -32,11 +32,11 @@ Route::name('statamic-memberbox.')->group(function () {
             Route::post('/!/statamic-memberbox/change_password', 'UsersController@changePassword')->name('change_password.action');
         }
     } else {
-        if ($route = config('statamic.memberbox.routes.profile')) {
+        if (config('statamic.memberbox.routes.profile')) {
             Route::post('/!/statamic-memberbox/profile', 'UsersController@profile')->name('profile.action');
         }
 
-        if ($route = config('statamic.memberbox.routes.change_password')) {
+        if (config('statamic.memberbox.routes.change_password')) {
             Route::post('/!/statamic-memberbox/change_password', 'UsersController@changePassword')->name('change_password.action');
         }
     }
