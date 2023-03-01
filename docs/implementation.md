@@ -13,15 +13,15 @@ Check the [customisation](customisation.html) documentation for details on custo
 
 ---
 
-## Setting up the account and directory pages
+## Using the automatic account and directory pages
 
-To enable the account pages set the `statamic.memberbox.enable_account` config option to true (enabled by default):
+Memberbox can automatically create account and directory routes/pages for you, and comes with starter templates you can customise to match your site design. To enable the automatic account pages set the `statamic.memberbox.enable_account` config option to true (enabled by default):
 
 ```
 'enable_account' => true,
 ```
 
-To enable the directory pages set the `statamic.memberbox.enable_directory` config option to true and uncomment the routes:
+To enable the automatic directory pages set the `statamic.memberbox.enable_directory` config option to true and uncomment the routes:
 
 ```
 'enable_directory' => true,
@@ -33,11 +33,11 @@ To enable the directory pages set the `statamic.memberbox.enable_directory` conf
 ],
 ```
 
-> *Warning:* Enabling the user directory will expose user data publicly. Make sure your templates only output the data you want to be public!
+:::warning
+Enabling the user directory will expose user data publicly. Make sure your templates only output the data you want to be public!
+:::
 
----
-
-## Editing the page templates
+### Editing the page templates
 
 The starter templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
 
@@ -54,6 +54,12 @@ The starter templates use Antlers front matter to set a title variable which you
 ```html
 <title>{{ title or view:title }}</title>
 ```
+
+---
+
+## Using Statamic entries for your account and directory pages
+
+If you would prefer to use pages managed through Statamic as your account and directory pages you should switch the `enable_account` and `enable_directory` options off, and then populate the `routes` array with the URLs of your Statamic entries. Setting these will ensure that the URL tags and activation email links work as expected.
 
 ---
 

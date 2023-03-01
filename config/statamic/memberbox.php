@@ -7,7 +7,7 @@ return [
     | Enable Account
     |--------------------------------------------------------------------------
     |
-    | Enable the user account pages.
+    | Enable the automatic user account pages.
     |
     */
 
@@ -18,7 +18,8 @@ return [
     | Enable Directory
     |--------------------------------------------------------------------------
     |
-    | Enable the user directory pages. You'll also need to uncomment the routes.
+    | Enable the automatic user directory pages. You'll also need to uncomment
+    | the routes.
     |
     | WARNING:
     | Enabling the user directory will expose user data publicly. Make sure your
