@@ -173,6 +173,6 @@ class UserTags extends StatamicUserTags
 
     protected function routeUrl($name, array $params = [])
     {
-        return url(config('statamic.memberbox.routes.'.$name).($params ? ('?'.Arr::query($params)) : null));
+        return url(config('statamic.memberbox.routes.'.$name)).($params ? ('?'.Arr::query($params)) : null);
     }
 }
