@@ -58,26 +58,23 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__.'/../resources/views/web' => resource_path('views/vendor/statamic-memberbox/web'),
         ], 'statamic-memberbox-views');
 
-        Nav::extend(function ($nav) {
-            $nav->users('Members')
-                ->route('memberbox.index')
-                ->active('members')
-                ->can('mb view members')
-                ->icon('users');
-        });
-
-        $this->app->booted(function () {
-            Permission::group('mb members', 'Members', function () {
-                Permission::register('mb view members')->label(__('statamic-memberbox::permissions.view_members'))->children([
-                    Permission::make('mb edit members')->label(__('statamic-memberbox::permissions.edit_members'))->children([
-                        Permission::make('mb create members')->label(__('statamic-memberbox::permissions.create_members')),
-                    ]),
-                ]);
+        if (config('statamic.memberbox.enable_cp', true)) {
+            Nav::extend(function ($nav) {
+                $nav->users('Members')
+                    ->route('memberbox.index')
+                    ->active('members')
+                    ->can('mb view members')
+                    ->icon('users');
             });
-        });
-
-        // app(ProtectorManager::class)->extend('mb_member', function ($app) {
-        //     return new Member();
-        // });
+            $this->app->booted(function () {
+                Permission::group('mb members', 'Members', function () {
+                    Permission::register('mb view members')->label(__('statamic-memberbox::permissions.view_members'))->children([
+                        Permission::make('mb edit members')->label(__('statamic-memberbox::permissions.edit_members'))->children([
+                            Permission::make('mb create members')->label(__('statamic-memberbox::permissions.create_members')),
+                        ]),
+                    ]);
+                });
+            });
+        }
     }
 }
