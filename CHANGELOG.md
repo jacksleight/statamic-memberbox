@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 (2023-03-01)
+
+* [new] Ability to switch the CP Members section off
+* [fix] Using a custom page for the activate form
+
 ## 1.1.1 (2023-01-06)
 
 * [new] Added Danish translations by @rabol
