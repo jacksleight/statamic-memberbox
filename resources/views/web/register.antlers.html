@@ -29,20 +29,20 @@ title: Register
             
             <div class="mb-5">
                 <label for="email" class="block mb-1">Email</label>
-                <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email }}" />
+                <input class="w-full rounded-md" type="email" name="email" id="email" value="{{ old:email }}" />
             </div>
     
             <div class="mb-5">
                 <label for="password" class="block mb-1">Password</label>
-                <input class="bg-white p-2 w-full rounded-md" type="password" name="password" id="password" value="{{ old:password }}" />
+                <input class="w-full rounded-md" type="password" name="password" id="password" value="{{ old:password }}" />
             </div>
     
             <div class="mb-5">
                 <label for="password_confirmation" class="block mb-1">Confirm Password</label>
-                <input class="bg-white p-2 w-full rounded-md" type="password" name="password_confirmation" id="password_confirmation" value="{{ old:password_confirmation }}" />
+                <input class="w-full rounded-md" type="password" name="password_confirmation" id="password_confirmation" value="{{ old:password_confirmation }}" />
             </div>
 
-            <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Register</button>
+            <button class="bg-gray-600 text-white border border-gray-600 px-6 py-2 w-full rounded-md" type="submit">Register</button>
 
         {{ /user:register_form }}
 
