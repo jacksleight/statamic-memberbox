@@ -25,7 +25,7 @@
                 </data-list-table>
                 <data-list-pagination
                     v-if="paginate && meta.last_page != 1"
-                    class="py-1 border-t bg-grey-20 rounded-b-lg text-sm"
+                    class="jstw-py-2 border-t jstw-bg-gray-200 rounded-b-lg text-sm"
                     :resource-meta="meta"
                     @page-selected="selectPage"
                     :scroll-to-top="false"
@@ -33,7 +33,7 @@
             </div>
         </data-list>
 
-        <p v-else-if="!initializing && !items.length" class="p-2 pt-1 text-sm text-grey-50">
+        <p v-else-if="!initializing && !items.length" class="jstw-p-4 jstw-pt-2 text-sm jstw-text-gray-500">
             {{ __('There are no members') }}
         </p>
 
