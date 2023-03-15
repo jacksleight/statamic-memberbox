@@ -3,9 +3,9 @@
 namespace JackSleight\StatamicMemberbox\Tags;
 
 use JackSleight\StatamicMemberbox\Facades\Member;
+use Statamic\Auth\UserTags as StatamicUserTags;
 use Statamic\Facades\User;
 use Statamic\Support\Arr;
-use Statamic\Auth\UserTags as StatamicUserTags;
 
 class UserTags extends StatamicUserTags
 {
@@ -80,7 +80,7 @@ class UserTags extends StatamicUserTags
 
         $html .= $this->parse($data);
 
-        $html .= $this->formClose();        
+        $html .= $this->formClose();
 
         return $html;
     }
@@ -160,6 +160,7 @@ class UserTags extends StatamicUserTags
         if (config('statamic.memberbox.enable_account', true)) {
             return route('statamic-memberbox.'.$name, $params);
         }
+
         return $this->routeUrl($name, $params);
     }
 
@@ -168,6 +169,7 @@ class UserTags extends StatamicUserTags
         if (config('statamic.memberbox.enable_directory', false)) {
             return route('statamic-memberbox.'.$name, $params);
         }
+
         return $this->routeUrl($name, $params);
     }
 

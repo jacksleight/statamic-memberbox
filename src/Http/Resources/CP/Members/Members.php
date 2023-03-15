@@ -3,10 +3,10 @@
 namespace JackSleight\StatamicMemberbox\Http\Resources\CP\Members;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Statamic\Http\Resources\CP\Users\ListedUser;
 use Statamic\CP\Column;
 use Statamic\Facades\UserGroup;
 use Statamic\Http\Resources\CP\Concerns\HasRequestedColumns;
+use Statamic\Http\Resources\CP\Users\ListedUser;
 use Statamic\Support\Arr;
 
 class Members extends ResourceCollection
@@ -14,8 +14,11 @@ class Members extends ResourceCollection
     use HasRequestedColumns;
 
     public $collects = ListedUser::class;
+
     protected $blueprint;
+
     protected $columns;
+
     protected $columnPreferenceKey;
 
     public function blueprint($blueprint)

@@ -2,8 +2,6 @@
 
 namespace JackSleight\StatamicMemberbox;
 
-use JackSleight\StatamicMemberbox\Protectors\Member;
-use Statamic\Auth\Protect\ProtectorManager;
 use Statamic\Facades\CP\Nav;
 use Statamic\Facades\Permission;
 use Statamic\Providers\AddonServiceProvider;
@@ -11,7 +9,7 @@ use Statamic\Providers\AddonServiceProvider;
 class ServiceProvider extends AddonServiceProvider
 {
     protected $routes = [
-        'cp'  => __DIR__.'/../routes/cp.php',
+        'cp' => __DIR__.'/../routes/cp.php',
         'web' => __DIR__.'/../routes/web.php',
     ];
 

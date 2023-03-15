@@ -2,8 +2,8 @@
 
 return [
 
-    'view_members'   => 'Vis medlemmer',
-    'edit_members'   => 'Rediger medlemmer',
+    'view_members' => 'Vis medlemmer',
+    'edit_members' => 'Rediger medlemmer',
     'create_members' => 'Opret medlem',
 
 ];
