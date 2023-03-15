@@ -11,13 +11,13 @@
 
         <!-- Step 1 -->
         <div v-if="!completed && currentStep === 0">
-            <div class="max-w-md mx-auto jstw-px-4 jstw-py-16 text-center">
+            <div class="max-w-md mx-auto jstw-px-4 jstw-py-16 jstw-pb-10 text-center">
                 <h1 class="jstw-mb-6">{{ __('Create Member') }}</h1>
                 <p class="jstw-text-gray" v-text="__('statamic-memberbox::messages.member_wizard_intro')" />
             </div>
 
             <div class="max-w-md mx-auto jstw-px-4 jstw-pb-16">
-                <div class="jstw--m-6">
+                <div>
                     <publish-container
                         v-if="fields.length"
                         ref="container"
