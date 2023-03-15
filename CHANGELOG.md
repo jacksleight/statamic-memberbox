@@ -3,6 +3,7 @@
 ## 1.2.0 ()
 
 * [new] Statamic 4 support
+* Minimum supported Statamic version is now 3.3.66
 
 ## 1.1.2 (2023-03-01)
 
