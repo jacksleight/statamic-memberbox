@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 ()
+
+* [new] Statamic 4 support
+
 ## 1.1.2 (2023-03-01)
 
 * [new] Ability to switch the CP Members section off
