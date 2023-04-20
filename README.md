@@ -15,7 +15,7 @@ This Statamic addon builds upon on Statamic’s existing user management, user f
 ## Features
 
 * A self-contained members section in the control panel that:
-	* Only lists members and allows you to search them
+	* Only lists members
 	* Allows you to create members through a simplified and customizable user wizard
 	* Allows you to send member specific welcome emails that link to a frontend activation form
 	* Allows you to export all members as either a CSV or JSON file
