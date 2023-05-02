@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.2.0 ()
+## 2.0.0 (2023-05-02)
 
 * [new] Statamic 4 support
 * Login starter template includes remember me checkbox
-* Minimum supported Statamic version is now 3.3.66
+- Dropped support for Statamic 3
 
 ## 1.1.2 (2023-03-01)
 

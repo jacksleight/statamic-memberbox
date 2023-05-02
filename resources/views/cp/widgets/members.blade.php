@@ -1,9 +1,9 @@
 <div class="card p-0 overflow-hidden h-full">
-    <div class="flex justify-between items-center jstw-p-4">
+    <div class="flex justify-between items-center p-4">
         <h2>
             <a class="flex items-center" href="{{ cp_route('memberbox.index') }}">
-                <div class="h-6 w-6 jstw-mr-2 jstw-text-gray-800">
-                    @cp_svg('users')
+                <div class="h-6 w-6 mr-2 text-gray-800">
+                    @cp_svg('icons/light/users')
                 </div>
                 <span>{{ $title }}</span>
             </a>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <header class="flex items-center jstw-mb-6">
+    <header class="flex items-center mb-6">
         
         <h1 class="flex-1">
             {{ __('Members') }}
@@ -17,7 +17,7 @@
         </dropdown-list>
         
         @if (Statamic::pro() && auth()->user()->can('mb create members'))
-            <a href="{{ cp_route('memberbox.create') }}" class="btn-primary jstw-ml-4">{{ __('Create Member') }}</a>
+            <a href="{{ cp_route('memberbox.create') }}" class="btn-primary ml-4">{{ __('Create Member') }}</a>
         @endif
 
     </header>
