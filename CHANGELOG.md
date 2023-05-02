@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0 (2023-05-02)
+
+* [new] Statamic 4 support
+* [break] The previously deprecated `mb:user:change_password_form`, `mb:user:has` and `mb:user:member` tags have been removed
+* Login starter template includes remember me checkbox
+- Dropped support for Statamic 3
+
 ## 1.1.2 (2023-03-01)
 
 * [new] Ability to switch the CP Members section off

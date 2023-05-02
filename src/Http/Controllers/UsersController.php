@@ -4,7 +4,6 @@ namespace JackSleight\StatamicMemberbox\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Statamic\Auth\Passwords\PasswordDefaults;
 use Statamic\Exceptions\UnauthorizedHttpException;
 use Statamic\Facades\User;
 use Statamic\Forms\Uploaders\AssetsUploader;
@@ -55,33 +54,6 @@ class UsersController extends Controller
         $user->save();
 
         session()->flash('statamic-memberbox.user.profile.success', __('Account updated successfully.'));
-
-        return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
-    }
-
-    /**
-     * @deprecated
-     */
-    public function changePassword(Request $request)
-    {
-        throw_unless($user = User::current(), new UnauthorizedHttpException(403));
-
-        $validator = Validator::make($request->all(), [
-            'current_password' => ['required', 'current_password'],
-            'password'         => ['required', 'confirmed', PasswordDefaults::rules()],
-        ]);
-
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-
-            return back()->withInput()->withErrors($errors, 'statamic-memberbox.user.change_password');
-        }
-
-        $user->password($request->password);
-
-        $user->save();
-
-        session()->flash('statamic-memberbox.user.change_password.success', __('Password changed successfully.'));
 
         return request()->has('_redirect') ? redirect(request()->get('_redirect')) : back();
     }

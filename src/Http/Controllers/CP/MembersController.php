@@ -94,13 +94,13 @@ class MembersController extends UsersController
         $expiry = config("auth.passwords.{$broker}.expire") / 60;
 
         $viewData = [
-            'title'     => __('Create'),
-            'values'    => $fields->values()->all(),
+            'title' => __('Create'),
+            'values' => $fields->values()->all(),
             'blueprint' => $blueprint->toPublishArray(),
-            'fields'    => $fields->toPublishArray(),
-            'meta'      => $fields->meta(),
-            'expiry'    => $expiry,
-            'actions'   => [
+            'fields' => $fields->toPublishArray(),
+            'meta' => $fields->meta(),
+            'expiry' => $expiry,
+            'actions' => [
                 'save' => cp_route('memberbox.store'),
             ],
         ];

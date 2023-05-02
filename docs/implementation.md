@@ -39,7 +39,7 @@ Enabling the user directory will expose user data publicly. Make sure your templ
 
 ### Editing the page templates
 
-The starter templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) kit, which uses Tailwind CSS. To customise these to match your site's design publish the view templates:
+The starter templates have been built with the [Starters Creek](https://statamic.com/starter-kits/statamic/starters-creek) kit  (along with the `@tailwind/forms` plugin). To customise these to match your site's design publish the view templates:
 
 ```bash
 php please vendor:publish --tag=statamic-memberbox-views

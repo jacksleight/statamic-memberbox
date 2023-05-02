@@ -22,12 +22,12 @@ class Members extends Widget
         $sortDirection = $exploded[1] ?? 'asc';
 
         return view('statamic-memberbox::cp.widgets.members', [
-            'filters'       => Scope::filters('users'),
-            'title'         => $this->config('title', __('Members')),
-            'limit'         => $this->config('limit', 5),
-            'create'        => $this->config('create', true),
-            'paginate'      => $this->config('paginate', true),
-            'sortColumn'    => $sortColumn,
+            'filters' => Scope::filters('users'),
+            'title' => $this->config('title', __('Members')),
+            'limit' => $this->config('limit', 5),
+            'create' => $this->config('create', true),
+            'paginate' => $this->config('paginate', true),
+            'sortColumn' => $sortColumn,
             'sortDirection' => $sortDirection,
         ]);
     }

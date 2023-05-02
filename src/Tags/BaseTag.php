@@ -12,8 +12,8 @@ class BaseTag extends Tags
     protected static $handle = 'mb';
 
     protected $tagClasses = [
-        'user'    => UserTags::class,
-        'member'  => MemberTags::class,
+        'user' => UserTags::class,
+        'member' => MemberTags::class,
         'members' => MembersTags::class,
     ];
 
@@ -24,7 +24,7 @@ class BaseTag extends Tags
         $class = collect($this->tagClasses)
             ->map(function ($value, $key) {
                 return [
-                    'key'   => $key,
+                    'key' => $key,
                     'value' => $value,
                 ];
             })
@@ -40,11 +40,11 @@ class BaseTag extends Tags
 
         $tags = new $class();
         $tags->setProperties([
-            'parser'     => $this->parser,
-            'content'    => $this->content,
-            'context'    => $this->context,
-            'params'     => $this->params,
-            'tag'        => $this->tag,
+            'parser' => $this->parser,
+            'content' => $this->content,
+            'context' => $this->context,
+            'params' => $this->params,
+            'tag' => $this->tag,
             'tag_method' => $this->method,
         ]);
 

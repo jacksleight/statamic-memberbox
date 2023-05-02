@@ -2,7 +2,7 @@
 
     <div>
 
-        <header class="mb-3">
+        <header class="mb-6">
             <breadcrumb :url="cp_url('memberbox')" :title="__('Members')" />
             <div class="flex items-center">
                 <h1 class="flex-1" v-text="title" />
@@ -10,7 +10,7 @@
                     <change-password
                         v-if="canEditPassword"
                         :save-url="actions.password"
-                        class="mr-2"
+                        class="mr-4"
                     />
 
                     <button
@@ -34,14 +34,14 @@
             @updated="values = $event"
         >
             <div slot-scope="{ container, setFieldValue, setFieldMeta }">
-                <publish-sections
+                <publish-tabs
                     :enable-sidebar="false"
                     :can-toggle-labels="true"
                     @updated="setFieldValue"
                     @meta-updated="setFieldMeta"
                     @focus="container.$emit('focus', $event)"
                     @blur="container.$emit('blur', $event)"
-                ></publish-sections>
+                ></publish-tabs>
             </div>
         </publish-container>
 

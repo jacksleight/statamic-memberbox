@@ -2,39 +2,11 @@
 
 namespace JackSleight\StatamicMemberbox\Tags;
 
-use JackSleight\StatamicMemberbox\Facades\Member;
-use Statamic\Facades\User;
-use Statamic\Support\Arr;
 use Statamic\Auth\UserTags as StatamicUserTags;
+use Statamic\Support\Arr;
 
 class UserTags extends StatamicUserTags
 {
-    /**
-     * @deprecated
-     */
-    public function member()
-    {
-        $user = User::current();
-
-        return Member::verify($user);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function has()
-    {
-        $user = User::current();
-
-        foreach ($this->params as $name => $value) {
-            if ($user->get($name) != $value) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public function activateForm()
     {
         $data = [
@@ -73,28 +45,6 @@ class UserTags extends StatamicUserTags
         $knownParams = ['redirect', 'files'];
 
         $html = $this->formOpen(route('statamic-memberbox.profile.action'), 'POST', $knownParams);
-
-        if ($redirect = $this->params->get('redirect')) {
-            $html .= '<input type="hidden" name="_redirect" value="'.$redirect.'" />';
-        }
-
-        $html .= $this->parse($data);
-
-        $html .= $this->formClose();        
-
-        return $html;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function changePasswordForm()
-    {
-        $data = $this->getFormSession('statamic-memberbox.user.change_password');
-
-        $knownParams = ['redirect'];
-
-        $html = $this->formOpen(route('statamic-memberbox.change_password.action'), 'POST', $knownParams);
 
         if ($redirect = $this->params->get('redirect')) {
             $html .= '<input type="hidden" name="_redirect" value="'.$redirect.'" />';
@@ -160,6 +110,7 @@ class UserTags extends StatamicUserTags
         if (config('statamic.memberbox.enable_account', true)) {
             return route('statamic-memberbox.'.$name, $params);
         }
+
         return $this->routeUrl($name, $params);
     }
 
@@ -168,6 +119,7 @@ class UserTags extends StatamicUserTags
         if (config('statamic.memberbox.enable_directory', false)) {
             return route('statamic-memberbox.'.$name, $params);
         }
+
         return $this->routeUrl($name, $params);
     }
 

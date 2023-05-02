@@ -18,7 +18,7 @@
                     <div class="data-list-header">
                         <data-list-search v-model="searchQuery" />
                     </div>
-                    <div v-show="items.length === 0" class="p-3 text-center text-grey-50" v-text="__('No members found')" />
+                    <div v-show="items.length === 0" class="p-6 text-center text-gray-500" v-text="__('No members found')" />
                     <data-list-bulk-actions
                         class="rounded"
                         :url="actionUrl"
@@ -37,7 +37,7 @@
                             </a>
                         </template>
                         <template slot="cell-groups" slot-scope="{ row: user, value: groups }">
-                            <span v-for="group in (groups || [])" class="badge-pill-sm mr-sm">{{ group.title }}</span>
+                            <span v-for="group in (groups || [])" class="badge-pill-sm mr-1">{{ group.title }}</span>
                         </template>
                         <template slot="actions" slot-scope="{ row: user, index }">
                             <dropdown-list>
@@ -55,7 +55,7 @@
                 </div>
 
                 <data-list-pagination
-                    class="mt-3"
+                    class="mt-6"
                     :show-totals="true"
                     :resource-meta="meta"
                     :per-page="perPage"

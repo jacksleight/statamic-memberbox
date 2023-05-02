@@ -37,18 +37,18 @@ title: Update Profile
 
                 <div class="mb-5">
                     <label for="name" class="block mb-1">Name</label>
-                    <input class="bg-white p-2 w-full rounded-md" type="name" name="name" id="name" value="{{ old:name ?? name }}" />
+                    <input class="w-full rounded-md" type="text" name="name" id="name" value="{{ old:name ?? name }}" />
                 </div>
 
                 <div class="mb-5">
                     <label for="email" class="block mb-1">Email</label>
-                    <input class="bg-white p-2 w-full rounded-md" type="email" name="email" id="email" value="{{ old:email ?? email }}" />
+                    <input class="w-full rounded-md" type="email" name="email" id="email" value="{{ old:email ?? email }}" />
                 </div>
 
                 <div class="mb-5">
                     <label for="avatar" class="block mb-1">Avatar</label>
                     <div class="flex gap-3 items-center">
-                        <input class="bg-white p-2 w-full rounded-md" type="file" name="avatar" id="avatar" />
+                        <input class="w-full" type="file" name="avatar" id="avatar" />
                         {{ if avatar }}
                             <img src="{{ glide:avatar width="88" height="88" }}" alt="{{ name }}" class="w-11 h-11 rounded-full shrink-0">
                         {{ else }}
@@ -59,12 +59,12 @@ title: Update Profile
 
             {{ /user }}
             
-            <a href="{{ mb:user:change_password_url }}" class="my-5 text-center block text-black">Want to change your password?</a>
-
-            <button class="bg-gray-600 text-white p-2 w-full rounded-md" type="submit">Update</button>
-
+            <button class="bg-gray-600 text-white border border-gray-600 px-6 py-2 w-full rounded-md" type="submit">Update</button>
+        
         {{ /mb:user:profile_form }}
-
+        
     </div>
+
+    <a href="{{ mb:user:change_password_url }}" class="my-5 text-center block text-black">Need to change your password?</a>
 
 </div>
