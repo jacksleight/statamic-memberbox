@@ -2,50 +2,50 @@
 
 ## 2.0.0 (2023-05-02)
 
-* [new] Statamic 4 support
-* [break] The previously deprecated `mb:user:change_password_form`, `mb:user:has` and `mb:user:member` tags have been removed
-* Login starter template includes remember me checkbox
+- [new] Statamic 4 support
+- [break] The previously deprecated `mb:user:change_password_form`, `mb:user:has` and `mb:user:member` tags have been removed
+- Login starter template includes remember me checkbox
 - Dropped support for Statamic 3
 
 ## 1.1.2 (2023-03-01)
 
-* [new] Ability to switch the CP Members section off
-* [fix] Using a custom page for the activate form
+- [new] Ability to switch the CP Members section off
+- [fix] Using a custom page for the activate form
 
 ## 1.1.1 (2023-01-06)
 
-* [new] Added Danish translations by @rabol
+- [new] Added Danish translations by @rabol
 
 ## 1.1.0 (2023-01-06)
 
-* [new] Added column selector to members listing
-* The `mb:user:change_password_form` tag has been deprecated
-* Updated templates and documentation to use new Statamic tags
-* Updated templates to use runtime parser syntax
-* Include file field example in the profile template
+- [new] Added column selector to members listing
+- The `mb:user:change_password_form` tag has been deprecated
+- Updated templates and documentation to use new Statamic tags
+- Updated templates to use runtime parser syntax
+- Include file field example in the profile template
 
 ## 1.0.4 (2022-11-28)
 
-* [fix] Profile form values not being processed before save
+- [fix] Profile form values not being processed before save
 
 ## 1.0.3 (2022-11-28)
 
-* [fix] Email field now optional in profile form
+- [fix] Email field now optional in profile form
 
 ## 1.0.2 (2022-07-20)
 
-* [new] Add pagination totals to CP listing page
-* [fix] CP search returning non-members
+- [new] Add pagination totals to CP listing page
+- [fix] CP search returning non-members
 
 ## 1.0.1 (2022-07-15)
 
-* [fix] CP listing page error with Statamic 3.3.18+
+- [fix] CP listing page error with Statamic 3.3.18+
 
 ## 1.0.0 (2022-06-21)
 
-* [new] Ability to export members as either a CSV or JSON file
-* [new] Fresh install configuration check and introduction
-* [fix] Better message when there's an error during member creation
+- [new] Ability to export members as either a CSV or JSON file
+- [new] Fresh install configuration check and introduction
+- [fix] Better message when there's an error during member creation
 
 ## 0.5.1 (2022-03-16)
 
@@ -84,7 +84,7 @@
 
 ## 0.4.0 (2021-11-10)
 
-- [break] 💥 **Everything:** This addon has been significantly reworked and also renamed. Update instructions:
+- [break] 💥 **Everything:*- This addon has been significantly reworked and also renamed. Update instructions:
     1. Update `composer.json` to `"jacksleight/statamic-memberbox": "0.4.0",`
     2. Run `composer update`
     3. Republish the config, views and translations if you've published them
