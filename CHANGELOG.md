@@ -3,6 +3,7 @@
 ## 2.0.0 (2023-05-02)
 
 * [new] Statamic 4 support
+* [break] The previously deprecated `mb:user:change_password_form`, `mb:user:has` and `mb:user:member` tags have been removed
 * Login starter template includes remember me checkbox
 - Dropped support for Statamic 3
 
