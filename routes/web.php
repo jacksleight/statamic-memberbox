@@ -1,5 +1,7 @@
 <?php
 
+use JackSleight\StatamicMemberbox\Http\Controllers\UsersController;
+
 Route::name('statamic-memberbox.')->group(function () {
     if (config('statamic.memberbox.enable_account', true)) {
         if ($route = config('statamic.memberbox.routes.activate')) {
@@ -16,7 +18,7 @@ Route::name('statamic-memberbox.')->group(function () {
 
         if ($route = config('statamic.memberbox.routes.profile')) {
             Route::statamic($route, 'statamic-memberbox::web.profile')->name('profile');
-            Route::post('/!/statamic-memberbox/profile', 'UsersController@profile')->name('profile.action');
+            Route::post('/!/statamic-memberbox/profile', [UsersController::class, 'profile'])->name('profile.action');
         }
 
         if ($route = config('statamic.memberbox.routes.forgot_password')) {
@@ -29,15 +31,15 @@ Route::name('statamic-memberbox.')->group(function () {
 
         if ($route = config('statamic.memberbox.routes.change_password')) {
             Route::statamic($route, 'statamic-memberbox::web.change_password')->name('change_password');
-            Route::post('/!/statamic-memberbox/change_password', 'UsersController@changePassword')->name('change_password.action');
+            Route::post('/!/statamic-memberbox/change_password', [UsersController::class, 'changePassword'])->name('change_password.action');
         }
     } else {
         if (config('statamic.memberbox.routes.profile')) {
-            Route::post('/!/statamic-memberbox/profile', 'UsersController@profile')->name('profile.action');
+            Route::post('/!/statamic-memberbox/profile', [UsersController::class, 'profile'])->name('profile.action');
         }
 
         if (config('statamic.memberbox.routes.change_password')) {
-            Route::post('/!/statamic-memberbox/change_password', 'UsersController@changePassword')->name('change_password.action');
+            Route::post('/!/statamic-memberbox/change_password', [UsersController::class, 'changePassword'])->name('change_password.action');
         }
     }
     if (config('statamic.memberbox.enable_directory', false)) {

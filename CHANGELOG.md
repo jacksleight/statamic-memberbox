@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 (2023-06-28)
+
+- [fix] Missing controller error when submitting forms
+
 ## 2.0.0 (2023-05-02)
 
 - [new] Statamic 4 support
