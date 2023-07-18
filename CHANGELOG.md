@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0 (2023-07-18)
+
+- [new] Include computed values in members export
+
 ## 2.0.2 (2023-07-18)
 
 - [fix] Error exporting members when blueprint contains relationship fields
