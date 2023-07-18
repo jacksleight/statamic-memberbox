@@ -4,6 +4,7 @@ namespace JackSleight\StatamicMemberbox\Exporters;
 
 use League\Csv\Writer;
 use SplTempFileObject;
+use Statamic\Facades\User;
 
 class CsvExporter extends AbstractExporter
 {
@@ -14,6 +15,11 @@ class CsvExporter extends AbstractExporter
         $this->writer = Writer::createFromFileObject(new SplTempFileObject);
     }
 
+    public function contentType()
+    {
+        return 'text/csv';
+    }
+
     public function export()
     {
         $this->writer->insertOne($this->getHeaders());
@@ -22,8 +28,25 @@ class CsvExporter extends AbstractExporter
         return (string) $this->writer;
     }
 
-    public function contentType()
+    protected function getHeaders()
     {
-        return 'text/csv';
+        return User::blueprint()
+            ->fields()
+            ->except(['id', 'groups', 'roles', 'password'])
+            ->all()
+            ->keys()
+            ->merge(['id', 'last_login'])
+            ->all();
+    }
+
+    protected function getData()
+    {
+        return collect(parent::getData())
+            ->map(function ($user) {
+                return collect($user)->map(function ($value) {
+                    return (is_array($value)) ? implode(', ', $value) : $value;
+                })->all();
+            })
+            ->all();
     }
 }
