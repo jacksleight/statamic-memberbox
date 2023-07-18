@@ -11,18 +11,29 @@ abstract class AbstractExporter
 
     abstract public function export();
 
+    protected function getKeys()
+    {
+        return User::blueprint()
+            ->fields()
+            ->except(['id', 'groups', 'roles', 'password'])
+            ->all()
+            ->keys()
+            ->merge(['id', 'last_login'])
+            ->merge(User::getComputedCallbacks()->keys())
+            ->all();
+    }
+
     protected function getData()
     {
         return Member::query()->get()
             ->map(function ($user) {
                 $data = $user->data();
+                $computedData = $user->computedData();
 
-                return User::blueprint()->fields()->all()->keys()->flip()
-                    ->reject(function ($field, $key) {
-                        return in_array($key, ['id', 'groups', 'roles', 'password']);
-                    })
-                    ->map(function ($field, $key) use ($data) {
-                        return $data[$key] ?? null;
+                return collect($this->getKeys())
+                    ->flip()
+                    ->map(function ($field, $key) use ($data, $computedData) {
+                        return $data[$key] ?? $computedData[$key] ?? null;
                     })
                     ->merge([
                         'id' => $user->id(),
