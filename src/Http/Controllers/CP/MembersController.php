@@ -241,7 +241,7 @@ class MembersController extends UsersController
         $content = $exporter->export();
 
         if ($this->request->has('download')) {
-            $path = storage_path('statamic/tmp/memberbox/'.time().'.'.$type);
+            $path = storage_path('statamic/tmp/memberbox/members-'.time().'.'.$type);
             File::put($path, $content);
             $response = response()->download($path)->deleteFileAfterSend(true);
         } else {
