@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2 (2023-07-18)
+
+- [fix] Error exporting members when blueprint contains relationship fields
+
 ## 2.0.1 (2023-06-28)
 
 - [fix] Missing controller error when submitting forms
