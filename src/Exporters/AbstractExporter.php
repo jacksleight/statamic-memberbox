@@ -15,11 +15,12 @@ abstract class AbstractExporter
     {
         return User::blueprint()
             ->fields()
-            ->except(['id', 'groups', 'roles', 'password'])
+            ->except(['groups', 'roles'])
             ->all()
             ->keys()
-            ->merge(['id', 'last_login'])
             ->merge(User::getComputedCallbacks()->keys())
+            ->merge(['id', 'last_login'])
+            ->reject('password')
             ->all();
     }
 
@@ -27,18 +28,17 @@ abstract class AbstractExporter
     {
         return Member::query()->get()
             ->map(function ($user) {
-                $data = $user->data();
-                $computedData = $user->computedData();
+                $data = $user->data()
+                    ->merge($user->computedData())
+                    ->merge([
+                        'id' => $user->id(),
+                        'email' => $user->email(),
+                        'last_login' => $user->lastLogin(),
+                    ]);
 
                 return collect($this->getKeys())
                     ->flip()
-                    ->map(function ($field, $key) use ($data, $computedData) {
-                        return $data[$key] ?? $computedData[$key] ?? null;
-                    })
-                    ->merge([
-                        'id' => $user->id(),
-                        'last_login' => $user->lastLogin(),
-                    ])
+                    ->map(fn ($field, $key) => $data->get($key))
                     ->all();
             })
             ->all();
