@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 (2023-09-04)
+
+- [fix] Blank emails in exports
+
 ## 2.1.0 (2023-07-18)
 
 - [new] Include computed values in members export
