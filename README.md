@@ -4,7 +4,7 @@
 
 <!-- /statamic:hide -->
 
-This Statamic addon builds upon on Statamic’s existing user management, user form tags, and content protection features to provide an out of the box solution for adding a members area or member restricted content to your site. It also provides a self-contained members section in the control panel, allowing you to manage members independently of other users.
+This Statamic addon adds a few member related extras on top of Statamic’s existing user features. You *don’t* need this addon to build a members area or member restricted content, but these extras might come in useful.
 
 > **Note**
 > This addon uses Statamic’s multi-user features, which are Pro only. Therefore this addon will only work with the Pro edition.
