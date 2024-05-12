@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2 (2024-05-12)
+
+- Statamic 5 support
+
 ## 2.1.1 (2023-09-04)
 
 - [fix] Blank emails in exports
