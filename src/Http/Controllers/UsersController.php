@@ -8,6 +8,7 @@ use Statamic\Exceptions\UnauthorizedHttpException;
 use Statamic\Facades\User;
 use Statamic\Forms\Uploaders\AssetsUploader;
 use Statamic\Support\Arr;
+use Statamic\Rules\UniqueUserValue;
 
 class UsersController extends Controller
 {
@@ -26,7 +27,7 @@ class UsersController extends Controller
         $extraRules = $this->assetRules($fields);
         if ($only->contains('email')) {
             $extraRules = array_merge([
-                'email' => ['required', 'unique_user_value:'.$user->id()],
+                'email' => ['required', new UniqueUserValue($user->id())],
             ], $extraRules);
         }
         $fieldRules = $fields->validator()->withRules($extraRules)->rules();

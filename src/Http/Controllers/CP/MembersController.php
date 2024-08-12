@@ -16,6 +16,7 @@ use Statamic\Facades\User;
 use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
 use Statamic\Support\Str;
+use Statamic\Rules\UniqueUserValue;
 
 class MembersController extends UsersController
 {
@@ -212,7 +213,7 @@ class MembersController extends UsersController
 
         $fields = $user->blueprint()->fields()->except(['password'])->addValues($request->all());
 
-        $fields->validate(['email' => 'required|unique_user_value:'.$user->id()]);
+        $fields->validate(['email' => 'required', new UniqueUserValue($user->id())]);
 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
 
