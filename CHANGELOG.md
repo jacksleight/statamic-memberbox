@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.3 (2024-08-12)
+
+* [fix] Error when validating user profile update by @david-lobo in https://github.com/jacksleight/statamic-memberbox/pull/37
+
 ## 2.1.2 (2024-05-12)
 
 - Statamic 5 support
