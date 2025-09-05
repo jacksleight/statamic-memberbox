@@ -15,8 +15,8 @@ use Statamic\Facades\Scope;
 use Statamic\Facades\User;
 use Statamic\Http\Controllers\CP\Users\UsersController;
 use Statamic\Http\Requests\FilteredRequest;
-use Statamic\Support\Str;
 use Statamic\Rules\UniqueUserValue;
+use Statamic\Support\Str;
 
 class MembersController extends UsersController
 {
@@ -125,7 +125,7 @@ class MembersController extends UsersController
 
         $fields = $blueprint->fields()->only($only)->except($except)->addValues($request->all());
 
-        $fields->validate(['email' => ['required', 'email', new UniqueUserValue()]]);
+        $fields->validate(['email' => ['required', 'email', new UniqueUserValue]]);
 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles', 'password']);
 
@@ -213,7 +213,11 @@ class MembersController extends UsersController
 
         $fields = $user->blueprint()->fields()->except(['password'])->addValues($request->all());
 
-        $fields->validate(['email' => 'required', new UniqueUserValue($user->id())]);
+        $fields
+            ->validator()
+            ->withRules(['email' => ['required', 'email', new UniqueUserValue(except: $user->id())]])
+            ->withReplacements(['id' => $user->id()])
+            ->validate();
 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles']);
 
