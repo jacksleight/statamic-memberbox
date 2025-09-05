@@ -125,7 +125,7 @@ class MembersController extends UsersController
 
         $fields = $blueprint->fields()->only($only)->except($except)->addValues($request->all());
 
-        $fields->validate(['email' => 'required|email|unique_user_value']);
+        $fields->validate(['email' => ['required', 'email', new UniqueUserValue()]]);
 
         $values = $fields->process()->values()->except(['email', 'groups', 'roles', 'password']);
 
