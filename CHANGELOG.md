@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.4 (2025-09-05)
+
+* [fix] Error when validating user CP update by @snavebelac in https://github.com/jacksleight/statamic-memberbox/pull/40
+
 ## 2.1.3 (2024-08-12)
 
 * [fix] Error when validating user profile update by @david-lobo in https://github.com/jacksleight/statamic-memberbox/pull/37
