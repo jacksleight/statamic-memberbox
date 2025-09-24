@@ -4,7 +4,7 @@
 
 <!-- /statamic:hide -->
 
-> ⚠️ **Abandoned**
+> ⚠️ **Abandoned:** Please see [this discussion](https://github.com/jacksleight/statamic-memberbox/discussions/41#discussioncomment-14473839).
 
 This Statamic addon adds a few member related extras on top of Statamic’s existing user features. You *don’t* need this addon to build a members area or member restricted content, but these extras might come in useful.
 
